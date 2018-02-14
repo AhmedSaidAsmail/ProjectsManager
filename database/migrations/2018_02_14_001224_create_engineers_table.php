@@ -17,9 +17,16 @@ class CreateEngineersTable extends Migration
             $table->increments('id');
             $table->integer('type_id')->unsigned();
             $table->foreign('type_id')->references('id')->on('engineer_types')->onDelete('cascade');
+            $table->integer('contractor_id')->unsigned()->nullable();
+            $table->foreign('contractor_id')->references('id')->on('contractors')->onDelete('cascade');
+            $table->integer('consultant_id')->unsigned()->nullable();
+            $table->foreign('consultant_id')->references('id')->on('consultants')->onDelete('cascade');
+            $table->integer('owner_id')->unsigned()->nullable();
+            $table->foreign('owner_id')->references('id')->on('owners')->onDelete('cascade');
             $table->string('name');
             $table->string('email')->unique();
             $table->text('password');
+            $table->string('img')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
