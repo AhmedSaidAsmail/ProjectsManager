@@ -7,13 +7,10 @@
     <meta name="description" content=""/>
     <meta name="keywords" content=""/>
     <meta name="author" content="hencework"/>
-    <!-- Favicon -->
     <link rel="shortcut icon" href="{{asset('template/iconfav.ico')}}">
     <link rel="icon" href="{{asset('template/iconfav.ico')}}" type="image/x-icon">
-    <!-- Data table CSS -->
     <link href="{{asset('template/vendors/bower_components/datatables/media/css/jquery.dataTables.min.css')}}" rel="stylesheet"
           type="text/css"/>
-    <!-- Custom CSS -->
     <link href="{{asset('template/dist/css/style.css')}}" rel="stylesheet" type="text/css">
 </head>
 
@@ -32,22 +29,30 @@
                 <div class="logo-wrap">
                     <a href="index.html">
                         <img class="brand-img" src="{{asset('template/dist/img/logo.png')}}" alt="Project Manager"/>
-                        <span class="brand-text">Philbert</span>
+                        <span class="brand-text">Pro Manager</span>
                     </a>
                 </div>
             </div>
             <a id="toggle_nav_btn" class="toggle-left-nav-btn inline-block ml-20 pull-left"
-               href="javascript:void(0);"><i class="zmdi zmdi-menu"></i></a>
+               href="javascript:void(0);">
+                <i class="zmdi zmdi-menu"></i>
+            </a>
             <a id="toggle_mobile_search" data-toggle="collapse" data-target="#search_form" class="mobile-only-view"
-               href="javascript:void(0);"><i class="zmdi zmdi-search"></i></a>
-            <a id="toggle_mobile_nav" class="mobile-only-view" href="javascript:void(0);"><i class="zmdi zmdi-more"></i></a>
+               href="javascript:void(0);">
+                <i class="zmdi zmdi-search"></i>
+            </a>
+            <a id="toggle_mobile_nav" class="mobile-only-view" href="javascript:void(0);">
+                <i class="zmdi zmdi-more"></i>
+            </a>
 
             <form id="search_form" role="search" class="top-nav-search collapse pull-left">
                 <div class="input-group">
                     <input type="text" name="example-input1-group2" class="form-control" placeholder="Search">
 						<span class="input-group-btn">
 						<button type="button" class="btn  btn-default" data-target="#search_form" data-toggle="collapse"
-                                aria-label="Close" aria-expanded="true"><i class="zmdi zmdi-search"></i></button>
+                                aria-label="Close" aria-expanded="true">
+                            <i class="zmdi zmdi-search"></i>
+                        </button>
 						</span>
                 </div>
             </form>
@@ -55,11 +60,14 @@
         <div id="mobile_only_nav" class="mobile-only-nav pull-right">
             <ul class="nav navbar-right top-nav pull-right">
                 <li>
-                    <a id="open_right_sidebar" href="#"><i class="zmdi zmdi-settings top-nav-icon"></i></a>
+                    <a id="open_right_sidebar" href="#">
+                        <i class="zmdi zmdi-settings top-nav-icon"></i>
+                    </a>
                 </li>
                 <li class="dropdown app-drp">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i
-                                class="zmdi zmdi-apps top-nav-icon"></i></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="zmdi zmdi-apps top-nav-icon"></i>
+                    </a>
                     <ul class="dropdown-menu app-dropdown" data-dropdown-in="slideInRight" data-dropdown-out="flipOutX">
                         <li>
                             <div class="app-nicescroll-bar">
@@ -112,8 +120,9 @@
                     </ul>
                 </li>
                 <li class="dropdown full-width-drp">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i
-                                class="zmdi zmdi-more-vert top-nav-icon"></i></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="zmdi zmdi-more-vert top-nav-icon"></i>
+                    </a>
                     <ul class="dropdown-menu mega-menu pa-0" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
                         <li class="product-nicescroll-bar row">
                             <ul class="pa-20">
@@ -217,9 +226,10 @@
                     </ul>
                 </li>
                 <li class="dropdown alert-drp">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i
-                                class="zmdi zmdi-notifications top-nav-icon"></i><span
-                                class="top-nav-icon-badge">5</span></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="zmdi zmdi-notifications top-nav-icon"></i>
+                        <span class="top-nav-icon-badge">5</span>
+                    </a>
                     <ul class="dropdown-menu alert-dropdown" data-dropdown-in="bounceIn" data-dropdown-out="bounceOut">
                         <li>
                             <div class="notification-box-head-wrap">
@@ -324,10 +334,11 @@
                     </ul>
                 </li>
                 <li class="dropdown auth-drp">
-                    <a href="#" class="dropdown-toggle pr-0" data-toggle="dropdown"><img src="dist/img/user1.png"
-                                                                                         alt="user_auth"
-                                                                                         class="user-auth-img img-circle"/><span
-                                class="user-online-status"></span></a>
+                    <a href="#" class="dropdown-toggle pr-0" data-toggle="dropdown">
+                        <?php $img=(!is_null(Auth::guard('web')->user()->img))?Auth::guard('web')->user()->img:"admin.png"; ?>
+                        <img src="{{asset('images/admin/'.$img)}}" alt="{{Auth::guard('web')->user()->name}}" class="user-auth-img img-circle"/>
+                        <span class="user-online-status"></span>
+                    </a>
                     <ul class="dropdown-menu user-auth-dropdown" data-dropdown-in="flipInX"
                         data-dropdown-out="flipOutX">
                         <li>
@@ -361,7 +372,10 @@
                         </li>
                         <li class="divider"></li>
                         <li>
-                            <a href="#"><i class="zmdi zmdi-power"></i><span>Log Out</span></a>
+                            <a href="{{route('logout')}}">
+                                <i class="zmdi zmdi-power"></i>
+                                <span>Log Out</span>
+                            </a>
                         </li>
                     </ul>
                 </li>
@@ -865,12 +879,21 @@
             <li>
                 <div class="tab-struct custom-tab-1">
                     <ul role="tablist" class="nav nav-tabs" id="right_sidebar_tab">
-                        <li class="active" role="presentation"><a aria-expanded="true" data-toggle="tab" role="tab"
-                                                                  id="chat_tab_btn" href="#chat_tab">chat</a></li>
-                        <li role="presentation" class=""><a data-toggle="tab" id="messages_tab_btn" role="tab"
-                                                            href="#messages_tab" aria-expanded="false">messages</a></li>
-                        <li role="presentation" class=""><a data-toggle="tab" id="todo_tab_btn" role="tab"
-                                                            href="#todo_tab" aria-expanded="false">todo</a></li>
+                        <li class="active" role="presentation">
+                            <a aria-expanded="true" data-toggle="tab" role="tab"
+                                                                  id="chat_tab_btn" href="#chat_tab">chat
+                            </a>
+                        </li>
+                        <li role="presentation" class="">
+                            <a data-toggle="tab" id="messages_tab_btn" role="tab"
+                                                            href="#messages_tab" aria-expanded="false">messages
+                            </a>
+                        </li>
+                        <li role="presentation" class="">
+                            <a data-toggle="tab" id="todo_tab_btn" role="tab"
+                                                            href="#todo_tab" aria-expanded="false">todo
+                            </a>
+                        </li>
                     </ul>
                     <div class="tab-content" id="right_sidebar_content">
                         <div id="chat_tab" class="tab-pane fade active in" role="tabpanel">
@@ -1401,27 +1424,13 @@
 
 <!-- jQuery -->
 <script src="{{asset('template/vendors/bower_components/jquery/dist/jquery.min.js')}}"></script>
-
-<!-- Bootstrap Core JavaScript -->
 <script src="{{asset('template/vendors/bower_components/bootstrap/dist/js/bootstrap.min.js')}}"></script>
-
-<!-- Data table JavaScript -->
 <script src="{{asset('template/vendors/bower_components/datatables/media/js/jquery.dataTables.min.js')}}"></script>
 <script src="{{asset('template/dist/js/dataTables-data.js')}}"></script>
-
-<!-- Slimscroll JavaScript -->
 <script src="{{asset('template/dist/js/jquery.slimscroll.js')}}"></script>
-
-<!-- Owl JavaScript -->
 <script src="{{asset('template/vendors/bower_components/owl.carousel/dist/owl.carousel.min.js')}}"></script>
-
-<!-- Switchery JavaScript -->
 <script src="{{asset('template/vendors/bower_components/switchery/dist/switchery.min.js')}}"></script>
-
-<!-- Fancy Dropdown JS -->
 <script src="{{asset('template/dist/js/dropdown-bootstrap-extended.js')}}"></script>
-
-<!-- Init JavaScript -->
 <script src="{{asset('template/dist/js/init.js')}}"></script>
 
 
