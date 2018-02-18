@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8"/>
@@ -12,9 +12,7 @@
     <link href="{{asset('template/vendors/bower_components/datatables/media/css/jquery.dataTables.min.css')}}"
           rel="stylesheet"
           type="text/css"/>
-    @yield('additional-css')
     <link href="{{asset('template/dist/css/style.css')}}" rel="stylesheet" type="text/css">
-    <link href="{{asset('css/style.css')}}" rel="stylesheet" type="text/css">
 </head>
 
 <body>
@@ -132,7 +130,7 @@
                                 <li class="col-md-3 col-xs-6 col-menu-list">
                                     <a href="javascript:void(0);">
                                         <div class="pull-left"><i class="zmdi zmdi-landscape mr-20"></i><span
-                                                    class="right-nav-text">Dashboard</span></div>
+                                                class="right-nav-text">Dashboard</span></div>
                                         <div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div>
                                         <div class="clearfix"></div>
                                     </a>
@@ -360,7 +358,7 @@
                         <li class="divider"></li>
                         <li class="sub-menu show-on-hover">
                             <a href="#" class="dropdown-toggle pr-0 level-2-drp"><i
-                                        class="zmdi zmdi-check text-success"></i> available</a>
+                                    class="zmdi zmdi-check text-success"></i> available</a>
                             <ul class="dropdown-menu open-left-side">
                                 <li>
                                     <a href="#"><i class="zmdi zmdi-check text-success"></i><span>available</span></a>
@@ -370,7 +368,7 @@
                                 </li>
                                 <li>
                                     <a href="#"><i
-                                                class="zmdi zmdi-minus-circle-outline text-danger"></i><span>offline</span></a>
+                                            class="zmdi zmdi-minus-circle-outline text-danger"></i><span>offline</span></a>
                                 </li>
                             </ul>
                         </li>
@@ -513,7 +511,7 @@
             <li>
                 <a href="widgets.html">
                     <div class="pull-left"><i class="zmdi zmdi-flag mr-20"></i><span
-                                class="right-nav-text">widgets</span></div>
+                            class="right-nav-text">widgets</span></div>
                     <div class="pull-right"><span class="label label-warning">8</span></div>
                     <div class="clearfix"></div>
                 </a>
@@ -717,7 +715,7 @@
             <li>
                 <a href="javascript:void(0);" data-toggle="collapse" data-target="#icon_dr">
                     <div class="pull-left"><i class="zmdi zmdi-iridescent mr-20"></i><span
-                                class="right-nav-text">Icons</span></div>
+                            class="right-nav-text">Icons</span></div>
                     <div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div>
                     <div class="clearfix"></div>
                 </a>
@@ -913,7 +911,7 @@
                                         </a>
                                         <span class="inline-block txt-dark">users</span>
                                         <a href="javascript:void(0)" class="inline-block text-right txt-grey"><i
-                                                    class="zmdi zmdi-plus"></i></a>
+                                                class="zmdi zmdi-plus"></i></a>
 
                                         <div class="clearfix"></div>
                                     </div>
@@ -923,7 +921,7 @@
                                                    class="form-control" placeholder="Search">
 												<span class="input-group-btn">
 												<button type="button" class="btn  btn-default"><i
-                                                            class="zmdi zmdi-search"></i></button>
+                                                        class="zmdi zmdi-search"></i></button>
 												</span>
                                         </div>
                                     </form>
@@ -1065,7 +1063,7 @@
                                                 </a>
                                                 <span class="inline-block txt-dark">ryan</span>
                                                 <a href="javascript:void(0)" class="inline-block text-right txt-grey"><i
-                                                            class="zmdi zmdi-more"></i></a>
+                                                        class="zmdi zmdi-more"></i></a>
 
                                                 <div class="clearfix"></div>
                                             </div>
@@ -1138,7 +1136,7 @@
                                                             <button type="button"
                                                                     class="btn  btn-default  dropdown-toggle"
                                                                     data-toggle="dropdown"><i
-                                                                        class="zmdi zmdi-mood"></i></button>
+                                                                    class="zmdi zmdi-mood"></i></button>
                                                             <ul class="dropdown-menu dropdown-menu-right">
                                                                 <li><a href="javascript:void(0)">Action</a></li>
                                                                 <li><a href="javascript:void(0)">Another action</a></li>
@@ -1149,7 +1147,7 @@
                                                     </div>
                                                     <div class="input-group-btn attachment">
                                                         <div class="fileupload btn  btn-default"><i
-                                                                    class="zmdi zmdi-attachment-alt"></i>
+                                                                class="zmdi zmdi-attachment-alt"></i>
                                                             <input type="file" class="upload">
                                                         </div>
                                                     </div>
@@ -1169,7 +1167,7 @@
                                     </a>
                                     <span class="inline-block txt-dark">messages</span>
                                     <a href="javascript:void(0)" class="inline-block text-right txt-grey"><i
-                                                class="zmdi zmdi-search"></i></a>
+                                            class="zmdi zmdi-search"></i></a>
 
                                     <div class="clearfix"></div>
                                 </div>
@@ -1313,7 +1311,7 @@
                                     </a>
                                     <span class="inline-block txt-dark">todo list</span>
                                     <a href="javascript:void(0)" class="inline-block text-right txt-grey"><i
-                                                class="zmdi zmdi-plus"></i></a>
+                                            class="zmdi zmdi-plus"></i></a>
 
                                     <div class="clearfix"></div>
                                 </div>
@@ -1395,7 +1393,7 @@
     <div class="page-wrapper">
         <div class="container-fluid">
             @yield('container')
-                    <!-- Title -->
+            <!-- Title -->
 
             <!-- /Title -->
 
@@ -1427,7 +1425,7 @@
 <script src="{{asset('template/vendors/bower_components/switchery/dist/switchery.min.js')}}"></script>
 <script src="{{asset('template/dist/js/dropdown-bootstrap-extended.js')}}"></script>
 <script src="{{asset('template/dist/js/init.js')}}"></script>
-@yield('additional-js')
+
 
 </body>
 

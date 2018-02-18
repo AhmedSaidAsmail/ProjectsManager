@@ -6,13 +6,17 @@ use Illuminate\Database\Eloquent\Model;
 
 class Engineer_type extends Model
 {
-    protected $fillable = ['type', 'engineer_id'];
+    protected $fillable = ['type'];
 
     public function engineer()
     {
-        return $this->belongsTo(Engineer::class);
+        return $this->hasMany(Engineer::class);
     }
     public function roles(){
-        return $this->hasMany(Eng_role::class,'engineer_type_id');
+        return $this->hasOne(Eng_role::class,'engineer_type_id');
+    }
+    public function delete(){
+        $this->roles()->delete();
+        return Parent::delete();
     }
 }

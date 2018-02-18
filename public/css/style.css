@@ -1,0 +1,19 @@
+@import url('https://fonts.googleapis.com/css?family=Lemonada:400,600');
+
+.arabic-fonts {
+    font-family: 'Lemonada', cursive;
+    font-size: 13px;
+}
+
+.top-directory {
+    text-align: left;
+    font-size: 12px;
+}
+.custom-button{
+    background: transparent;
+    border: none;
+
+}
+.custom-form{
+    display: inline;
+}

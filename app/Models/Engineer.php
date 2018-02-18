@@ -18,6 +18,9 @@ class Engineer extends User
     {
         return $this->belongsTo(Consultant::class);
     }
+    public function owner(){
+        return $this->belongsTo(Owner::class);
+    }
 
     public function details()
     {

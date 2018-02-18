@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8"/>
@@ -12,9 +12,7 @@
     <link href="{{asset('template/vendors/bower_components/datatables/media/css/jquery.dataTables.min.css')}}"
           rel="stylesheet"
           type="text/css"/>
-    @yield('additional-css')
     <link href="{{asset('template/dist/css/style.css')}}" rel="stylesheet" type="text/css">
-    <link href="{{asset('css/style.css')}}" rel="stylesheet" type="text/css">
 </head>
 
 <body>
@@ -767,18 +765,14 @@
             </li>
             <li>
                 <a class="active" href="javascript:void(0);" data-toggle="collapse" data-target="#pages_dr">
-                    <div class="pull-left">
-                        <i class="zmdi zmdi-google-pages mr-20"></i>
-                        <span class="right-nav-text">
-                            <strong>اعدادات</strong>
-                        </span>
+                    <div class="pull-left"><i class="zmdi zmdi-google-pages mr-20"></i><span class="right-nav-text">�������</span>
                     </div>
                     <div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div>
                     <div class="clearfix"></div>
                 </a>
                 <ul id="pages_dr" class="collapse collapse-level-1 two-col-list">
                     <li>
-                        <a class="active-page" href="{{route('engineer-types.index')}}"> انواع المهندسين</a>
+                        <a class="active-page" href="blank.html">Blank Page</a>
                     </li>
                     <li>
                         <a href="javascript:void(0);" data-toggle="collapse" data-target="#auth_dr">Authantication pages
@@ -978,7 +972,7 @@
 
                                                                 <div class="user-data">
                                                                     <span class="name block capitalize-font">Mitsuko Heid</span>
-                                                                    <span class="time block truncate txt-grey">I’m thankful.</span>
+                                                                    <span class="time block truncate txt-grey">I�m thankful.</span>
                                                                 </div>
                                                                 <div class="status online"></div>
                                                                 <div class="clearfix"></div>
@@ -1394,9 +1388,22 @@
     <!-- Main Content -->
     <div class="page-wrapper">
         <div class="container-fluid">
-            @yield('container')
-                    <!-- Title -->
 
+            <!-- Title -->
+            <div class="row heading-bg">
+                <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                    <h5 class="txt-dark">blank page</h5>
+                </div>
+                <!-- Breadcrumb -->
+                <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+                    <ol class="breadcrumb">
+                        <li><a href="index.html">Dashboard</a></li>
+                        <li><a href="#"><span>speciality pages</span></a></li>
+                        <li class="active"><span>blank page</span></li>
+                    </ol>
+                </div>
+                <!-- /Breadcrumb -->
+            </div>
             <!-- /Title -->
 
             <!-- Footer -->
@@ -1427,7 +1434,7 @@
 <script src="{{asset('template/vendors/bower_components/switchery/dist/switchery.min.js')}}"></script>
 <script src="{{asset('template/dist/js/dropdown-bootstrap-extended.js')}}"></script>
 <script src="{{asset('template/dist/js/init.js')}}"></script>
-@yield('additional-js')
+
 
 </body>
 

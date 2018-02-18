@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class Eng_role extends Model
 {
-    protected $fillable=['engineer_type_id','role'];
+    protected $fillable=['engineer_type_id','add','edit','delete'];
 }

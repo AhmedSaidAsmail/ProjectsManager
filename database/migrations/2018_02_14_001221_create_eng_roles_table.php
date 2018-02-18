@@ -17,7 +17,9 @@ class CreateEngRolesTable extends Migration
             $table->increments('id');
             $table->integer('engineer_type_id')->unsigned();
             $table->foreign('engineer_type_id')->references('id')->on('engineer_types')->onDelete('cascade');
-            $table->string('role');
+            $table->boolean('add')->default(0);
+            $table->boolean('edit')->default(0);
+            $table->boolean('delete')->default(0);
             $table->timestamps();
         });
     }

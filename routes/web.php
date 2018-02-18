@@ -5,5 +5,6 @@ Route::get('/logout','Auth\LoginController@logout')->name('logout');
 Route::group(['prefix' => '','middleware'=>'auth:web'], function () {
     Route::get('/', function () {
         return view('Admin.Welcome');
-    });
+    })->name('admin.welcome');
+    Route::resource('/engineer-types','Admin\EngineerTypesController');
 });
