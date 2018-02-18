@@ -18,4 +18,19 @@ class Engineer extends User
     {
         return $this->belongsTo(Consultant::class);
     }
+
+    public function details()
+    {
+        return $this->hasOne(Engineer_detail::class);
+    }
+
+    public function type()
+    {
+        return $this->hasOne(Engineer_type::class);
+    }
+
+    public function roles()
+    {
+        return $this->hasManyThrough(Eng_role::class, Engineer_type::class);
+    }
 }

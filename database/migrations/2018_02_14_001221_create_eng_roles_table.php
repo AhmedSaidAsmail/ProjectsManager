@@ -15,6 +15,8 @@ class CreateEngRolesTable extends Migration
     {
         Schema::create('eng_roles', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('engineer_type_id')->unsigned();
+            $table->foreign('engineer_type_id')->references('id')->on('engineer_types')->onDelete('cascade');
             $table->string('role');
             $table->timestamps();
         });

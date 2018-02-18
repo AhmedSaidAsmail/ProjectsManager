@@ -16,8 +16,8 @@ class CreateEngineerTypesTable extends Migration
         Schema::create('engineer_types', function (Blueprint $table) {
             $table->increments('id');
             $table->string('type');
-            $table->integer('eng_role_id')->unsigned();
-            $table->foreign('eng_role_id')->references('id')->on('eng_roles')->onDelete('cascade');
+            $table->integer('engineer_id')->unsigned();
+            $table->foreign('engineer_id')->references('id')->on('engineers')->onDelete('cascade');
             $table->timestamps();
         });
     }
