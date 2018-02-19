@@ -765,7 +765,7 @@
                 <span>featured</span>
                 <i class="zmdi zmdi-more"></i>
             </li>
-            <li>
+            <li class="arabic-fonts">
                 <a class="active" href="javascript:void(0);" data-toggle="collapse" data-target="#pages_dr">
                     <div class="pull-left">
                         <i class="zmdi zmdi-google-pages mr-20"></i>
@@ -781,64 +781,7 @@
                         <a class="active-page" href="{{route('engineer-types.index')}}"> انواع المهندسين</a>
                     </li>
                     <li>
-                        <a href="javascript:void(0);" data-toggle="collapse" data-target="#auth_dr">Authantication pages
-                            <div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div>
-                            <div class="clearfix"></div>
-                        </a>
-                        <ul id="auth_dr" class="collapse collapse-level-2">
-                            <li>
-                                <a href="login.html">Login</a>
-                            </li>
-                            <li>
-                                <a href="signup.html">Register</a>
-                            </li>
-                            <li>
-                                <a href="forgot-password.html">Recover Password</a>
-                            </li>
-                            <li>
-                                <a href="reset-password.html">reset Password</a>
-                            </li>
-                            <li>
-                                <a href="locked.html">Lock Screen</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="javascript:void(0);" data-toggle="collapse" data-target="#invoice_dr">Invoice
-                            <div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div>
-                            <div class="clearfix"></div>
-                        </a>
-                        <ul id="invoice_dr" class="collapse collapse-level-2">
-                            <li>
-                                <a href="invoice.html">Invoice</a>
-                            </li>
-                            <li>
-                                <a href="invoice-archive.html">Invoice Archive</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="javascript:void(0);" data-toggle="collapse" data-target="#error_dr">error pages
-                            <div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div>
-                            <div class="clearfix"></div>
-                        </a>
-                        <ul id="error_dr" class="collapse collapse-level-2">
-                            <li>
-                                <a href="404.html">Error 404</a>
-                            </li>
-                            <li>
-                                <a href="500.html">Error 500</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="gallery.html">Gallery</a>
-                    </li>
-                    <li>
-                        <a href="timeline.html">Timeline</a>
-                    </li>
-                    <li>
-                        <a href="faq.html">FAQ</a>
+                        <a class="active-page" href="{{route('owners.index')}}">اضافة ملاك</a>
                     </li>
                 </ul>
             </li>

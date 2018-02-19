@@ -7,4 +7,5 @@ Route::group(['prefix' => '','middleware'=>'auth:web'], function () {
         return view('Admin.Welcome');
     })->name('admin.welcome');
     Route::resource('/engineer-types','Admin\EngineerTypesController');
+    Route::resource('/owners','Admin\OwnersController');
 });
