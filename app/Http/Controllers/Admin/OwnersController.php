@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Owner;
+use Exception;
 
 class OwnersController extends Controller
 {
@@ -37,19 +38,19 @@ class OwnersController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request,[
-            'name'=>'required|max:255',
-            'email'=>'required|max:255|unique:owners|email',
-            'password'=>'required|confirmed'
+        $this->validate($request, [
+            'name' => 'required|max:255',
+            'email' => 'required|max:255|unique:owners|email',
+            'password' => 'required|confirmed'
         ]);
-        $data=$request->all();
-        $data['password']=bcrypt($data['password']);
-        try{
+        $data = $request->all();
+        $data['password'] = bcrypt($data['password']);
+        try {
             Owner::create($data);
-        }catch (\Exception $e){
-            return redirect()->back()->with('failure',$e->getMessage());
+        } catch (Exception $e) {
+            return redirect()->back()->with('failure', $e->getMessage());
         }
-        return redirect()->route('owners.index')->with('success','Owner has been created');
+        return redirect()->route('owners.index')->with('success', 'Owner has been created');
     }
 
     /**
@@ -71,7 +72,8 @@ class OwnersController extends Controller
      */
     public function edit($id)
     {
-        //
+        $owner = Owner::findorFail($id);
+        return view('Admin.ownersEdit', ['owner' => $owner]);
     }
 
     /**
@@ -83,7 +85,55 @@ class OwnersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $owner = Owner::findorFail($id);
+        $this->validate($request, [
+            'name' => 'required|max:255',
+        ]);
+        $this->validateEmail($request, $owner);
+        $data = $request->all();
+        try {
+            $owner->update($data);
+        } catch (Exception $e) {
+            return redirect()->back()->with('failure', $e->getMessage());
+        }
+        return redirect()->route('owners.index')->with('success', 'Owner has been updated');
+    }
+
+    private function validateEmail(Request $request, Owner $owner)
+    {
+        if ($request->email !== $owner->email) {
+            return $this->validate($request, [
+                'email' => 'required|max:255|unique:owners|email',
+            ]);
+        }
+    }
+
+
+    /**
+     * Show the form to change password
+     * @param int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function changePassword($id)
+    {
+        $owner = Owner::findorFail($id);
+        return view('Admin.ownersChangePassword', ['owner' => $owner]);
+    }
+
+    public function updatePassword(Request $request, $id)
+    {
+        $owner = Owner::findorFail($id);
+        $this->validate($request, [
+            'password' => 'required|confirmed'
+        ]);
+        $data = $request->all();
+        try {
+            $owner->update(['password'=>bcrypt($data['password'])]);
+        } catch (Exception $e) {
+            return redirect()->back()->with('failure', $e->getMessage());
+        }
+        return redirect()->route('owners.index')->with('success', 'password has been changed');
+
     }
 
     /**
@@ -94,6 +144,8 @@ class OwnersController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $owner = Owner::findorFail($id);
+        $owner->delete();
+        return redirect()->route('owners.index')->with('danger', 'the owner has been deleted');
     }
 }

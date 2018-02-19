@@ -75,7 +75,7 @@
                                                     <a href="{{route('owners.edit',['id'=>$owner->id])}}">
                                                         <i class="fa fa-pencil-square fa-2x text-warning"></i>
                                                     </a>
-                                                    <a>
+                                                    <a href="{{route('owner.change.password',['id'=>$owner->id])}}">
                                                         <i class="fa fa-unlock-alt fa-2x text-success"></i>
                                                     </a>
 
