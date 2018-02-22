@@ -73,6 +73,9 @@
                                             <td>{{$contractor->information->emergency_phone}}</td>
                                             <td>
                                                 <div>
+                                                    <a href="{{route('contractors.show',['id'=>$contractor->id])}}">
+                                                        <i class="fas fa-eye fa-2x text-success"></i>
+                                                    </a>
                                                     <a href="{{route('contractors.edit',['id'=>$contractor->id])}}">
                                                         <i class="fas fa-edit fa-2x text-warning"></i>
                                                     </a>
