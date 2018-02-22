@@ -20,7 +20,7 @@ class CreateContractorsInfoTable extends Migration
             $table->string('address');
             $table->string('phone');
             $table->string('phone2')->nullable();
-            $table->string('emergency-phone');
+            $table->string('emergency_phone');
             $table->timestamps();
         });
     }

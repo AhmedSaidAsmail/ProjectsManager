@@ -28,53 +28,77 @@
         <div class="panel panel-default card-view">
             <div class="panel-body">
                 <div class="form-wrap">
-                    <form method="post" action="{{route('contractors.store')}}">
+                    <form method="post" action="{{route('contractors.store')}}" enctype="multipart/form-data">
                         {{csrf_field()}}
                         <div class="row">
                             <div class="col-md-4">
-                                <div class="form-group">
+                                <div class="form-group{!! $errors->has('name')?" has-error":null !!}">
                                     <label class="control-label mb-10" for="">اسم المقاول</label>
 
                                     <div class="input-group">
                                         <div class="input-group-addon ">
                                             <i class="icon-user"></i></div>
-                                        <input type="text" class="form-control" name="name" placeholder="Username">
+                                        <input type="text" class="form-control" value="{{old('name')}}" name="name"
+                                               placeholder="Username">
                                     </div>
+                                    @if($errors->has('name'))
+                                        <span class="help-block">
+                                            <strong class="text-danger">{{$errors->first('name')}}</strong>
+                                        </span>
+                                    @endif
                                 </div>
                             </div>
                             <div class="col-md-4">
-                                <div class="form-group">
+                                <div class="form-group{!! $errors->has('email')?" has-error":null !!}">
                                     <label class="control-label mb-10">البريد الالكتروني</label>
 
                                     <div class="input-group">
                                         <div class="input-group-addon">
                                             <i class="icon-envelope-open"></i></div>
-                                        <input type="email" class="form-control" name="email" placeholder="Enter email">
+                                        <input type="email" value="{{old('email')}}" class="form-control" name="email"
+                                               placeholder="Enter email">
                                     </div>
+                                    @if($errors->has('email'))
+                                        <span class="help-block">
+                                            <strong class="text-danger">{{$errors->first('email')}}</strong>
+                                        </span>
+                                    @endif
                                 </div>
                             </div>
                             <div class="col-md-4">
-                                <div class="form-group">
+                                <div class="form-group{!! $errors->has('address')?" has-error":null !!}">
                                     <label class="control-label mb-10" for="">عنوان المراسلات</label>
 
                                     <div class="input-group">
                                         <div class="input-group-addon">
                                             <i class="icon-lock"></i></div>
-                                        <input type="text" class="form-control" name="address" placeholder="عنوان المراسلات">
+                                        <input type="text" value="{{old('address')}}" class="form-control"
+                                               name="address" placeholder="عنوان المراسلات">
                                     </div>
+                                    @if($errors->has('address'))
+                                        <span class="help-block">
+                                            <strong class="text-danger">{{$errors->first('address')}}</strong>
+                                        </span>
+                                    @endif
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-4">
-                                <div class="form-group">
+                                <div class="form-group {!! $errors->has('phone')?" has-error":null !!}">
                                     <label class="control-label mb-10" for="">رقم الهاتف</label>
 
                                     <div class="input-group">
                                         <div class="input-group-addon">
                                             <i class="icon-user"></i></div>
-                                        <input type="text" class="form-control" name="phone" placeholder="رقم الهاتف">
+                                        <input type="text" value="{{old('phone')}}" class="form-control" name="phone"
+                                               placeholder="رقم الهاتف">
                                     </div>
+                                    @if($errors->has('phone'))
+                                        <span class="help-block">
+                                            <strong class="text-danger">{{$errors->first('phone')}}</strong>
+                                        </span>
+                                    @endif
                                 </div>
                             </div>
                             <div class="col-md-4">
@@ -84,19 +108,26 @@
                                     <div class="input-group">
                                         <div class="input-group-addon">
                                             <i class="icon-user"></i></div>
-                                        <input type="number" class="form-control" name="phone2" placeholder="رقم الهاتف">
+                                        <input type="text" class="form-control" name="phone2"
+                                               placeholder="رقم الهاتف">
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-4">
-                                <div class="form-group">
+                                <div class="form-group{!! $errors->has('emergency-phone')?" has-error":null !!}">
                                     <label class="control-label mb-10" for="">هاتف الطوارئ</label>
 
                                     <div class="input-group">
                                         <div class="input-group-addon">
                                             <i class="icon-user"></i></div>
-                                        <input type="number" class="form-control" name="emergency-phone" placeholder="رقم الهاتف">
+                                        <input type="number" value="{{old('emergency_phone')}}" class="form-control"
+                                               name="emergency_phone" placeholder="رقم الهاتف">
                                     </div>
+                                    @if($errors->has('emergency_phone'))
+                                        <span class="help-block">
+                                            <strong class="text-danger">{{$errors->first('emergency_phone')}}</strong>
+                                        </span>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -154,12 +185,12 @@
                             <i class="glyphicon glyphicon-file fileinput-exists"></i>
                             <span class="fileinput-filename"></span>
                         </div>
-														<span class="input-group-addon fileupload btn btn-success btn-anim btn-file">
-                                                            <i class="fa fa-upload"></i>
-                                                            <span class="fileinput-new btn-text">اختار ملف</span>
-                                                            <span class="fileinput-exists btn-text">تغيير</span>
-														<input type="file" name="document_file[]">
-														</span>
+                        <span class="input-group-addon fileupload btn btn-success btn-anim btn-file">
+                            <i class="fa fa-upload"></i>
+                            <span class="fileinput-new btn-text">اختار ملف</span>
+                            <span class="fileinput-exists btn-text">تغيير</span>
+                            <input type="file" name="document_file[]">
+                        </span>
                         <a href="#" class="input-group-addon btn btn-danger btn-anim fileinput-exists"
                            data-dismiss="fileinput">
                             <i class="fa fa-trash"></i>

@@ -33,7 +33,11 @@ class UploadFiles
     private function makeDir()
     {
         if (!is_dir($this->_path)) {
-            mkdir($this->_path, 0777);
+            try {
+                mkdir($this->_path, 0777);
+            } catch (\Exception $e) {
+                throw new \Exception($e->getMessage());
+            }
         }
         return $this;
     }
@@ -43,14 +47,20 @@ class UploadFiles
         $this->_fileName = md5(uniqid(mt_rand())) . "." . $file->getClientOriginalExtension();
         return $this;
     }
-    private function getFileName(){
+
+    private function getFileName()
+    {
         return $this->_fileName;
     }
-    private function moveFile() {
+
+    private function moveFile()
+    {
         $this->_uploadFile->move($this->_path, $this->_fileName);
         return $this;
     }
-    public function upload(){
+
+    public function upload()
+    {
         return $this->moveFile()
             ->getFileName();
     }

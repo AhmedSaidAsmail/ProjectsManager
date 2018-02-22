@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class Contractor_information extends Model
 {
     protected $fillable = [
-        'address', 'phone', 'phone2', 'emergency-phone'
+        'address', 'phone', 'phone2', 'emergency_phone'
     ];
 }
