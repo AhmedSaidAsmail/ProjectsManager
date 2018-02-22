@@ -18,7 +18,7 @@ class Multiple extends AbstractCollectData {
     private function perpareCollectionData(array &$collection, $field) {
         foreach ($this->request->$field as $key => $fieldData) {
             $collectionKey = (!is_null($this->primaryKey) && $this->primaryKey == $field) ? "id" : $field;
-            $collectionValue = $this->CheckImageValue($fieldData);
+            $collectionValue = $this->checkFileValue($fieldData);
             $collection[$key][$collectionKey] = $collectionValue;
         }
     }

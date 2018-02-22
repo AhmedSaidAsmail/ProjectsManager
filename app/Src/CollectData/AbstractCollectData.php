@@ -49,9 +49,9 @@ abstract class AbstractCollectData {
         }
     }
 
-    protected function CheckImageValue($value) {
+    protected function checkFileValue($value) {
         if ($value instanceof UploadedFile) {
-            return uploadImage(['image' => $value, 'path' => $this->path]);
+            return uploadFile(['image' => $value, 'path' => $this->path]);
         }
         return $value;
     }

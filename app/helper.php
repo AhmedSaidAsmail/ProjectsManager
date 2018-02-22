@@ -11,9 +11,9 @@ if (!function_exists('collectData')) {
     }
 
 }
-if (!function_exists('uploadImage')) {
+if (!function_exists('uploadFile')) {
 
-    function uploadImage(array $fileDetails)
+    function uploadFile(array $fileDetails)
     {
         $uploadFile=new UploadFiles($fileDetails['file'],$fileDetails['path']);
         return $uploadFile->upload();
