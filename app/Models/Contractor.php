@@ -12,4 +12,14 @@ class Contractor extends User
     {
         return $this->hasMany(Engineer::class);
     }
+
+    public function information()
+    {
+        return $this->hasOne(Contractor_information::class);
+    }
+
+    public function documents()
+    {
+        return $this->hasMany(Contractor_document::class);
+    }
 }

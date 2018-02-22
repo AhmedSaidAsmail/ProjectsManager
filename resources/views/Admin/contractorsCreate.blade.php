@@ -28,7 +28,8 @@
         <div class="panel panel-default card-view">
             <div class="panel-body">
                 <div class="form-wrap">
-                    <form method="" action="">
+                    <form method="post" action="{{route('contractors.store')}}">
+                        {{csrf_field()}}
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group">
@@ -37,7 +38,7 @@
                                     <div class="input-group">
                                         <div class="input-group-addon ">
                                             <i class="icon-user"></i></div>
-                                        <input type="text" class="form-control" id="" placeholder="Username">
+                                        <input type="text" class="form-control" name="name" placeholder="Username">
                                     </div>
                                 </div>
                             </div>
@@ -48,7 +49,7 @@
                                     <div class="input-group">
                                         <div class="input-group-addon">
                                             <i class="icon-envelope-open"></i></div>
-                                        <input type="email" class="form-control" id="" placeholder="Enter email">
+                                        <input type="email" class="form-control" name="email" placeholder="Enter email">
                                     </div>
                                 </div>
                             </div>
@@ -59,7 +60,7 @@
                                     <div class="input-group">
                                         <div class="input-group-addon">
                                             <i class="icon-lock"></i></div>
-                                        <input type="text" class="form-control" id="" placeholder="عنوان المراسلات">
+                                        <input type="text" class="form-control" name="address" placeholder="عنوان المراسلات">
                                     </div>
                                 </div>
                             </div>
@@ -72,7 +73,7 @@
                                     <div class="input-group">
                                         <div class="input-group-addon">
                                             <i class="icon-user"></i></div>
-                                        <input type="text" class="form-control" id="" placeholder="رقم الهاتف">
+                                        <input type="text" class="form-control" name="phone" placeholder="رقم الهاتف">
                                     </div>
                                 </div>
                             </div>
@@ -83,7 +84,7 @@
                                     <div class="input-group">
                                         <div class="input-group-addon">
                                             <i class="icon-user"></i></div>
-                                        <input type="number" class="form-control" id="" placeholder="رقم الهاتف">
+                                        <input type="number" class="form-control" name="phone2" placeholder="رقم الهاتف">
                                     </div>
                                 </div>
                             </div>
@@ -94,7 +95,7 @@
                                     <div class="input-group">
                                         <div class="input-group-addon">
                                             <i class="icon-user"></i></div>
-                                        <input type="number" class="form-control" id="" placeholder="رقم الهاتف">
+                                        <input type="number" class="form-control" name="emergency-phone" placeholder="رقم الهاتف">
                                     </div>
                                 </div>
                             </div>
@@ -108,15 +109,16 @@
                                         <div class="input-group-addon">
                                             <i class="icon-user"></i>
                                         </div>
-                                        <select class="form-control" data-placeholder="Choose a Category" tabindex="1">
+                                        <select class="form-control" id="selectDocuments">
                                             <option value="" selected>اختار ملف</option>
-                                            <option value="Category 4">شهاده التامينات الاجتماعيه</option>
-                                            <option value="Category 4">الغرفه التجاريه</option>
-                                            <option value="Category 4">شهاده السعوده</option>
-                                            <option value="Category 4">شهاده التصنيف</option>
-                                            <option value="Category 4">شهادة الزكاة</option>
-                                            <option value="Category 4">شهادة الدخل</option>
-                                            <option value="Category 4">سبقه الاعمال</option>
+                                            <option value="شهاده التامينات الاجتماعيه">شهاده التامينات الاجتماعيه
+                                            </option>
+                                            <option value="الغرفه التجاريه">الغرفه التجاريه</option>
+                                            <option value="شهاده السعوده">شهاده السعوده</option>
+                                            <option value="شهاده التصنيف">شهاده التصنيف</option>
+                                            <option value="شهادة الزكاة">شهادة الزكاة</option>
+                                            <option value="شهادة الدخل">شهادة الدخل</option>
+                                            <option value="سبقه الاعمال">سبقه الاعمال</option>
 
 
                                         </select>
@@ -124,40 +126,46 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group mb-30">
-                                    <label class="control-label mb-10">نوع المستند</label>
-                                    <input type="text" class="form-control" value="" name="document_type[]" readonly>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group mb-30">
-                                    <label class="control-label mb-10">المستند</label>
-
-                                    <div class="fileinput fileinput-new input-group" data-provides="fileinput">
-                                        <div class="form-control" data-trigger="fileinput">
-                                            <i class="glyphicon glyphicon-file fileinput-exists"></i>
-                                            <span class="fileinput-filename"></span>
-                                        </div>
-														<span class="input-group-addon fileupload btn btn-info btn-anim btn-file">
-                                                            <i class="fa fa-upload"></i>
-                                                            <span class="fileinput-new btn-text">اختار ملف</span>
-                                                            <span class="fileinput-exists btn-text">تغيير</span>
-														<input type="file" name="...">
-														</span>
-                                        <a href="#" class="input-group-addon btn btn-danger btn-anim fileinput-exists"
-                                           data-dismiss="fileinput">
-                                            <i class="fa fa-trash"></i>
-                                            <span class="btn-text"> ازالة</span>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
+                        <div id="documents">
+                            <!-- documents rows -->
                         </div>
+
                         <button type="submit" class="btn btn-success mr-10">Submit</button>
                         <button type="submit" class="btn btn-default">Cancel</button>
                     </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="documentsInputs" style="display: none">
+        <div class="row" data-sort-order="0">
+            <div class="col-md-6">
+                <div class="form-group mb-30">
+                    <label class="control-label mb-10">نوع المستند</label>
+                    <input type="text" class="form-control" value="" name="document_type[]" readonly>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group mb-30">
+                    <label class="control-label mb-10">المستند</label>
+
+                    <div class="fileinput fileinput-new input-group" data-provides="fileinput">
+                        <div class="form-control" data-trigger="fileinput">
+                            <i class="glyphicon glyphicon-file fileinput-exists"></i>
+                            <span class="fileinput-filename"></span>
+                        </div>
+														<span class="input-group-addon fileupload btn btn-success btn-anim btn-file">
+                                                            <i class="fa fa-upload"></i>
+                                                            <span class="fileinput-new btn-text">اختار ملف</span>
+                                                            <span class="fileinput-exists btn-text">تغيير</span>
+														<input type="file" name="document_file[]">
+														</span>
+                        <a href="#" class="input-group-addon btn btn-danger btn-anim fileinput-exists"
+                           data-dismiss="fileinput">
+                            <i class="fa fa-trash"></i>
+                            <span class="btn-text"> ازالة</span>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -169,4 +177,41 @@
 @endsection
 @section('additional-js')
     <script src="{{asset('template/vendors/bower_components/jasny-bootstrap/dist/js/jasny-bootstrap.min.js')}}"></script>
+    <script>
+        $(function () {
+            $("select#selectDocuments").change(function () {
+                var value = $(this).val();
+                var inputHtml = $("#documentsInputs");
+                var inputDistention = $("#documents");
+                sortInputsArray(inputHtml, value, inputDistention);
+                inputDistention.append(inputHtml.html());
+                var removeRow = $("a.fileinput-exists");
+                removeRow.click(function (event) {
+                    var linkRow = $(this).closest('.row');
+                    linkRow.empty();
+                });
+
+            });
+            function sortInputsArray(htmlContains, inputValue, inputDistention) {
+                var inputType = htmlContains.find("input[name^='document_type']");
+                var inputFile = htmlContains.find("input[name^='document_file']");
+                var index = getIndex(inputDistention);
+                htmlContains.find('.row').attr('data-sort-order', index);
+                inputType.attr('value', inputValue);
+                inputType.attr('name', "document_type[" + index + "]");
+                inputFile.attr('name', "document_file[" + index + "]");
+            }
+
+            function getIndex(inputDistention) {
+                var lastRow = inputDistention.find("div.row:last-of-type");
+                var index = 0
+                if (lastRow.length) {
+                    index = parseInt(lastRow.attr('data-sort-order')) + 1;
+                }
+                return index;
+
+            }
+
+        });
+    </script>
 @endsection

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateContractorsTable extends Migration
+class CreateContractorsDocumentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreateContractorsTable extends Migration
      */
     public function up()
     {
-        Schema::create('contractors', function (Blueprint $table) {
+        Schema::create('contractor_documents', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->text('password')->nullable();
-            $table->rememberToken();
+            $table->integer('contractor_id')->unsigned();
+            $table->foreign('contractor_id')->references('id')->on('contractors')->onDelete('cascade');
+            $table->string('document_type');
+            $table->string('document_file');
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ class CreateContractorsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('contractors');
+        Schema::dropIfExists('contractor_documents');
     }
 }
