@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Lemonada:400,600');
+
 @font-face {
     font-family: 'Droid Arabic Kufi';
     font-style: normal;
@@ -7,6 +8,7 @@
     url(//themes.googleusercontent.com/static/fonts/earlyaccess/droidarabickufi/v2/DroidKufi-Regular.woff) format('woff'),
     url(//themes.googleusercontent.com/static/fonts/earlyaccess/droidarabickufi/v2/DroidKufi-Regular.ttf) format('truetype');
 }
+
 @font-face {
     font-family: 'Droid Arabic Kufi';
     font-style: normal;
@@ -24,11 +26,23 @@
     text-align: left;
     font-size: 12px;
 }
-.custom-button{
+
+.custom-button {
     background: transparent;
     border: none;
 
 }
-.custom-form{
+
+.custom-form {
     display: inline;
+    padding: 0px;
+    margin: 0px;
+}
+.custom-form button{
+    padding: 0px;
+}
+.custom-table{
+    font-family: 'Droid Arabic Kufi';
+    font-weight: 700;
+    font-size: 14px;
 }

@@ -9,6 +9,7 @@
     <meta name="author" content="hencework"/>
     <link rel="shortcut icon" href="{{asset('template/iconfav.ico')}}">
     <link rel="icon" href="{{asset('template/iconfav.ico')}}" type="image/x-icon">
+    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
     <link href="{{asset('template/vendors/bower_components/datatables/media/css/jquery.dataTables.min.css')}}"
           rel="stylesheet"
           type="text/css"/>

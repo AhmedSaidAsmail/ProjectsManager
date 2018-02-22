@@ -107,6 +107,36 @@ class ContractorsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $contractor=Contractor::find($id);
+        $contractor->delete();
+        return redirect()->route('contractors.index')->with('danger', 'the owner has been deleted');
+    }
+    public function active($id){
+        $contractor=Contractor::find($id);
+        $contractor->update(['active'=>1]);
+        return redirect()->back();
+
+    }
+    public function inactive($id){
+        $contractor=Contractor::find($id);
+        $contractor->update(['active'=>0]);
+        return redirect()->back();
+    }
+    public function showPasswordForm($id){
+        $contractor=Contractor::find($id);
+        return view('Admin.contractorsChangePassword',['contractor'=>$contractor]);
+    }
+    public function changePassword(Request $request,$id){
+        $this->validate($request, [
+            'password' => 'required|confirmed'
+        ]);
+        $contractor=Contractor::find($id);
+        $data = $request->all();
+        try {
+            $contractor->update(['password'=>bcrypt($data['password'])]);
+        } catch (Exception $e) {
+            return redirect()->back()->with('failure', $e->getMessage());
+        }
+        return redirect()->route('contractors.index')->with('success', 'password has been changed');
     }
 }

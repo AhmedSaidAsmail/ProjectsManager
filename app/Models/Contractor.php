@@ -6,7 +6,7 @@ use App\User;
 
 class Contractor extends User
 {
-    protected $fillable = ['name', 'email', 'password'];
+    protected $fillable = ['name', 'email', 'password','active'];
 
     public function engineers()
     {
