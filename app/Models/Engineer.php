@@ -7,7 +7,9 @@ use App\User;
 
 class Engineer extends User
 {
-    protected $fillable = ['type_id', 'contractor_id', 'consultant_id', 'owner_id', 'name', 'email', 'password', 'img'];
+    protected $fillable = [
+        'contractor_id', 'consultant_id', 'owner_id', 'name', 'email', 'password', 'img', 'active'
+    ];
 
     public function contractor()
     {
@@ -18,22 +20,29 @@ class Engineer extends User
     {
         return $this->belongsTo(Consultant::class);
     }
-    public function owner(){
+
+    public function owner()
+    {
         return $this->belongsTo(Owner::class);
     }
 
-    public function details()
+    public function information()
     {
         return $this->hasOne(Engineer_detail::class);
     }
 
-    public function type()
+    public function documents()
     {
-        return $this->hasOne(Engineer_type::class);
+        return $this->hasMany(Engineer_document::class);
     }
 
-    public function roles()
-    {
-        return $this->hasManyThrough(Eng_role::class, Engineer_type::class);
-    }
+//    public function type()
+//    {
+//        return $this->hasOne(Engineer_type::class);
+//    }
+
+//    public function roles()
+//    {
+//        return $this->hasManyThrough(Eng_role::class, Engineer_type::class);
+//    }
 }

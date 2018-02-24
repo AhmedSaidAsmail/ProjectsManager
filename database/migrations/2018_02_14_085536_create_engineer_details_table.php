@@ -19,9 +19,7 @@ class CreateEngineerDetailsTable extends Migration
             $table->foreign('engineer_id')->references('id')->on('engineers')->onDelete('cascade');
             $table->string('phone');
             $table->string('phone2')->nullable();
-            $table->string('cv')->nullable();
-            $table->string('contract')->nullable();
-            $table->string('eng_approve')->nullable();
+            $table->string('type');
             $table->timestamps();
         });
     }

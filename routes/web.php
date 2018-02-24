@@ -10,9 +10,24 @@ Route::group(['prefix' => '','middleware'=>'auth:web'], function () {
     Route::resource('/owners','Admin\OwnersController');
     Route::get('owners/changePassword/{id}','Admin\OwnersController@changePassword')->name('owner.change.password');
     Route::put('owners/changePassword/{id}','Admin\OwnersController@updatePassword')->name('owner.update.password');
+    // contractors
     Route::resource('/contractors','Admin\ContractorsController');
-    Route::get('/contractor/active/{id}','Admin\ContractorsController@active')->name('contractors.active');
-    Route::get('/contractor/inactive/{id}','Admin\ContractorsController@inactive')->name('contractors.inactive');
-    Route::get('/contractor/password/{id}','Admin\ContractorsController@showPasswordForm')->name('contractors.password');
-    Route::put('/contractor/password/{id}','Admin\ContractorsController@changePassword')->name('contractors.password');
+    Route::get('/contractors/active/{id}','Admin\ContractorsController@active')->name('contractors.active');
+    Route::get('/contractors/inactive/{id}','Admin\ContractorsController@inactive')->name('contractors.inactive');
+    Route::get('/contractors/password/{id}','Admin\ContractorsController@showPasswordForm')->name('contractors.password');
+    Route::put('/contractors/password/{id}','Admin\ContractorsController@changePassword')->name('contractors.password');
+    // consultants
+    Route::resource('/consultants','Admin\ConsultantsController');
+    Route::get('/consultants/active/{id}','Admin\ConsultantsController@active')->name('consultants.active');
+    Route::get('/consultants/inactive/{id}','Admin\ConsultantsController@inactive')->name('consultants.inactive');
+    Route::get('/consultants/password/{id}','Admin\ConsultantsController@showPasswordForm')->name('consultants.password');
+    Route::put('/consultants/password/{id}','Admin\ConsultantsController@changePassword')->name('consultants.password');
+    // engineers
+    Route::resource('/engineers','Admin\EngineersController');
+    Route::get('/engineers/active/{id}','Admin\EngineersController@active')->name('engineers.active');
+    Route::get('/engineers/inactive/{id}','Admin\EngineersController@inactive')->name('engineers.inactive');
+    Route::get('/engineers/password/{id}','Admin\EngineersController@showPasswordForm')->name('engineers.password');
+    Route::put('/engineers/password/{id}','Admin\EngineersController@changePassword')->name('engineers.password');
+    Route::get('/engineers/get/Belongs','Admin\EngineersController@getBelong')->name('engineers.getBelongs');
+
 });

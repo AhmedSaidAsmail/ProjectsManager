@@ -1,6 +1,9 @@
 <?php
 use App\Src\CollectData\CollectFactory;
 use App\Src\UploadFiles;
+use App\Src\SyncData;
+use Illuminate\Database\Eloquent\Model;
+use App\Src\FileType;
 
 if (!function_exists('collectData')) {
 
@@ -15,8 +18,23 @@ if (!function_exists('uploadFile')) {
 
     function uploadFile(array $fileDetails)
     {
-        $uploadFile=new UploadFiles($fileDetails['file'],$fileDetails['path']);
+        $uploadFile = new UploadFiles($fileDetails['file'], $fileDetails['path']);
         return $uploadFile->upload();
     }
 
+}
+if (!function_exists('sync')) {
+
+    function sync(Model $model, $related, array $data)
+    {
+        SyncData::sync($model, $related, $data);
+    }
+
+}
+if (!function_exists('getFileType')) {
+    function getFileType($fileName)
+    {
+        $file = new FileType($fileName);
+        return $file->getType();
+    }
 }

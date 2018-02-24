@@ -458,57 +458,62 @@
                     </li>
                 </ul>
             </li>
-            <li>
+            <li class="arabic-fonts">
                 <a href="javascript:void(0);" data-toggle="collapse" data-target="#app_dr">
-                    <div class="pull-left"><i class="zmdi zmdi-apps mr-20"></i><span class="right-nav-text">Apps </span>
+                    <div class="pull-left"><i class="zmdi zmdi-apps mr-20"></i><span
+                                class="right-nav-text">مدخلات </span>
                     </div>
                     <div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div>
                     <div class="clearfix"></div>
                 </a>
                 <ul id="app_dr" class="collapse collapse-level-1">
-                    <li>
-                        <a href="chats.html">chats</a>
-                    </li>
-                    <li>
-                        <a href="calendar.html">calendar</a>
-                    </li>
-                    <li>
-                        <a href="weather.html">weather</a>
-                    </li>
-                    <li>
-                        <a href="javascript:void(0);" data-toggle="collapse" data-target="#email_dr">Email
+
+                    <li class="arabic-fonts">
+                        <a href="javascript:void(0);" data-toggle="collapse" data-target="#email_dr">
+                            المهندسين
                             <div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div>
                             <div class="clearfix"></div>
                         </a>
                         <ul id="email_dr" class="collapse collapse-level-2">
                             <li>
-                                <a href="inbox.html">inbox</a>
+                                <a href="{{route('engineers.create')}}">اضافة مهندس</a>
                             </li>
                             <li>
-                                <a href="inbox-detail.html">detail email</a>
+                                <a href="{{route('engineers.index')}}">عرض المهندسين</a>
                             </li>
                         </ul>
                     </li>
-                    <li>
-                        <a href="javascript:void(0);" data-toggle="collapse" data-target="#contact_dr">Contacts
+                    <li class="arabic-fonts">
+                        <a href="javascript:void(0);" data-toggle="collapse" data-target="#consultant_dr">
+                            الاستشاريين
                             <div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div>
                             <div class="clearfix"></div>
                         </a>
-                        <ul id="contact_dr" class="collapse collapse-level-2">
+                        <ul id="consultant_dr" class="collapse collapse-level-2">
                             <li>
-                                <a href="contact-list.html">list</a>
+                                <a href="{{route('consultants.create')}}">اضافة استشاري</a>
                             </li>
                             <li>
-                                <a href="contact-card.html">cards</a>
+                                <a href="{{route('consultants.index')}}">عرض الاستشاريين</a>
                             </li>
                         </ul>
                     </li>
-                    <li>
-                        <a href="file-manager.html">File Manager</a>
+                    <li class="arabic-fonts">
+                        <a href="javascript:void(0);" data-toggle="collapse" data-target="#contractor_dr">
+                            المقاوليين
+                            <div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div>
+                            <div class="clearfix"></div>
+                        </a>
+                        <ul id="contractor_dr" class="collapse collapse-level-2">
+                            <li>
+                                <a href="{{route('contractors.create')}}">اضافة مقاول</a>
+                            </li>
+                            <li>
+                                <a href="{{route('contractors.index')}}">عرض المقاولين</a>
+                            </li>
+                        </ul>
                     </li>
-                    <li>
-                        <a href="todo-tasklist.html">To Do/Tasklist</a>
-                    </li>
+
                 </ul>
             </li>
             <li>
@@ -540,6 +545,7 @@
                 <ul id="pages_dr" class="collapse collapse-level-1 two-col-list">
                     <li>
                         <a class="active-page" href="{{route('engineer-types.index')}}"> انواع المهندسين</a>
+
                     </li>
                     <li>
                         <a class="active-page" href="{{route('owners.index')}}">اضافة ملاك</a>
@@ -549,6 +555,12 @@
                     </li>
                     <li>
                         <a class="active-page" href="{{route('contractors.create')}}">انشاء مقاول جديد</a>
+                    </li>
+                    <li>
+                        <a class="active-page" href="{{route('consultants.index')}}">الاستشاريين</a>
+                    </li>
+                    <li>
+                        <a class="active-page" href="{{route('consultants.create')}}">انشاء استشاري جديد</a>
                     </li>
                 </ul>
             </li>

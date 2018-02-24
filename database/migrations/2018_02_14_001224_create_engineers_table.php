@@ -15,8 +15,8 @@ class CreateEngineersTable extends Migration
     {
         Schema::create('engineers', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('type_id')->unsigned();
-            $table->foreign('type_id')->references('id')->on('engineer_types')->onDelete('cascade');
+//            $table->integer('type_id')->unsigned();
+//            $table->foreign('type_id')->references('id')->on('engineer_types')->onDelete('cascade');
             $table->integer('contractor_id')->unsigned()->nullable();
             $table->foreign('contractor_id')->references('id')->on('contractors')->onDelete('cascade');
             $table->integer('consultant_id')->unsigned()->nullable();
@@ -25,8 +25,9 @@ class CreateEngineersTable extends Migration
             $table->foreign('owner_id')->references('id')->on('owners')->onDelete('cascade');
             $table->string('name');
             $table->string('email')->unique();
-            $table->text('password');
+            $table->text('password')->nullable();
             $table->string('img')->nullable();
+            $table->boolean('active')->default(0);
             $table->rememberToken();
             $table->timestamps();
         });

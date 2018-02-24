@@ -38,11 +38,27 @@
     padding: 0px;
     margin: 0px;
 }
-.custom-form button{
+
+.custom-form button {
     padding: 0px;
 }
-.custom-table{
+
+.custom-table {
     font-family: 'Droid Arabic Kufi';
     font-weight: 700;
     font-size: 14px;
+}
+
+.document-files {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.document-files > li{
+    text-align: center;
+}
+.document-files > li span{
+    display: block;
+}
+.document-files > li .fa-trash-alt{
+
 }

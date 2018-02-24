@@ -19,10 +19,10 @@ class CreateConsultantsDetailsTable extends Migration
             $table->foreign('consultant_id')->references('id')->on('consultants')->onDelete('cascade');
             $table->string('address');
             $table->string('location')->nullable();
-            $table->string('logo');
+            $table->string('logo')->nullable();
             $table->string('phone');
-            $table->string('mobile');
-            $table->string('website');
+            $table->string('mobile')->nullable();
+            $table->string('website')->nullable();
             $table->timestamps();
         });
     }
