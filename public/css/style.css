@@ -53,12 +53,25 @@
     margin-top: 10px;
     margin-bottom: 10px;
 }
-.document-files > li{
+
+.document-files > li {
     text-align: center;
 }
-.document-files > li span{
+
+.document-files > li span {
     display: block;
 }
-.document-files > li .fa-trash-alt{
 
+.document-files > li .fa-trash-alt {
+
+}
+
+#data-destiny > thead > tr > th {
+    font-size: 11px;
+    font-weight: bold;
+    background-color: #e6e6e6;
+
+}
+#data-destiny > thead > tr > th.action{
+    font-family:arial, sans-serif;
 }

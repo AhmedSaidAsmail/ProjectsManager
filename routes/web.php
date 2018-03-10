@@ -10,12 +10,14 @@ Route::group(['prefix' => '','middleware'=>'auth:web'], function () {
     Route::resource('/owners','Admin\OwnersController');
     Route::get('owners/changePassword/{id}','Admin\OwnersController@changePassword')->name('owner.change.password');
     Route::put('owners/changePassword/{id}','Admin\OwnersController@updatePassword')->name('owner.update.password');
+    Route::get('/owners/engineers/get','Admin\OwnersController@getEngineers')->name('owners.getEngineers');
     // contractors
     Route::resource('/contractors','Admin\ContractorsController');
     Route::get('/contractors/active/{id}','Admin\ContractorsController@active')->name('contractors.active');
     Route::get('/contractors/inactive/{id}','Admin\ContractorsController@inactive')->name('contractors.inactive');
     Route::get('/contractors/password/{id}','Admin\ContractorsController@showPasswordForm')->name('contractors.password');
     Route::put('/contractors/password/{id}','Admin\ContractorsController@changePassword')->name('contractors.password');
+    Route::get('/contractors/engineers/get','Admin\ContractorsController@getEngineers')->name('contractors.getEngineers');
     // consultants
     Route::resource('/consultants','Admin\ConsultantsController');
     Route::get('/consultants/active/{id}','Admin\ConsultantsController@active')->name('consultants.active');
@@ -29,5 +31,8 @@ Route::group(['prefix' => '','middleware'=>'auth:web'], function () {
     Route::get('/engineers/password/{id}','Admin\EngineersController@showPasswordForm')->name('engineers.password');
     Route::put('/engineers/password/{id}','Admin\EngineersController@changePassword')->name('engineers.password');
     Route::get('/engineers/get/Belongs','Admin\EngineersController@getBelong')->name('engineers.getBelongs');
+    // projects
+    Route::resource('/projects','Admin\ProjectsController');
+
 
 });

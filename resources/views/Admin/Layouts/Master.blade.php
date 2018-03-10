@@ -427,34 +427,16 @@
                     </li>
                 </ul>
             </li>
-            <li>
+            <li class="arabic-fonts">
                 <a href="javascript:void(0);" data-toggle="collapse" data-target="#ecom_dr">
-                    <div class="pull-left"><i class="zmdi zmdi-shopping-basket mr-20"></i><span class="right-nav-text">E-Commerce</span>
+                    <div class="pull-left"><i class="zmdi zmdi-shopping-basket mr-20"></i><span class="right-nav-text">المشاريع</span>
                     </div>
-                    <div class="pull-right"><span class="label label-success">hot</span></div>
+                    <div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div>
                     <div class="clearfix"></div>
                 </a>
                 <ul id="ecom_dr" class="collapse collapse-level-1">
                     <li>
-                        <a href="e-commerce.html">Dashboard</a>
-                    </li>
-                    <li>
-                        <a href="product.html">Products</a>
-                    </li>
-                    <li>
-                        <a href="product-detail.html">Product Detail</a>
-                    </li>
-                    <li>
-                        <a href="add-products.html">Add Product</a>
-                    </li>
-                    <li>
-                        <a href="product-orders.html">Orders</a>
-                    </li>
-                    <li>
-                        <a href="product-cart.html">Cart</a>
-                    </li>
-                    <li>
-                        <a href="product-checkout.html">Checkout</a>
+                        <a href="{{route('projects.create')}}">اضافة مشروع</a>
                     </li>
                 </ul>
             </li>

@@ -148,4 +148,9 @@ class OwnersController extends Controller
         $owner->delete();
         return redirect()->route('owners.index')->with('danger', 'the owner has been deleted');
     }
+    public function getEngineers(Request $request){
+        $owner = Owner::find($request->id);
+        $engineers=$owner->engineers;
+        return view('Admin.Layouts.ownersGetEngineers',['engineers'=>$engineers,'owner'=>$owner]);
+    }
 }

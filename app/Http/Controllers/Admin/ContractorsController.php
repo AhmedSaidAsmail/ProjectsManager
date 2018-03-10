@@ -176,4 +176,9 @@ class ContractorsController extends Controller
         }
         return redirect()->route('contractors.index')->with('success', 'password has been changed');
     }
+    public function getEngineers(Request $request){
+        $contractor = Contractor::find($request->id);
+        $engineers=$contractor->engineers;
+        return view('Admin.Layouts.contractorsGetEngineers',['engineers'=>$engineers,'contractor'=>$contractor]);
+    }
 }
