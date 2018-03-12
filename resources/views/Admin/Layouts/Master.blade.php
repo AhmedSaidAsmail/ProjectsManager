@@ -438,6 +438,9 @@
                     <li>
                         <a href="{{route('projects.create')}}">اضافة مشروع</a>
                     </li>
+                    <li>
+                        <a href="{{route('projects.index')}}">عرض المشاريع</a>
+                    </li>
                 </ul>
             </li>
             <li class="arabic-fonts">

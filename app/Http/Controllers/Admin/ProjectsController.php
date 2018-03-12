@@ -21,7 +21,8 @@ class ProjectsController extends Controller
      */
     public function index()
     {
-        //
+        $projects = Project::all();
+        return view('Admin.projectsIndex', ['projects' => $projects]);
     }
 
     /**
@@ -96,7 +97,8 @@ class ProjectsController extends Controller
      */
     public function show($id)
     {
-        //
+        $project = Project::findOrFail($id);
+        return view('Admin.projectsShow', ['project' => $project]);
     }
 
     /**

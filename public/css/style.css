@@ -21,6 +21,9 @@
 .arabic-fonts {
     font-family: 'Droid Arabic Kufi';
 }
+.english-fonts{
+    font-family:arial, sans-serif;
+}
 
 .top-directory {
     text-align: left;
@@ -69,7 +72,6 @@
 #data-destiny > thead > tr > th {
     font-size: 11px;
     font-weight: bold;
-    background-color: #e6e6e6;
 
 }
 #data-destiny > thead > tr > th.action{
