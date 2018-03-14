@@ -34,6 +34,7 @@ Route::group(['prefix' => '', 'middleware' => 'auth:web'], function () {
     // projects
     Route::resource('/projects', 'Admin\ProjectsController');
     Route::resource('/submittals', 'Admin\SubmittalsController');
+    Route::resource('/requests', 'Admin\RequestsController');
 
 
 });

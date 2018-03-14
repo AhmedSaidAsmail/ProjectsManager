@@ -60,4 +60,9 @@ class Project extends Model
         return $this->hasMany(Submittal::class);
 
     }
+
+    public function requests()
+    {
+        return $this->hasMany(Request::class);
+    }
 }

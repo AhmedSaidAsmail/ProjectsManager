@@ -389,13 +389,552 @@
 
                                 </div>
                                 <!--/ الجدل الزمني -->
-                                {{-- Submittals  --}}
-                                @include('Admin.Layouts.projectSubmittals')
-                                {{-- Submittals  --}}
-                                {{--Request--}}
-                                @include('Admin.Layouts.projectRequests')
-                                {{--Request--}}
-                                        <!-- الخطابات -->
+                                <!-- الصبميتال -->
+                                <div id="Submetal_tab" class="tab-pane fade" role="tabpanel">
+                                    <!-- Row -->
+
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <div class="panel panel-default card-view">
+                                                <div class="modal fade" id="add_new_submetal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1">
+                                                    <div class="modal-dialog" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                                <h5 class="modal-title" id="">انشاء صبميتال جديد</h5>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <form action="{{route('submittals.store')}}" method="post" enctype="multipart/form-data">
+                                                                    <input type="hidden" name="project_id" value="{{$project->id}}">
+                                                                    {{csrf_field()}}
+                                                                    <div class="form-group">
+                                                                        <label class="control-label mb-10" for="">نوع الصبميتال</label>
+
+                                                                        <div class="input-group">
+                                                                            <div class="input-group-addon" style="background-color:#BDBDBD;"><i class="icon-user"></i></div>
+                                                                            <select name="sort" class="form-control" data-placeholder="اختر واحده" tabindex="1">
+                                                                                <option value="">== اختر واحدا ==</option>
+                                                                                <option value="sample approval">اعتماد عينه</option>
+                                                                                <option value="supplier approval">اعتماد مخططات الورشه</option>
+                                                                                <option value="shop drawing approval ">اعتماد موردين</option>
+                                                                                <option value="subcontractor approval">اعتماد مقاول باطن</option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="recipient-name" class="control-label mb-10">رقم الصبميتال</label>
+
+                                                                        <div class="input-group">
+                                                                            <div class="input-group-addon" style="background-color:#BDBDBD;">
+                                                                                <i class="icon-user"></i></div>
+                                                                            <input type="number" name="number" class="form-control" id="recipient-name1">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="recipient-name" class="control-label mb-10"> رقم البندالمرتبط</label>
+
+                                                                        <div class="input-group">
+                                                                            <div class="input-group-addon" style="background-color:#BDBDBD;"><i class="icon-user"></i></div>
+                                                                            <input type="text" name="related_item" class="form-control" id="recipient-name1">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="message-text" class="control-label mb-10">التاريخ</label>
+
+                                                                        <div class="input-group">
+                                                                            <div class="input-group-addon" style="background-color:#BDBDBD;"><i class="icon-user"></i></div>
+                                                                            <input type="date" name="date" class="form-control" id="description">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="message-text" class="control-label mb-10">الوصف</label>
+
+                                                                        <div class="input-group">
+                                                                            <div class="input-group-addon" style="background-color:#BDBDBD;"><i class="icon-user"></i></div>
+                                                                            <input type="text" name="description" class="form-control" id="description">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <div class="fileupload btn btn-danger btn-rounded btn-anim btn-block">
+                                                                            <i class="fa fa-upload"></i><span class="btn-text">Upload</span>
+                                                                            <input class="upload" name="document" type="file" multiple>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <div class="form-group">
+                                                                            <input type="submit" value="حفظ" class="btn btn-success btn-rounded btn-block">
+                                                                        </div>
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <button class="btn btn-success btn-rounded btn-block btn-anim" data-toggle="modal" data-target="#add_new_submetal" data-whatever="@"><i class="fa fa-pencil"></i><span class="btn-text">ارفاق صبميتال جديد</span></button>
+                                                <div class="pa-10">
+                                                    <button class="btn btn-primary btn-rounded btn-block btn-anim"><i class="fa fa-search"></i><span class="btn-text">بحث</span></button>
+                                                </div>
+                                                <div class="panel-wrapper collapse in">
+                                                    <div class="panel-body">
+                                                        <div class="table-wrap">
+                                                            <div class="table-responsive">
+                                                                <table id="pro_list" class="table table-hover display  pb-30">
+                                                                    <thead>
+                                                                    <tr>
+                                                                        <th>م</th>
+                                                                        <th>الرقم</th>
+                                                                        <th>البند</th>
+                                                                        <th>التاريخ</th>
+                                                                        <th>النوع</th>
+                                                                        <th>الوصف</th>
+                                                                        <th>الملف</th>
+                                                                    </tr>
+                                                                    </thead>
+                                                                    <tfoot>
+                                                                    <tr>
+                                                                        <th>م</th>
+                                                                        <th>الرقم</th>
+                                                                        <th>البند</th>
+                                                                        <th>التاريخ</th>
+                                                                        <th>النوع</th>
+                                                                        <th>الوصف</th>
+                                                                        <th>الملف</th>
+                                                                    </tr>
+                                                                    </tfoot>
+                                                                    <tbody>
+                                                                    <?php $arrangement=1; ?>
+                                                                    @foreach($project->submittals as $submittal)
+                                                                        <tr>
+                                                                            <td>{{$arrangement}}</td>
+                                                                            <td>{{$submittal->number}}</td>
+                                                                            <td>{{$submittal->related_item}}</td>
+                                                                            <td>{{date('d-m-Y',strtotime($submittal->date))}}</td>
+                                                                            <td>{{Lang::get('terms.'.$submittal->sort)}}</td>
+                                                                            <td>{{$submittal->description}}</td>
+                                                                            <td><a href="_singlepro.php?pronum=3">
+                                                                                    <button class="btn btn-info"></button>
+                                                                                </a></td>
+                                                                        </tr>
+                                                                        <?php $arrangement++; ?>
+                                                                    @endforeach
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- /Row -->
+                                </div>
+                                <!--/ الصبميتال -->
+                                <!-- الريكويستات -->
+                                <div id="Reqest_tab" class="tab-pane fade" role="tabpanel">
+                                    <!-- Row -->
+
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <div class="panel panel-default card-view">
+                                                <div class="modal fade" id="add_new_Test_Paper_model" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1">
+                                                    <div class="modal-dialog" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                                <h5 class="modal-title" id="">انشاء ريكويست جديد</h5>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <div class="row">
+                                                                    <div class="col-lg-12 col-sm-12">
+                                                                        <div class="panel panel-default card-view">
+                                                                            <div class="panel-wrapper collapse in">
+                                                                                <div class="panel-body">
+
+                                                                                    <div class="tab-struct custom-tab-2 mt-10">
+                                                                                        <ul role="tablist" class="nav nav-tabs" id="myTabs_15">
+                                                                                            <li class="active" role="presentation"><a aria-expanded="true" data-toggle="tab" role="tab" id="home_tab_15" href="#Reciving_request_tab">ريكويست</a></li>
+                                                                                            <li role="presentation" class=""><a data-toggle="tab" id="profile_tab_15" role="tab" href="#Test_request_tab" aria-expanded="false">اختبار</a></li>
+                                                                                            <li class="dropdown" role="presentation"></li>
+                                                                                        </ul>
+                                                                                        <div class="tab-content" id="myTabContent_15">
+                                                                                            <div id="Reciving_request_tab" class="tab-pane fade active in" role="tabpanel">
+                                                                                                <form action="" method="">
+                                                                                                    <div class="row">
+                                                                                                        <div class="col-md-12">
+                                                                                                            <div class="form-group">
+                                                                                                                <label class="control-label mb-10">تصنيف الريكويست</label>
+
+                                                                                                                <div class="input-group">
+                                                                                                                    <div class="input-group-addon" style="background-color:#BDBDBD;"><i class="icon-user"></i></div>
+                                                                                                                    <select class="form-control">
+                                                                                                                        <option value="">== اختر تصنيف ==</option>
+                                                                                                                        <option value="">انشائي</option>
+                                                                                                                        <option value="">معماري</option>
+                                                                                                                        <option value="">كهرباء</option>
+                                                                                                                        <option value="">ميكانيكا</option>
+                                                                                                                        <option value="">موقع عام</option>
+                                                                                                                        <option value="">اخري</option>
+                                                                                                                    </select>
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                    <div class="row">
+                                                                                                        <div class="col-md-6">
+                                                                                                            <div class="form-group">
+                                                                                                                <label for="recipient-name" class="control-label mb-10">رقم الريكويست</label>
+                                                                                                                <input type="text" class="form-control" id="recipient-name1">
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                        <div class="col-md-6">
+                                                                                                            <div class="form-group">
+                                                                                                                <label for="recipient-name" class="control-label mb-10"> رقم البندالمرتبط</label>
+                                                                                                                <input type="text" class="form-control" id="" placeholder="رقم المبني + رقم البند">
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                    <div class="row">
+                                                                                                        <div class="col-md-6">
+                                                                                                            <div class="form-group">
+                                                                                                                <label for="message-text" class="control-label mb-10">التاريخ</label>
+                                                                                                                <input type="date" class="form-control" id="">
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                        <div class="col-md-6">
+                                                                                                            <div class="form-group">
+                                                                                                                <label class="control-label mb-10">الكود </label>
+
+                                                                                                                <div class="radio-list">
+                                                                                                                    <div class="col-md-2">
+                                                                                                                        <div class="radio-inline pl-0"> <span class="radio radio-info">
+                                          <input name="testresultselection" id="testresultselection1" value="" type="radio">
+                                          <label for="testresultselection1">ِA</label>
+                                          </span></div>
+                                                                                                                    </div>
+                                                                                                                    <div class="col-md-2">
+                                                                                                                        <div class="radio-inline"> <span class="radio radio-info">
+                                          <input name="testresultselection" id="testresultselection2" value="" type="radio">
+                                          <label for="testresultselection2">B</label>
+                                          </span></div>
+                                                                                                                    </div>
+                                                                                                                    <div class="col-md-2">
+                                                                                                                        <div class="radio-inline"> <span class="radio radio-info">
+                                          <input name="testresultselection" id="testresultselection3" value="" type="radio">
+                                          <label for="testresultselection3">C</label>
+                                          </span></div>
+                                                                                                                    </div>
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                        <span class="help-block"> فضلا اختر نتيجه الريكويست </span>
+                                                                                                    </div>
+                                                                                                    <div class="form-group">
+                                                                                                        <label for="message-text" class="control-label mb-10">الوصف</label>
+                                                                                                        <input type="text" class="form-control" id="">
+                                                                                                    </div>
+                                                                                                    <div class="form-group">
+                                                                                                        <div class="fileupload btn btn-danger btn-rounded btn-anim btn-block"><i class="fa fa-upload"></i><span class="btn-text">Upload</span>
+                                                                                                            <input class="upload" type="file" multiple>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                    <div class="form-group">
+                                                                                                        <div class="modal-footer">
+                                                                                                            <button type="button" class="btn btn-success btn-rounded btn-block">حفظ</button>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </form>
+                                                                                            </div>
+                                                                                            <div id="Test_request_tab" class="tab-pane fade" role="tabpanel">
+                                                                                                <form action="" method="">
+                                                                                                    <div class="form-group">
+                                                                                                        <label class="control-label mb-10">تصنيف الاختبار</label>
+
+                                                                                                        <div class="input-group">
+                                                                                                            <div class="input-group-addon" style="background-color:#BDBDBD;"><i class="icon-user"></i></div>
+                                                                                                            <select class="form-control">
+                                                                                                                <option value="">== اختر تصنيف الاختبار ==</option>
+                                                                                                                <option value="">انشائي</option>
+                                                                                                                <option value="">معماري</option>
+                                                                                                                <option value="">كهرباء</option>
+                                                                                                                <option value="">ميكانيكا</option>
+                                                                                                                <option value="">موقع عام</option>
+                                                                                                                <option value="">اخري</option>
+                                                                                                            </select>
+                                                                                                        </div>
+                                                                                                    </div>
+
+                                                                                                    <!-- /Row -->
+                                                                                                    <div class="row">
+                                                                                                        <div class="col-md-6">
+                                                                                                            <div class="form-group">
+                                                                                                                <label class="control-label mb-10">اختر الاختبار</label>
+
+                                                                                                                <div class="input-group">
+                                                                                                                    <div class="input-group-addon" style="background-color:#BDBDBD;"><i class="icon-user"></i></div>
+                                                                                                                    <select class="form-control">
+                                                                                                                        <option value="">== اختر نوع الاختبار ==</option>
+                                                                                                                        <option value="">دك تربه</option>
+                                                                                                                        <option value="">اختبار العزل</option>
+                                                                                                                        <option value="">اختبار عينات</option>
+                                                                                                                    </select>
+                                                                                                                </div>
+                                                                                                                <span class="help-block"> فضلا اختر نوع الاختبار طبقا لتصنيف اختيارك </span></div>
+                                                                                                        </div>
+                                                                                                        <!--/span-->
+                                                                                                        <div class="col-md-6">
+                                                                                                            <div class="form-group">
+                                                                                                                <label class="control-label mb-10">تاريخ الاختبار</label>
+
+                                                                                                                <div class="input-group">
+                                                                                                                    <div class="input-group-addon" style="background-color:#BDBDBD;"><i class="icon-user"></i></div>
+                                                                                                                    <input class="form-control" placeholder="dd/mm/yyyy" type="date">
+                                                                                                                </div>
+                                                                                                                <span class="help-block"> فضلا اختر تاريخ الاختبار </span></div>
+                                                                                                        </div>
+                                                                                                        <!--/span-->
+                                                                                                    </div>
+                                                                                                    <!-- /Row -->
+                                                                                                    <div class="row">
+                                                                                                        <div class="col-md-6">
+                                                                                                            <div class="form-group">
+                                                                                                                <label class="control-label mb-10">مكان الاختبار</label>
+
+                                                                                                                <div class="radio-list">
+                                                                                                                    <div class="radio-inline pl-0"> <span class="radio radio-info">
+                                          <input name="TestPlaceselection" id="testplaceradio1" value="" type="radio">
+                                          <label for="testplaceradio1">موقع</label>
+                                          </span></div>
+                                                                                                                    <div class="radio-inline"> <span class="radio radio-info">
+                                          <input name="TestPlaceselection" id="testplaceradio2" value="" type="radio">
+                                          <label for="testplaceradio2">مختبر</label>
+                                          </span></div>
+                                                                                                                </div>
+                                                                                                                <span class="help-block"> فضلا اختر مكان الاختبار </span></div>
+                                                                                                        </div>
+                                                                                                        <!--/span-->
+                                                                                                        <div class="col-md-6">
+                                                                                                            <div class="form-group">
+                                                                                                                <label class="control-label mb-10">نتيجه الاختبار</label>
+
+                                                                                                                <div class="radio-list">
+                                                                                                                    <div class="radio-inline pl-0"> <span class="radio radio-info">
+                                          <input name="testresultselection" id="testresultselection1" value="" type="radio">
+                                          <label for="testresultselection1">ناجح</label>
+                                          </span></div>
+                                                                                                                    <div class="radio-inline"> <span class="radio radio-info">
+                                          <input name="testresultselection" id="testresultselection2" value="" type="radio">
+                                          <label for="testresultselection2">فاشل</label>
+                                          </span></div>
+                                                                                                                </div>
+                                                                                                                <span class="help-block"> فضلا اختر نتيجه الاختبار </span></div>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                    <div class="row">
+                                                                                                        <div class="col-md-12">
+                                                                                                            <div class="form-group">
+                                                                                                                <label for="message-text" class="control-label mb-10">الوصف</label>
+                                                                                                                <input type="text" class="form-control" id="description">
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                    <div class="form-group">
+                                                                                                        <div class="fileupload btn btn-danger btn-rounded btn-anim btn-block"><i class="fa fa-upload"></i><span class="btn-text">Upload</span>
+                                                                                                            <input class="upload" type="file" multiple>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                    <div class="form-group">
+                                                                                                        <div class="modal-footer">
+                                                                                                            <button type="button" class="btn btn-success btn-rounded btn-block">حفظ</button>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </form>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <button class="btn btn-success btn-rounded btn-block btn-anim" data-toggle="modal" data-target="#add_new_Test_Paper_model" data-whatever="@"><i class="fa fa-pencil"></i><span class="btn-text">ارفاق ريكويست جديد</span></button>
+                                                </div>
+                                                <div class="pa-10">
+                                                    <button class="btn btn-primary btn-rounded btn-block btn-anim"><i class="fa fa-search"></i><span class="btn-text">بحث</span></button>
+                                                </div>
+                                            </div>
+                                            <div class="panel-wrapper collapse in">
+                                                <div class="panel-body">
+                                                    <div class="table-wrap">
+                                                        <div class="table-responsive">
+                                                            <table id="pro_list" class="table table-hover display  pb-30">
+                                                                <thead>
+                                                                <tr>
+                                                                    <th>م</th>
+                                                                    <th>النوع</th>
+                                                                    <th>التصنيف</th>
+                                                                    <th>التاريخ</th>
+                                                                    <th>المكان</th>
+                                                                    <th>النتيجه</th>
+                                                                    <th>الوصف</th>
+                                                                    <th>الملف</th>
+                                                                </tr>
+                                                                </thead>
+                                                                <tfoot>
+                                                                <tr>
+                                                                    <th>م</th>
+                                                                    <th>النوع</th>
+                                                                    <th>التصنيف</th>
+                                                                    <th>التاريخ</th>
+                                                                    <th>المكان</th>
+                                                                    <th>النتيجه</th>
+                                                                    <th>الوصف</th>
+                                                                    <th>الملف</th>
+                                                                </tr>
+                                                                </tfoot>
+                                                                <tbody>
+                                                                <tr>
+                                                                    <td>1</td>
+                                                                    <td>ريكويست</td>
+                                                                    <td>انشائي</td>
+                                                                    <td>24-08-2018</td>
+                                                                    <td></td>
+                                                                    <td>كود C</td>
+                                                                    <td>اختبار دك التربه قبل الحفر</td>
+                                                                    <td><a href="#">
+                                                                            <button class="btn btn-info"></button>
+                                                                        </a></td>
+                                                                </tr>
+                                                                <tr>
+                                                                <tr>
+                                                                    <td>1</td>
+                                                                    <td>اختبار</td>
+                                                                    <td>معماري</td>
+                                                                    <td>24-08-2018</td>
+                                                                    <td>مختبر</td>
+                                                                    <td>ناجح</td>
+                                                                    <td>اختبار قساوه خرصانات الاعمده</td>
+                                                                    <td><a href="#">
+                                                                            <button class="btn btn-info"></button>
+                                                                        </a></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>1</td>
+                                                                    <td>انشائي</td>
+                                                                    <td>اخبار جس التربه</td>
+                                                                    <td>24-08-2018</td>
+                                                                    <td>موقع</td>
+                                                                    <td>فاشل</td>
+                                                                    <td>اختبار دك التربه قبل الحفر</td>
+                                                                    <td><a href="#">
+                                                                            <button class="btn btn-info"></button>
+                                                                        </a></td>
+                                                                </tr>
+                                                                <tr>
+                                                                <tr>
+                                                                    <td>1</td>
+                                                                    <td>معماري</td>
+                                                                    <td>اخبار صلابه الخرصانه</td>
+                                                                    <td>24-08-2018</td>
+                                                                    <td>مختبر</td>
+                                                                    <td>ناجح</td>
+                                                                    <td>اختبار قساوه خرصانات الاعمده</td>
+                                                                    <td><a href="#">
+                                                                            <button class="btn btn-info"></button>
+                                                                        </a></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>1</td>
+                                                                    <td>انشائي</td>
+                                                                    <td>اخبار جس التربه</td>
+                                                                    <td>24-08-2018</td>
+                                                                    <td>موقع</td>
+                                                                    <td>فاشل</td>
+                                                                    <td>اختبار دك التربه قبل الحفر</td>
+                                                                    <td><a href="#">
+                                                                            <button class="btn btn-info"></button>
+                                                                        </a></td>
+                                                                </tr>
+                                                                <tr>
+                                                                <tr>
+                                                                    <td>1</td>
+                                                                    <td>معماري</td>
+                                                                    <td>اخبار صلابه الخرصانه</td>
+                                                                    <td>24-08-2018</td>
+                                                                    <td>مختبر</td>
+                                                                    <td>ناجح</td>
+                                                                    <td>اختبار قساوه خرصانات الاعمده</td>
+                                                                    <td><a href="#">
+                                                                            <button class="btn btn-info"></button>
+                                                                        </a></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>1</td>
+                                                                    <td>انشائي</td>
+                                                                    <td>اخبار جس التربه</td>
+                                                                    <td>24-08-2018</td>
+                                                                    <td>موقع</td>
+                                                                    <td>فاشل</td>
+                                                                    <td>اختبار دك التربه قبل الحفر</td>
+                                                                    <td><a href="#">
+                                                                            <button class="btn btn-info"></button>
+                                                                        </a></td>
+                                                                </tr>
+                                                                <tr>
+                                                                <tr>
+                                                                    <td>1</td>
+                                                                    <td>معماري</td>
+                                                                    <td>اخبار صلابه الخرصانه</td>
+                                                                    <td>24-08-2018</td>
+                                                                    <td>مختبر</td>
+                                                                    <td>ناجح</td>
+                                                                    <td>اختبار قساوه خرصانات الاعمده</td>
+                                                                    <td><a href="#">
+                                                                            <button class="btn btn-info"></button>
+                                                                        </a></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>1</td>
+                                                                    <td>انشائي</td>
+                                                                    <td>اخبار جس التربه</td>
+                                                                    <td>24-08-2018</td>
+                                                                    <td>موقع</td>
+                                                                    <td>فاشل</td>
+                                                                    <td>اختبار دك التربه قبل الحفر</td>
+                                                                    <td><a href="#">
+                                                                            <button class="btn btn-info"></button>
+                                                                        </a></td>
+                                                                </tr>
+                                                                <tr>
+                                                                <tr>
+                                                                    <td>1</td>
+                                                                    <td>معماري</td>
+                                                                    <td>اخبار صلابه الخرصانه</td>
+                                                                    <td>24-08-2018</td>
+                                                                    <td>مختبر</td>
+                                                                    <td>ناجح</td>
+                                                                    <td>اختبار قساوه خرصانات الاعمده</td>
+                                                                    <td><a href="#">
+                                                                            <button class="btn btn-info"></button>
+                                                                        </a></td>
+                                                                </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- /Row -->
+                                </div>
+                                <!--/ الريكويستات -->
+                                <!-- الخطابات -->
                                 <div id="letters_tab" class="tab-pane fade" role="tabpanel">
                                     <div class="row col-md-12">
                                         <p>الخطابات لاحقا في اصدار اخر</p>

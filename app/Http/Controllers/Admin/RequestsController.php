@@ -4,13 +4,12 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Submittal;
+use App\Models\Request as ProjectRequests;
 use Exception;
 
-class SubmittalsController extends Controller
+class RequestsController extends Controller
 {
-    private $_path = "/documents/projects/submittals/";
-
+    private $_path = "/documents/projects/requests/";
     /**
      * Display a listing of the resource.
      *
@@ -43,6 +42,7 @@ class SubmittalsController extends Controller
             'project_id' => 'required|integer',
             'sort' => 'required',
             'number' => 'integer|required',
+            'code' => 'required',
             'related_item' => 'required',
             'description' => 'required',
             'document' => 'required|file'
@@ -50,11 +50,11 @@ class SubmittalsController extends Controller
         $data = $request->all();
         try {
             $data['document'] = uploadFile(['file' => $data['document'], 'path' => $this->_path]);
-            Submittal::create($data);
+            ProjectRequests::create($data);
         } catch (Exception $e) {
-            return redirect()->route('projects.show',['id'=>$request->project_id])->with('fail', $e->getMessage());
+            return redirect()->route('projects.show', ['id' => $request->project_id])->with('fail', $e->getMessage());
         }
-        return redirect()->route('projects.show',['id'=>$request->project_id])->with('success', 'Submittal has been created');
+        return redirect()->route('projects.show', ['id' => $request->project_id])->with('success', 'Request has been created');
     }
 
     /**
