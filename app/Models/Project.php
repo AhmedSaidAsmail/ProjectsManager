@@ -65,4 +65,24 @@ class Project extends Model
     {
         return $this->hasMany(Request::class);
     }
+
+    public function tenders()
+    {
+        return $this->hasMany(Tender::class);
+    }
+
+    public function shopDrawings()
+    {
+        return $this->hasMany(Shop_drawing::class);
+    }
+
+    public function cordnationDrawings()
+    {
+        return $this->hasMany(Cordnation_drawing::class);
+    }
+
+    public function changeOrders()
+    {
+        return $this->hasMany(Change_order::class);
+    }
 }
