@@ -85,4 +85,7 @@ class Project extends Model
     {
         return $this->hasMany(Change_order::class);
     }
+    public function files(){
+        return $this->hasMany(Project_file::class);
+    }
 }

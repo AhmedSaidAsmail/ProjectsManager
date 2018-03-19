@@ -39,6 +39,7 @@ Route::group(['prefix' => '', 'middleware' => 'auth:web'], function () {
     Route::resource('/shops-drawings', 'Admin\ShopDrawingsController');
     Route::resource('/cordnation-drawings', 'Admin\CordnationDrawingsController');
     Route::resource('/change-orders', 'Admin\ChangeOrdersController');
+    Route::resource('/project-files', 'Admin\ProjectFilesController');
 
 
 });

@@ -6,26 +6,32 @@ class FileType
 {
     private static $extensions = [
         'pdf' => [
+            'extensions' => ['pdf'],
             'icon' => 'fa-file-pdf',
             'color' => 'text-danger'
         ],
-        'doc' => [
+        'word' => [
+            'extensions' => ['doc', 'docx'],
             'icon' => 'fa-file-word-o',
             'color' => 'text-success'
         ],
-        'docx' => [
-            'icon' => 'fa-file-word-o',
-            'color' => 'text-success'
-        ],
-        'xls' => [
+        'excel' => [
+            'extensions' => ['xls', 'xlsx'],
             'icon' => 'fa-file-excel',
             'color' => 'text-warning'
         ],
-        'xlsx' => [
-            'icon' => 'fa-file-excel',
+        'video' => [
+            'extensions' => ['mp4', 'avi','3gp','wmv','flv'],
+            'icon' => 'fa-file-video',
             'color' => 'text-warning'
+        ],
+        'picture' => [
+            'extensions' => ['png', 'jpg','jpeg','gif'],
+            'icon' => 'fa-file-image',
+            'color' => 'text-info'
         ],
         'unknown' => [
+            'extensions' => [],
             'icon' => 'fa-file',
             'color' => 'text-info'
         ]
@@ -43,14 +49,19 @@ class FileType
     {
         $pathInfo = pathinfo($this->fileName);
         if (isset($pathInfo['extension'])) {
-            $this->extension = $pathInfo['extension'];
+            $this->extension = strtolower($pathInfo['extension']);
         }
     }
 
     private function checkExtensionExists()
     {
-        if (array_key_exists($this->extension, self::$extensions)) {
-            return self::$extensions[$this->extension];
+//        if (array_key_exists($this->extension, self::$extensions)) {
+//            return self::$extensions[$this->extension];
+//        }
+        foreach (self::$extensions as $key => $val) {
+            if (in_array($this->extension, $val['extensions'])) {
+                return $val;
+            }
         }
         return self::$extensions['unknown'];
     }
