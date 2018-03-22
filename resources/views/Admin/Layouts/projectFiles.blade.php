@@ -71,22 +71,26 @@
                                                 <button class="btn btn-success btn-rounded btn-block btn-anim" data-toggle="modal" data-target="#uploud_new_media_model" data-whatever="@"><i class="fa fa-pencil"></i><span class="btn-text">رفع مرفق جديد</span></button>
                                             </div>
                                         </div>
-                                        <div class="pl-15 mb-30"><a href="#" class="file-control active">الكل</a> <a href="#" class="file-control">الملفات</a> <a href="#" class="file-control">الفديوهات</a> <a href="#" class="file-control">الصور</a></div>
+                                        <div class="pl-15 mb-30">
+                                            <a href="{{route('project-files.index')}}?project_id={{$project->id}}" data-display="#project-files" class="file-control active ajax-data">الكل</a>
+                                            <a href="{{route('project-files.index')}}?type=files&project_id={{$project->id}}" data-display="#project-files" class="file-control ajax-data">الملفات</a>
+                                            <a href="{{route('project-files.index')}}?type=videos&project_id={{$project->id}}" data-display="#project-files" class="file-control ajax-data">الفديوهات</a>
+                                            <a href="{{route('project-files.index')}}?type=images&project_id={{$project->id}}" data-display="#project-files" class="file-control ajax-data">الصور</a></div>
 
                                         <h6 class="pl-15 mb-10">بحث</h6>
                                         <ul class="tag-list pl-15 pr-15">
-                                            <form action="" method="">
+                                            <form action="{{route('project-files.index')}}" method="get" id="ajax-data" data-display="#project-files">
+                                                <input type="hidden" name="project_id" value="{{$project->id}}">
                                                 <div class="form-group">
                                                     <label class="control-label mb-10" for="">التصنيف</label>
 
                                                     <div class="input-group">
                                                         <div class="input-group-addon" style="background-color:#BDBDBD;"><i class="icon-user"></i></div>
-                                                        <select class="form-control" data-placeholder="Choose a Category" tabindex="1">
-                                                            <option value="Category 2">الكل</option>
-                                                            <option value="Category 2">ملفات</option>
-                                                            <option value="Category 1">صور</option>
-                                                            <option value="Category 2">فديوهات</option>
-                                                            <option value="Category 2">اخري</option>
+                                                        <select name="type" class="form-control" data-placeholder="Choose a Category" tabindex="1">
+                                                            <option value="">الكل</option>
+                                                            <option value="files">ملفات</option>
+                                                            <option value="images">صور</option>
+                                                            <option value="videos">فديوهات</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -95,30 +99,29 @@
 
                                                     <div class="input-group">
                                                         <div class="input-group-addon" style="background-color:#BDBDBD;"><i class="icon-user"></i></div>
-                                                        <select class="form-control" data-placeholder="Choose a Category" tabindex="1">
-                                                            <option value="">اختر واحد</option>
-                                                            <option value="Category 2">مساحي</option>
-                                                            <option value="Category 1">انشائي</option>
-                                                            <option value="Category 2">معماري</option>
-                                                            <option value="Category 2">ميكانيكا</option>
-                                                            <option value="Category 2">كهرباء</option>
-                                                            <option value="Category 2">موقع عام</option>
-                                                            <option value="Category 2">اخري</option>
+                                                        <select name="sort" class="form-control" data-placeholder="Choose a Category" tabindex="1">
+                                                            <option value="">== اختر تصنيف ==</option>
+                                                            <option value="structural">انشائي</option>
+                                                            <option value="architectural">معماري</option>
+                                                            <option value="electrically">كهرباء</option>
+                                                            <option value="mechanics">ميكانيكا</option>
+                                                            <option value="general">موقع عام</option>
+                                                            <option value="other">اخري</option>
                                                         </select>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="message-text" class="control-label mb-10">من التاريخ</label>
-                                                    <input type="date" class="form-control" id="description">
+                                                    <input name="date_from" type="date" class="form-control" id="description">
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="message-text" class="control-label mb-10">الي التاريخ</label>
-                                                    <input type="date" class="form-control" id="description">
+                                                    <input name="date_to" type="date" class="form-control" id="description">
                                                 </div>
                                                 <div class="form-group">
                                                     <div class="modal-footer">
 
-                                                        <button type="button" class="btn btn-success btn-rounded btn-block">بحث<i class="fa fa-search"></i></button>
+                                                        <button class="btn btn-success btn-rounded btn-block">بحث<i class="fa fa-search"></i></button>
                                                     </div>
                                                 </div>
                                             </form>
@@ -130,7 +133,7 @@
                         </div>
                         <div class="col-lg-9 col-md-8 file-sec pt-20">
                             <div class="row">
-                                <div class="col-lg-12">
+                                <div class="col-lg-12" id="project-files">
                                     {{-- Files show --}}
                                     @foreach($project->files->chunk(4) as $chunk)
                                         <div class="row">

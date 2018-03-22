@@ -170,3 +170,38 @@
         </div>
     </div>
 @endsection
+@section('additional-js')
+    <script>
+        $(function () {
+            $("a.ajax-data").click(function (event) {
+                event.preventDefault();
+                var url = $(this).attr('href');
+                var displayDiv = $("div" + $(this).attr('data-display'));
+                displayDiv.empty();
+                $.ajax({
+                    url: url,
+                    type:"get",
+                    success:function(response){
+                        displayDiv.html(response);
+                    }
+                });
+            });
+
+            $("form#ajax-data").submit(function (event) {
+                event.preventDefault();
+                var url = $(this).attr('action');
+                var displayDiv = $("div" + $(this).attr('data-display'));
+                var formData=$(this).serialize();
+                displayDiv.empty();
+                $.ajax({
+                    url: url,
+                    type:"get",
+                    data:formData,
+                    success:function(response){
+                        displayDiv.html(response);
+                    }
+                });
+            });
+        });
+    </script>
+@endsection
