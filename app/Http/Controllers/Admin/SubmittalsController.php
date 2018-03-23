@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Submittal;
+use App\Src\Filter;
 use Exception;
 
 class SubmittalsController extends Controller
@@ -14,11 +15,15 @@ class SubmittalsController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        if ($request->ajax()) {
+            $filter = new Filter($request, 'submittals');
+           return view('Admin.Layouts.AjaxResponse.projectSubmittals',['submittals'=>$filter->results()]);
+        }
     }
 
     /**

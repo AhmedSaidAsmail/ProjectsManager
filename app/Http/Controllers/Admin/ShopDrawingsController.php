@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Shop_drawing;
+use App\Src\Filter;
 
 class ShopDrawingsController extends Controller
 {
@@ -12,11 +13,15 @@ class ShopDrawingsController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        if ($request->ajax()) {
+            $filter = new Filter($request, 'shopDrawings');
+            return view('Admin.Layouts.AjaxResponse.projectShopDrawings',['shopDrawings'=>$filter->results()]);
+        }
     }
 
     /**

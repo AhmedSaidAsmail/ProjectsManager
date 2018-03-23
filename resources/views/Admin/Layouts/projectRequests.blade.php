@@ -137,50 +137,111 @@
                 <div>
                     <button class="btn btn-success btn-rounded btn-block btn-anim" data-toggle="modal" data-target="#add_new_Test_Paper_model" data-whatever="@"><i class="fa fa-pencil"></i><span class="btn-text">ارفاق ريكويست جديد</span></button>
                 </div>
-                <div class="pa-10">
-                    <button class="btn btn-primary btn-rounded btn-block btn-anim"><i class="fa fa-search"></i><span class="btn-text">بحث</span></button>
-                </div>
+
             </div>
             <div class="panel-wrapper collapse in">
                 <div class="panel-body">
-                    <div class="table-wrap">
-                        <div class="table-responsive">
-                            <table id="pro_list" class="table table-hover display  pb-30">
-                                <thead>
-                                <tr>
-                                    <th>م</th>
-                                    <th>التصنيف</th>
-                                    <th>التاريخ</th>
-                                    <th>النتيجه</th>
-                                    <th>الوصف</th>
-                                    <th>Action</th>
-                                </tr>
-                                </thead>
-                                <tfoot>
-                                <tr>
-                                    <th>م</th>
-                                    <th>التصنيف</th>
-                                    <th>التاريخ</th>
-                                    <th>النتيجه</th>
-                                    <th>الوصف</th>
-                                    <th>Action</th>
-                                </tr>
-                                </tfoot>
-                                <tbody>
-                                <?php $requestsArrangement = 1; ?>
-                                @foreach($project->requests as $request)
+                    <div class="col-lg-3 col-md-4 file-directory pa-0">
+                        <div class="ibox float-e-margins">
+                            <div class="ibox-content">
+                                <h6 class="pl-15 mb-10">بحث</h6>
+                                <ul class="tag-list pl-15 pr-15">
+                                    <form action="{{route('requests.index')}}" method="get" id="ajax-data" data-display="#project-requests">
+                                        <input type="hidden" name="project_id" value="{{$project->id}}">
+
+                                        <div class="form-group">
+                                            <label class="control-label mb-10" for="">نوع </label>
+
+                                            <div class="input-group">
+                                                <div class="input-group-addon" style="background-color:#BDBDBD;"><i class="icon-user"></i></div>
+                                                <select name="sort" class="form-control" data-placeholder="Choose a Category" tabindex="1">
+                                                    <option value="">== اختر تصنيف ==</option>
+                                                    <option value="structural">انشائي</option>
+                                                    <option value="architectural">معماري</option>
+                                                    <option value="electrically">كهرباء</option>
+                                                    <option value="mechanics">ميكانيكا</option>
+                                                    <option value="general">موقع عام</option>
+                                                    <option value="other">اخري</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label mb-10" for="">نوع </label>
+
+                                            <div class="input-group">
+                                                <div class="input-group-addon" style="background-color:#BDBDBD;"><i class="icon-user"></i></div>
+                                                <select name="code" class="form-control" data-placeholder="Choose a Category" tabindex="1">
+                                                    <option value="">اختار كود</option>
+                                                    <option value="a">A</option>
+                                                    <option value="b">B</option>
+                                                    <option value="c">C</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="message-text" class="control-label mb-10">من التاريخ</label>
+                                            <input name="date_from" type="date" class="form-control" id="description">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="message-text" class="control-label mb-10">الي التاريخ</label>
+                                            <input name="date_to" type="date" class="form-control" id="description">
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="modal-footer">
+
+                                                <button class="btn btn-success btn-rounded btn-block">بحث<i class="fa fa-search"></i></button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </ul>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-9 col-md-8 file-sec pt-20">
+                        <div class="table-wrap">
+                            <div class="table-responsive" id="project-requests">
+                                <table id="pro_list" class="table table-hover display  pb-30">
+                                    <thead>
                                     <tr>
-                                        <td>{{$requestsArrangement}}</td>
-                                        <td>{{$request->sort}}</td>
-                                        <td>{{date('d-m-Y',strtotime($request->date))}}</td>
-                                        <td>{{ucfirst($request->code)}}</td>
-                                        <td>{{$request->description}}</td>
-                                        <td></td>
+                                        <th>م</th>
+                                        <th>التصنيف</th>
+                                        <th>التاريخ</th>
+                                        <th>النتيجه</th>
+                                        <th>الوصف</th>
+                                        <th>Action</th>
                                     </tr>
-                                    <?php $requestsArrangement++; ?>
-                                @endforeach
-                                </tbody>
-                            </table>
+                                    </thead>
+                                    <tfoot>
+                                    <tr>
+                                        <th>م</th>
+                                        <th>التصنيف</th>
+                                        <th>التاريخ</th>
+                                        <th>النتيجه</th>
+                                        <th>الوصف</th>
+                                        <th>Action</th>
+                                    </tr>
+                                    </tfoot>
+                                    <tbody>
+                                    <?php $requestsArrangement = 1; ?>
+                                    @foreach($project->requests as $request)
+                                        <tr>
+                                            <td>{{$requestsArrangement}}</td>
+                                            <td>{{$request->sort}}</td>
+                                            <td>{{date('d-m-Y',strtotime($request->date))}}</td>
+                                            <td>{{ucfirst($request->code)}}</td>
+                                            <td>{{$request->description}}</td>
+                                            <td>
+                                                <a href="{{asset('documents/projects/requests/'.$request->document)}}">
+                                                    <i class="fas fa-download"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <?php $requestsArrangement++; ?>
+                                    @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>

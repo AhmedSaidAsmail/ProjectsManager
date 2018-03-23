@@ -68,40 +68,46 @@
                                                     </button>
                                                 </div>
                                             </div>
-                                            <div class="pl-15 mb-30"><a href="#" class="file-control active">المعماري</a> <a href="#" class="file-control">الانشائي</a> <a href="#" class="file-control">الميكانيكا</a> <a href="#" class="file-control">الكهرباء</a> <a
-                                                        href="#" class="file-control">الموقع العام</a></div>
+                                            <div class="pl-15 mb-30">
+                                                <a href="{{route('cordnation-drawings.index')}}?project_id={{$project->id}}&sort=architectural" data-display="#project-cordnationDrawings" class="file-control active ajax-data">المعماري</a>
+                                                <a href="{{route('cordnation-drawings.index')}}?project_id={{$project->id}}&sort=structural" data-display="#project-cordnationDrawings" class="file-control ajax-data">الانشائي</a>
+                                                <a href="{{route('cordnation-drawings.index')}}?project_id={{$project->id}}&sort=mechanics" data-display="#project-cordnationDrawings" class="file-control ajax-data">الميكانيكا</a>
+                                                <a href="{{route('cordnation-drawings.index')}}?project_id={{$project->id}}&sort=electrically" data-display="#project-cordnationDrawings" class="file-control ajax-data">الكهرباء</a>
+                                                <a href="{{route('cordnation-drawings.index')}}?project_id={{$project->id}}&sort=general" data-display="#project-cordnationDrawings" class="file-control ajax-data">الموقع العام</a>
+                                            </div>
                                             <h6 class="pl-15 mb-10">بحث</h6>
 
-                                            <form action="" method="">
+                                            <form action="{{route('cordnation-drawings.index')}}" method="get" id="ajax-data" data-display="#project-cordnationDrawings">
+                                                <input type="hidden" name="project_id" value="{{$project->id}}">
+
                                                 <div class="form-group">
-                                                    <label class="control-label mb-10" for="">نوع المخطط</label>
+                                                    <label class="control-label mb-10" for="">نوع </label>
 
                                                     <div class="input-group">
                                                         <div class="input-group-addon" style="background-color:#BDBDBD;"><i class="icon-user"></i></div>
-                                                        <select class="form-control" data-placeholder="Choose a Category" tabindex="1">
-                                                            <option value="">اختر واحد</option>
-                                                            <option value="Category 2">مساحي</option>
-                                                            <option value="Category 1">انشائي</option>
-                                                            <option value="Category 2">معماري</option>
-                                                            <option value="Category 2">ميكانيكا</option>
-                                                            <option value="Category 2">كهرباء</option>
-                                                            <option value="Category 2">موقع عام</option>
-                                                            <option value="Category 2">اخري</option>
+                                                        <select name="sort" class="form-control" data-placeholder="Choose a Category" tabindex="1">
+                                                            <option value="">== اختر تصنيف ==</option>
+                                                            <option value="structural">انشائي</option>
+                                                            <option value="architectural">معماري</option>
+                                                            <option value="electrically">كهرباء</option>
+                                                            <option value="mechanics">ميكانيكا</option>
+                                                            <option value="general">موقع عام</option>
+                                                            <option value="other">اخري</option>
                                                         </select>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="message-text" class="control-label mb-10">من التاريخ</label>
-                                                    <input type="date" class="form-control" id="description">
+                                                    <input name="date_from" type="date" class="form-control" id="description">
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="message-text" class="control-label mb-10">الي التاريخ</label>
-                                                    <input type="date" class="form-control" id="description">
+                                                    <input name="date_to" type="date" class="form-control" id="description">
                                                 </div>
                                                 <div class="form-group">
                                                     <div class="modal-footer">
 
-                                                        <button type="button" class="btn btn-success btn-rounded btn-block">بحث<i class="fa fa-search"></i></button>
+                                                        <button class="btn btn-success btn-rounded btn-block">بحث<i class="fa fa-search"></i></button>
                                                     </div>
                                                 </div>
                                             </form>
@@ -115,7 +121,7 @@
                                     <div class="col-lg-12">
                                         <div class="row">
                                             <div class="table-wrap">
-                                                <div class="table-responsive">
+                                                <div class="table-responsive" id="project-cordnationDrawings">
                                                     <table id="pro_list" class="table table-hover display  pb-30">
                                                         <thead>
                                                         <tr>

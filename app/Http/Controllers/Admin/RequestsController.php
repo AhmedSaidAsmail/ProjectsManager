@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Request as ProjectRequests;
+use App\Src\Filter;
 use Exception;
 
 class RequestsController extends Controller
@@ -13,11 +14,15 @@ class RequestsController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        if ($request->ajax()) {
+            $filter = new Filter($request, 'requests');
+            return view('Admin.Layouts.AjaxResponse.projectRequest',['requests'=>$filter->results()]);
+        }
     }
 
     /**

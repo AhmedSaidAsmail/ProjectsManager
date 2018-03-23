@@ -69,6 +69,14 @@ class Filter
         return $this;
 
     }
+    private function filterCode()
+    {
+        if (isset($this->request->code)) {
+            $this->result = $this->result->where('code', '=', $this->request->code);
+        }
+        return $this;
+
+    }
 
     private function filterFileType(Collection &$collection)
     {
@@ -89,7 +97,7 @@ class Filter
 
     public function results()
     {
-        $this->filterSort()->filterDateFrom()->filterDateTo();
+        $this->filterSort()->filterDateFrom()->filterDateTo()->filterCode();
         $result = $this->result->get();
         $this->filterFileType($result);
         return $result;

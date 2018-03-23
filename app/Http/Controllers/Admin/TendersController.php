@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Tender;
+use App\Src\Filter;
 
 class TendersController extends Controller
 {
@@ -13,11 +14,15 @@ class TendersController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        if ($request->ajax()) {
+            $filter = new Filter($request, 'tenders');
+            return view('Admin.Layouts.AjaxResponse.projectTenders',['tenders'=>$filter->results()]);
+        }
     }
 
     /**

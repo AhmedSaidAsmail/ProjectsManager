@@ -79,54 +79,95 @@
                     </div>
                 </div>
                 <button class="btn btn-success btn-rounded btn-block btn-anim" data-toggle="modal" data-target="#add_new_submetal" data-whatever="@"><i class="fa fa-pencil"></i><span class="btn-text">ارفاق صبميتال جديد</span></button>
-                <div class="pa-10">
-                    <button class="btn btn-primary btn-rounded btn-block btn-anim"><i class="fa fa-search"></i><span class="btn-text">بحث</span></button>
-                </div>
                 <div class="panel-wrapper collapse in">
                     <div class="panel-body">
-                        <div class="table-wrap">
-                            <div class="table-responsive">
-                                <table id="pro_list" class="table table-hover display  pb-30">
-                                    <thead>
-                                    <tr>
-                                        <th>م</th>
-                                        <th>الرقم</th>
-                                        <th>البند</th>
-                                        <th>التاريخ</th>
-                                        <th>النوع</th>
-                                        <th>الوصف</th>
-                                        <th>الملف</th>
-                                    </tr>
-                                    </thead>
-                                    <tfoot>
-                                    <tr>
-                                        <th>م</th>
-                                        <th>الرقم</th>
-                                        <th>البند</th>
-                                        <th>التاريخ</th>
-                                        <th>النوع</th>
-                                        <th>الوصف</th>
-                                        <th>الملف</th>
-                                    </tr>
-                                    </tfoot>
-                                    <tbody>
-                                    <?php $arrangement = 1; ?>
-                                    @foreach($project->submittals as $submittal)
+                        <div class="col-lg-3 col-md-4 file-directory pa-0">
+                            <div class="ibox float-e-margins">
+                                <div class="ibox-content">
+                                    <h6 class="pl-15 mb-10">بحث</h6>
+                                    <ul class="tag-list pl-15 pr-15">
+                                        <form action="{{route('submittals.index')}}" method="get" id="ajax-data" data-display="#project-submittals">
+                                            <input type="hidden" name="project_id" value="{{$project->id}}">
+
+                                            <div class="form-group">
+                                                <label class="control-label mb-10" for="">نوع </label>
+
+                                                <div class="input-group">
+                                                    <div class="input-group-addon" style="background-color:#BDBDBD;"><i class="icon-user"></i></div>
+                                                    <select name="sort" class="form-control" data-placeholder="Choose a Category" tabindex="1">
+                                                        <option value="">== اختر واحدا ==</option>
+                                                        <option value="sample approval">اعتماد عينه</option>
+                                                        <option value="supplier approval">اعتماد مخططات الورشه</option>
+                                                        <option value="shop drawing approval ">اعتماد موردين</option>
+                                                        <option value="subcontractor approval">اعتماد مقاول باطن</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="message-text" class="control-label mb-10">من التاريخ</label>
+                                                <input name="date_from" type="date" class="form-control" id="description">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="message-text" class="control-label mb-10">الي التاريخ</label>
+                                                <input name="date_to" type="date" class="form-control" id="description">
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="modal-footer">
+
+                                                    <button class="btn btn-success btn-rounded btn-block">بحث<i class="fa fa-search"></i></button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </ul>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-9 col-md-8 file-sec pt-20">
+                            <div class="table-wrap">
+                                <div class="table-responsive" id="project-submittals">
+                                    <table id="pro_list" class="table table-hover display  pb-30">
+                                        <thead>
                                         <tr>
-                                            <td>{{$arrangement}}</td>
-                                            <td>{{$submittal->number}}</td>
-                                            <td>{{$submittal->related_item}}</td>
-                                            <td>{{date('d-m-Y',strtotime($submittal->date))}}</td>
-                                            <td>{{Lang::get('terms.'.$submittal->sort)}}</td>
-                                            <td>{{$submittal->description}}</td>
-                                            <td><a href="_singlepro.php?pronum=3">
-                                                    <button class="btn btn-info"></button>
-                                                </a></td>
+                                            <th>م</th>
+                                            <th>الرقم</th>
+                                            <th>البند</th>
+                                            <th>التاريخ</th>
+                                            <th>النوع</th>
+                                            <th>الوصف</th>
+                                            <th>الملف</th>
                                         </tr>
-                                        <?php $arrangement++; ?>
-                                    @endforeach
-                                    </tbody>
-                                </table>
+                                        </thead>
+                                        <tfoot>
+                                        <tr>
+                                            <th>م</th>
+                                            <th>الرقم</th>
+                                            <th>البند</th>
+                                            <th>التاريخ</th>
+                                            <th>النوع</th>
+                                            <th>الوصف</th>
+                                            <th>الملف</th>
+                                        </tr>
+                                        </tfoot>
+                                        <tbody>
+                                        <?php $arrangement = 1; ?>
+                                        @foreach($project->submittals as $submittal)
+                                            <tr>
+                                                <td>{{$arrangement}}</td>
+                                                <td>{{$submittal->number}}</td>
+                                                <td>{{$submittal->related_item}}</td>
+                                                <td>{{date('d-m-Y',strtotime($submittal->date))}}</td>
+                                                <td>{{Lang::get('terms.'.$submittal->sort)}}</td>
+                                                <td>{{$submittal->description}}</td>
+                                                <td><a href="{{asset('documents/projects/submittals/'.$submittal->document)}}">
+                                                        <i class="fas fa-download"></i>
+                                                    </a></td>
+                                            </tr>
+                                            <?php $arrangement++; ?>
+                                        @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>

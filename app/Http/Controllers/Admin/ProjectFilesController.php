@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Project_file;
-use App\Models\Project;
 use App\Src\Filter;
 
 class ProjectFilesController extends Controller
@@ -15,6 +14,7 @@ class ProjectFilesController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
