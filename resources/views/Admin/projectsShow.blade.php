@@ -42,9 +42,7 @@
                     <div class="panel-body">
                         <p class="text-muted">بدايه المشروع :<code>{{date('d-m-Y',strtotime($project->created_at))}}</code>
 
-                        <p>وصف للمشروع وفيه كلام كلام كلام كلام كلام كلام كلام كلامكلام كلام كلام كلامكلام كلام كلام كلامكلام كلام كلام كلامكلام كلام كلام كلامكلام كلام كلام كلامكلام كلام كلام كلامكلام كلام كلام كلامكلام كلام كلام كلامكلام كلام كلام كلامكلام كلام كلام كلامكلام كلام كلام كلامكلام
-                            كلام
-                            كلام كلامكلام كلام كلام كلامكلام كلام كلام كلامكلام كلام كلام كلام </p>
+                        <p>{{$project->description}}</p>
 
                         <div class="tab-struct custom-tab-1 mt-40">
                             <ul role="tablist" class="nav nav-tabs" id="myTabs_7">
@@ -84,7 +82,7 @@
                             </ul>
                             <div class="tab-content" id="myTabContent_7">
                                 {{-- Prject Information --}}
-                                @include('Admin.Layouts.projectInformations')
+                                @include('Admin.Layouts.projectInformation')
                                 {{-- Prject Information --}}
                                 {{-- Timetable --}}
                                 <div id="time_table_tab" class="tab-pane fade" role="tabpanel">

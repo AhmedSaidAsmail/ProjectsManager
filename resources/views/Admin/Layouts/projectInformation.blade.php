@@ -65,7 +65,7 @@
 
                                                     <div class="input-group">
                                                         <div class="input-group-addon  " style="background-color:#EEEEEE;"><i class="icon-user"></i></div>
-                                                        <input type="text" style="background-color:#FFFFFF; font-weight:bold;" class="form-control text-muted" id="" value="{{$project->contract_period}}" readonly>
+                                                        <input type="text" style="background-color:#FFFFFF; font-weight:bold;" class="form-control text-muted" id="" value="{{dateDiff($project->contract_starting,$project->contract_ending)->days}} يوم" readonly>
                                                     </div>
                                                 </div>
                                             </div>

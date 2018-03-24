@@ -17,6 +17,7 @@ class CreateProjectsTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('sort');
+            $table->text('description');
             $table->integer('distance');
             $table->integer('contractor_id')->unsigned();
             $table->foreign('contractor_id')->references('id')->on('contractors')->onDlete('cascade');
@@ -24,7 +25,8 @@ class CreateProjectsTable extends Migration
             $table->foreign('owner_id')->references('id')->on('owners')->onDlete('cascade');
             $table->integer('contract_no');
             $table->integer('contract_value');
-            $table->integer('contract_period');
+            $table->date('contract_starting');
+            $table->date('contract_ending');
             $table->string('city');
             $table->timestamps();
         });

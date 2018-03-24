@@ -38,3 +38,13 @@ if (!function_exists('getFileType')) {
         return $file->getType();
     }
 }
+if (!function_exists('dateDiff')) {
+    function dateDiff($date1, $date2)
+    {
+        $date1=new DateTime($date1);
+        $date2=new DateTime($date2);
+        $diff=$date1->diff($date2);
+        return $diff;
+
+    }
+}

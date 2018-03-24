@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Project extends Model
 {
     protected $fillable = [
-        'name', 'sort', 'distance', 'contractor_id', 'owner_id', 'contract_no', 'contract_value', 'contract_period', 'city'
+        'name', 'sort','description', 'distance', 'contractor_id', 'owner_id', 'contract_no', 'contract_value','contract_starting', 'contract_ending', 'city'
     ];
 
     public function contractor()

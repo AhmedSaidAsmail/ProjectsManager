@@ -33,8 +33,6 @@
                                 <h3><span class="head-font capitalize-font">بيانات المشروع</span></h3>
                                 <section>
                                     <div class="row">
-
-
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="control-label mb-10">
@@ -62,22 +60,36 @@
                                                 </select>
                                             </div>
                                         </div>
-
-
                                     </div>
-                                    <!-- Row -->
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label class="control-label mb-5">وصف المشروع</label>
+                                                <textarea class="form-control" name="description"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div class="row mb-5">
                                         <div class="form-group">
-                                            <div class="col-md-4">
-                                                <label class="control-label mb-5">مساحه المشروع</label>
+                                            <div class="col-md-3">
+                                                <label class="control-label mb-5">تاريخ بداية العقد</label>
 
-                                                <div class="input-group"><span class="input-group-addon"><i
-                                                                class="fa fa-user"></i></span>
-                                                    <input type="text" name="distance" class="form-control"
-                                                           placeholder="مساحه المشروع" required>
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="fas fa-calendar-times"></i></span>
+                                                    <input type="text" name="contract_starting" class="form-control" placeholder="" data-mask="99/99/9999" required>
                                                 </div>
+                                                <span class="text-muted">dd/mm/yyyy</span>
                                             </div>
-                                            <div class="col-md-4">
+                                            <div class="col-md-3">
+                                                <label class="control-label mb-5">تاريخ نهاية العقد</label>
+
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="fas fa-calendar-times"></i></span>
+                                                    <input type="text" name="contract_ending" class="form-control" placeholder="" data-mask="99/99/9999" required>
+                                                </div>
+                                                <span class="text-muted">dd/mm/yyyy</span>
+                                            </div>
+                                            <div class="col-md-3">
                                                 <label class="control-label mb-5">المقاول</label>
 
                                                 <div class="input-group"><span class="input-group-addon"><i
@@ -92,7 +104,7 @@
 
                                                 </div>
                                             </div>
-                                            <div class="col-md-4">
+                                            <div class="col-md-3">
                                                 <label class="control-label mb-5">مالك المشروع</label>
 
                                                 <div class="input-group"><span class="input-group-addon"><i
@@ -130,13 +142,17 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
-                                                <label class="control-label mb-5">مده العقد </label>
+                                                <label class="control-label mb-5">مساحه المشروع</label>
 
-                                                <div class="input-group"><span class="input-group-addon"><i
-                                                                class="fa fa-user"></i></span>
-                                                    <input type="number" name="contract_period" class="form-control"
-                                                           placeholder="مده العقد" required>
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">
+                                                        <i class="fa fa-user"></i>
+                                                    </span>
+                                                    <input type="text" name="distance" class="form-control"
+                                                           placeholder="مساحه المشروع" required>
                                                 </div>
+
+
                                             </div>
                                             <div class="col-md-3">
                                                 <label class="control-label mb-5">المدينه</label>
@@ -198,7 +214,7 @@
                                                     <div class="col-md-2">
                                                         <a class="btn btn-block btn-success" id="insert-row">
                                                             <i class="fa fa-plus-square-o"></i>
-                                                            </a>
+                                                        </a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -248,12 +264,11 @@
                                                         <div class="col-md-2">
                                                             <a class="btn btn-block btn-success" id="insert-contractor-row">
                                                                 <i class="fa fa-plus-square-o"></i>
-                                                                </a>
+                                                            </a>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <!-- Row -->
                                             <div class="mb-20">
                                                 <div class="row">
                                                     <div class="col-sm-12 col-xs-12">
@@ -265,8 +280,6 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <!-- /Row -->
-                                                <!-- Row -->
                                                 <div class="row mb-5">
                                                     <div class="form-group">
                                                         <div class="col-md-5">
