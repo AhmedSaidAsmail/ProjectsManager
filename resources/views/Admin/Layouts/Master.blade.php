@@ -547,6 +547,9 @@
                     <li>
                         <a class="active-page" href="{{route('consultants.create')}}">انشاء استشاري جديد</a>
                     </li>
+                    <li>
+                        <a class="active-page" href="{{route('test-sorts.index')}}">اختبارات المشروعات</a>
+                    </li>
                 </ul>
             </li>
 

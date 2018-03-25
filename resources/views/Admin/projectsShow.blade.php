@@ -71,6 +71,7 @@
                                         <li class=""><a data-toggle="tab" id="dropdown_14_tab" role="tab" href="#papers_entry_tab" aria-expanded="false">الاوراق</a></li>
                                         <li class=""><a data-toggle="tab" id="dropdown_14_tab" role="tab" href="#change_order_entry_tab" aria-expanded="false">اوامر التغيير</a></li>
                                         <li class=""><a data-toggle="tab" id="dropdown_14_tab" role="tab" href="#medialaibary_tab" aria-expanded="false">مكتبه المشروع </a></li>
+                                        <li class=""><a data-toggle="tab" id="dropdown_14_tab" role="tab" href="#tests_tab" aria-expanded="false">الاختبارات</a></li>
                                     </ul>
                                 </li>
                                 <li class="dropdown" role="presentation"><a data-toggle="dropdown" class="dropdown-toggle" id="myTabDrop_7" href="#" aria-expanded="false">التقارير<span class="caret"></span></a>
@@ -127,7 +128,9 @@
                                     <p>الاوراق</p>
                                 </div>
                                 <!--/ الاوراق -->
-
+                                {{-- Tests --}}
+                                @include('Admin.Layouts.projectTests')
+                                {{-- Tests --}}
                                 {{-- Change Orders --}}
                                 @include('Admin.Layouts.changeOrders')
                                 {{-- Change Orders --}}
@@ -153,10 +156,9 @@
                                 <div id="empty" class="tab-pane fade" role="tabpanel">
                                     <p>فاضي</p>
                                 </div>
-                                <!--/ فاضي -->
-                                <div id="dropdown_13" class="tab-pane fade " role="tabpanel">
-                                    <p>Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney's organic lomo retro fanny pack lo-fi farm-to-table readymade.</p>
-                                </div>
+                                {{-- Weekly Report --}}
+                                @include('Admin.Layouts.projectWeeklyReport')
+                                {{-- Weekly Report --}}
                                 <div id="dropdown_14" class="tab-pane fade" role="tabpanel">
                                     <p>Trust fund seitan letterpress, keytar raw denim keffiyeh etsy art party before they sold out master cleanse gluten-free squid scenester freegan cosby sweater.</p>
                                 </div>
@@ -178,8 +180,8 @@
                 displayDiv.empty();
                 $.ajax({
                     url: url,
-                    type:"get",
-                    success:function(response){
+                    type: "get",
+                    success: function (response) {
                         displayDiv.html(response);
                     }
                 });
@@ -189,13 +191,13 @@
                 event.preventDefault();
                 var url = $(this).attr('action');
                 var displayDiv = $("div" + $(this).attr('data-display'));
-                var formData=$(this).serialize();
+                var formData = $(this).serialize();
                 displayDiv.empty();
                 $.ajax({
                     url: url,
-                    type:"get",
-                    data:formData,
-                    success:function(response){
+                    type: "get",
+                    data: formData,
+                    success: function (response) {
                         displayDiv.html(response);
                     }
                 });

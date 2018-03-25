@@ -35,11 +35,14 @@ Route::group(['prefix' => '', 'middleware' => 'auth:web'], function () {
     Route::resource('/projects', 'Admin\ProjectsController');
     Route::resource('/submittals', 'Admin\SubmittalsController');
     Route::resource('/requests', 'Admin\RequestsController');
+    Route::resource('/tests', 'Admin\TestsController');
     Route::resource('/tenders', 'Admin\TendersController');
     Route::resource('/shops-drawings', 'Admin\ShopDrawingsController');
     Route::resource('/cordnation-drawings', 'Admin\CordnationDrawingsController');
     Route::resource('/change-orders', 'Admin\ChangeOrdersController');
     Route::resource('/project-files', 'Admin\ProjectFilesController');
+    Route::resource('/project/{projectId}/weekly-report', 'Admin\ProjectWeeklyController');
+    Route::resource('/project/test-sorts', 'Admin\ProjectTestSortsController');
 
 
 });

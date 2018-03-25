@@ -33,7 +33,7 @@
                                 <h3><span class="head-font capitalize-font">بيانات المشروع</span></h3>
                                 <section>
                                     <div class="row">
-                                        <div class="col-md-6">
+                                        <div class="col-md-4">
                                             <div class="form-group">
                                                 <label class="control-label mb-10">
                                                     اسم المشروع ( كما في العقد )
@@ -49,7 +49,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="col-md-6">
+                                        <div class="col-md-4">
                                             <div class="form-group">
                                                 <label class="control-label mb-10">تصيف المشروع</label>
                                                 <select class="form-control" name="sort">
@@ -58,6 +58,12 @@
                                                     <option value="سكني">تجاري</option>
                                                     <option value="سياحي او فندقي">افراد</option>
                                                 </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label class="control-label mb-10">صورة المشروع</label>
+                                                <input type="file" name="image" class="form-control" required>
                                             </div>
                                         </div>
                                     </div>

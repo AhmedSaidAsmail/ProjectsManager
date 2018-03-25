@@ -58,6 +58,7 @@ class ProjectsController extends Controller
             $ownerCrew = collectData(['request' => $request, 'table' => 'owners_crews', 'path' => $this->_path]);
             $quantity = collectData(['request' => $request, 'table' => 'project_quantities', 'path' => $this->_path], 'flatten');
             $documents = collectData(['request' => $request, 'table' => 'project_documents', 'path' => $this->_path]);
+            $data['image']=uploadFile(['file' => $data['image'], 'path' => $this->_path]);
             $project = Project::create($data);
             $project->consultantEngineers()->createMany($consultantCrew);
             $project->contractorEngineers()->createMany($contractorCrew);

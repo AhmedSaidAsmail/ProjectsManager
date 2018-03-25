@@ -17,6 +17,7 @@ class CreateProjectsTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('sort');
+            $table->text('image');
             $table->text('description');
             $table->integer('distance');
             $table->integer('contractor_id')->unsigned();

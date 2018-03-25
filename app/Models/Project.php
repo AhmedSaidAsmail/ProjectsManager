@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Project extends Model
 {
     protected $fillable = [
-        'name', 'sort','description', 'distance', 'contractor_id', 'owner_id', 'contract_no', 'contract_value','contract_starting', 'contract_ending', 'city'
+        'name', 'sort', 'image', 'description', 'distance', 'contractor_id', 'owner_id', 'contract_no', 'contract_value', 'contract_starting', 'contract_ending', 'city'
     ];
 
     public function contractor()
@@ -66,6 +66,11 @@ class Project extends Model
         return $this->hasMany(Request::class);
     }
 
+    public function tests()
+    {
+        return $this->hasMany(Test::class);
+    }
+
     public function tenders()
     {
         return $this->hasMany(Tender::class);
@@ -85,7 +90,14 @@ class Project extends Model
     {
         return $this->hasMany(Change_order::class);
     }
-    public function files(){
+
+    public function files()
+    {
         return $this->hasMany(Project_file::class);
+    }
+
+    public function weeklyReports()
+    {
+        return $this->hasMany(Project_weekly_report::class);
     }
 }
