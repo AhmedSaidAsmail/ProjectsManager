@@ -72,7 +72,8 @@ class ConsultantsController extends Controller
      */
     public function show($id)
     {
-        //
+        $consultant=Consultant::find($id);
+        return view('Admin.consultantsShow',['consultant'=>$consultant]);
     }
 
     /**

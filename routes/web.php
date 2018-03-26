@@ -26,6 +26,9 @@ Route::group(['prefix' => '', 'middleware' => 'auth:web'], function () {
     Route::put('/consultants/password/{id}', 'Admin\ConsultantsController@changePassword')->name('consultants.password');
     // engineers
     Route::resource('/engineers', 'Admin\EngineersController');
+    Route::get('contractors/get/engineers', 'Admin\EngineersController@contractorEngineers')->name('engineers.contractors');
+    Route::get('consultant/get/engineers', 'Admin\EngineersController@consultantEngineers')->name('engineers.consultant');
+    Route::get('owners/get/engineers', 'Admin\EngineersController@ownersEngineers')->name('engineers.owners');
     Route::get('/engineers/active/{id}', 'Admin\EngineersController@active')->name('engineers.active');
     Route::get('/engineers/inactive/{id}', 'Admin\EngineersController@inactive')->name('engineers.inactive');
     Route::get('/engineers/password/{id}', 'Admin\EngineersController@showPasswordForm')->name('engineers.password');

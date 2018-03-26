@@ -11,6 +11,17 @@ class Engineer extends User
         'contractor_id', 'consultant_id', 'owner_id', 'name', 'email', 'password', 'img', 'active'
     ];
 
+    public function follow()
+    {
+        if (!is_null($this->consultant()->first())) {
+            return $this->consultant()->first();
+        } elseif (!is_null($this->contractor()->first())) {
+            return $this->contractor()->first();
+        } elseif (!is_null($this->owner()->first())) {
+            return $this->owner()->first();
+        }
+    }
+
     public function contractor()
     {
         return $this->belongsTo(Contractor::class);

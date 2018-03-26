@@ -47,6 +47,7 @@
                                     <tr>
                                         <th>الاسم</th>
                                         <th>الاميل</th>
+                                        {!! isset($relatedTo)?'<th>الشركة</th>':null !!}
                                         <th>تاريخ الاضافة</th>
                                         <th>التليفون</th>
                                         <th>النوع</th>
@@ -57,6 +58,7 @@
                                     <tr>
                                         <th>الاسم</th>
                                         <th>الاميل</th>
+                                        {!! isset($relatedTo)?'<th>الشركة</th>':null !!}
                                         <th>تاريخ الاضافة</th>
                                         <th>التليفون</th>
                                         <th>النوع</th>
@@ -68,6 +70,23 @@
                                         <tr>
                                             <td>{{$engineer->name}}</td>
                                             <td>{{$engineer->email}}</td>
+                                            @if(isset($relatedTo))
+                                                <td>
+                                                    <?php
+                                                    switch ($relatedTo) {
+                                                        case "contractor":
+                                                            echo $engineer->contractor->name;
+                                                            break;
+                                                        case "consultant":
+                                                            echo $engineer->consultant->name;
+                                                            break;
+                                                        case "owner":
+                                                            echo $engineer->owner->name;
+                                                            break;
+                                                    }
+                                                    ?>
+                                                </td>
+                                            @endif
                                             <td>{{$engineer->created_at}}</td>
                                             <td>{{$engineer->information->phone}}</td>
                                             <td>{{$engineer->information->type}}</td>

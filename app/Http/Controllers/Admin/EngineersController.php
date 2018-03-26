@@ -24,6 +24,24 @@ class EngineersController extends Controller
 
     }
 
+    public function contractorEngineers()
+    {
+        $engineers = Engineer::where('contractor_id', '!=', null)->get();
+        return view('Admin.engineersIndex', ['engineers' => $engineers,'relatedTo'=>'contractor']);
+    }
+
+    public function consultantEngineers()
+    {
+        $engineers = Engineer::where('consultant_id', '!=', null)->get();
+        return view('Admin.engineersIndex', ['engineers' => $engineers,'relatedTo'=>'consultant']);
+    }
+
+    public function ownersEngineers()
+    {
+        $engineers = Engineer::where('owner_id', '!=', null)->get();
+        return view('Admin.engineersIndex', ['engineers' => $engineers,'relatedTo'=>'owner']);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -97,7 +115,7 @@ class EngineersController extends Controller
     {
         $this->validate($request, [
             'name' => 'required|max:255',
-            'address' => 'required|max:255',
+            'email' => 'required|max:255',
             'phone' => 'required|max:255',
         ]);
         $engineer = Engineer::find($id);
@@ -178,8 +196,8 @@ class EngineersController extends Controller
     {
         $class = ucfirst($request->belongsTo);
         $belong = "\App\Models\\$class";
-        $data=call_user_func_array(array($belong,"all"),array());
-        return view('Admin.Layouts.getBelongs',['users'=>$data]);
+        $data = call_user_func_array(array($belong, "all"), array());
+        return view('Admin.Layouts.getBelongs', ['users' => $data]);
 
     }
 }

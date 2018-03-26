@@ -330,7 +330,7 @@
                         </a>
                         <ul id="contractor_setting_sub" class="collapse collapse-level-2">
                             <li><a href="{{route('contractors.create')}}">اضافه مقاول</a></li>
-                            <li><a href="{{route('engineers.index')}}"> عرض مهندسين المقاول</a></li>
+                            <li><a href="{{route('engineers.contractors')}}"> عرض مهندسين المقاول</a></li>
                             <li><a href="{{route('contractors.index')}}">عرض المقاولين</a></li>
                         </ul>
                     </li>
@@ -340,7 +340,7 @@
                         </a>
                         <ul id="owner_setting_sub" class="collapse collapse-level-2">
                             <li><a href="{{route('owners.create')}}">اضافة مالك</a></li>
-                            <li><a href="{{route('engineers.index')}}">مهندسين المالك</a></li>
+                            <li><a href="{{route('engineers.owners')}}">مهندسين المالك</a></li>
                             <li><a href="{{route('owners.index')}}">عرض الملاك</a></li>
                         </ul>
                     </li>
@@ -351,7 +351,7 @@
                         <ul id="consaltant_setting_sub" class="collapse collapse-level-2">
                             <li><a href="{{route('consultants.index')}}">الاستشاريين</a></li>
                             <li><a href="{{route('consultants.create')}}">اضافه استشاري</a></li>
-                            <li><a href="{{route('engineers.index')}}">مهندسين الاستشاري</a></li>
+                            <li><a href="{{route('engineers.consultant')}}">مهندسين الاستشاري</a></li>
                             <li><a href="{{route('engineers.index')}}">عرض المهندسين</a></li>
                         </ul>
                     </li>
