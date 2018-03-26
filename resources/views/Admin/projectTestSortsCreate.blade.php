@@ -31,7 +31,7 @@
                     <form method="post" action="{{route('test-sorts.store')}}">
                         {{csrf_field()}}
                         <div class="row">
-                            <div class="col-md-12">
+                            <div class="col-md-6">
                                 <div class="form-group{!! $errors->has('name')?" has-error":null !!}">
                                     <label class="control-label mb-10" for="">اسم الاختبار</label>
 
@@ -48,10 +48,21 @@
                                     @endif
                                 </div>
                             </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label mb-10">تحت بند</label>
+                                    <select name="related_to" class="form-control">
+                                        <option value="">== اختر تصنيف ==</option>
+                                        <option value="structural">انشائي</option>
+                                        <option value="architectural">معماري</option>
+                                        <option value="electrically">كهرباء</option>
+                                        <option value="mechanics">ميكانيكا</option>
+                                        <option value="general">موقع عام</option>
+                                        <option value="other">اخري</option>
+                                    </select>
+                                </div>
+                            </div>
                         </div>
-
-                        </div>
-
                         <button type="submit" class="btn btn-success mr-10">Submit</button>
                         <button type="submit" class="btn btn-default">Cancel</button>
                     </form>

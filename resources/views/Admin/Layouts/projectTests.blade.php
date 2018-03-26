@@ -30,7 +30,7 @@
 
                                                                         <div class="input-group">
                                                                             <div class="input-group-addon" style="background-color:#BDBDBD;"><i class="icon-user"></i></div>
-                                                                            <select class="form-control" name="sort">
+                                                                            <select class="form-control" name="sort" id="test_sort">
                                                                                 <option value="">== اختر تصنيف ==</option>
                                                                                 <option value="structural">انشائي</option>
                                                                                 <option value="architectural">معماري</option>
@@ -50,11 +50,9 @@
 
                                                                                 <div class="input-group">
                                                                                     <div class="input-group-addon" style="background-color:#BDBDBD;"><i class="icon-user"></i></div>
-                                                                                    <select class="form-control" name="project_test_sort_id">
+                                                                                    <select class="form-control" name="project_test_sort_id" id="related_sort" data-ajax--url="{{route('test-sorts.getRelated')}}">
                                                                                         <option value="">== اختر نوع الاختبار ==</option>
-                                                                                        @foreach(\App\Models\Project_test_sort::all() as $sort)
-                                                                                            <option value="{{$sort->id}}">{{$sort->name}}</option>
-                                                                                        @endforeach
+
                                                                                     </select>
                                                                                 </div>
                                                                                 <span class="help-block"> فضلا اختر نوع الاختبار طبقا لتصنيف اختيارك </span></div>

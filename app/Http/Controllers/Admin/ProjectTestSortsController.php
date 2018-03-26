@@ -119,4 +119,12 @@ class ProjectTestSortsController extends Controller
         }
         return redirect()->route('test-sorts.index')->with('success', "Test has been erased");
     }
+
+    public function getRelated(Request $request)
+    {
+        $sorts = Project_test_sort::where('related_to', $request->related_to)->get();
+        foreach ($sorts as $sort) {
+            echo '<option value="' . $sort->id . '">' . $sort->name . '</option>';
+        }
+    }
 }

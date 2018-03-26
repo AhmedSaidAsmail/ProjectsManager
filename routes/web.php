@@ -43,6 +43,7 @@ Route::group(['prefix' => '', 'middleware' => 'auth:web'], function () {
     Route::resource('/project-files', 'Admin\ProjectFilesController');
     Route::resource('/project/{projectId}/weekly-report', 'Admin\ProjectWeeklyController');
     Route::resource('/project/test-sorts', 'Admin\ProjectTestSortsController');
+    Route::get('/project/test-sorts/get/Related','Admin\ProjectTestSortsController@getRelated')->name('test-sorts.getRelated');
 
 
 });

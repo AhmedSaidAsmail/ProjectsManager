@@ -202,6 +202,19 @@
                     }
                 });
             });
+            $("select#test_sort").change(function () {
+                var val = $(this).val();
+                var relatedSelect = $("select#related_sort");
+                var url = relatedSelect.attr('data-ajax--url');
+                $.ajax({
+                    url: url,
+                    type: "get",
+                    data: {related_to: val},
+                    success: function (response) {
+                        relatedSelect.html(response);
+                    }
+                });
+            });
         });
     </script>
 @endsection

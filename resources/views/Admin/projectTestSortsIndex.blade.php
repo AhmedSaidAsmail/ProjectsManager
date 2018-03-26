@@ -45,12 +45,14 @@
                                     <thead>
                                     <tr>
                                         <th>اسم الاختبار</th>
+                                        <td>تحت بند</td>
                                         <th class="english-fonts">action</th>
                                     </tr>
                                     </thead>
                                     <tfoot>
                                     <tr>
                                         <th>اسم الاختبار</th>
+                                        <td>تحت بند</td>
                                         <th class="english-fonts">action</th>
                                     </tr>
                                     </tfoot>
@@ -58,6 +60,7 @@
                                     @foreach($sorts as $sort)
                                         <tr>
                                             <td>{{$sort->name}}</td>
+                                            <td>{{Lang::get('terms.'.$sort->related_to)}}</td>
                                             <td class="english-fonts">
                                                 <a href="{{route('test-sorts.edit',['id'=>$sort->id])}}">
                                                     <i class="fas fa-pencil-square-o fa-2x text-success"></i>

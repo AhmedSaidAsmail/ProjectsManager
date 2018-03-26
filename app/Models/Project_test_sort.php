@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class Project_test_sort extends Model
 {
     protected $fillable=[
-      'name'
+      'name','related_to'
     ];
 }

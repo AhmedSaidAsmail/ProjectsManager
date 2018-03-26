@@ -31,8 +31,9 @@
                     <form method="post" action="{{route('test-sorts.update',['id'=>$sort->id])}}">
                         {{csrf_field()}}
                         <input type="hidden" value="PUT" name="_method">
+
                         <div class="row">
-                            <div class="col-md-12">
+                            <div class="col-md-6">
                                 <div class="form-group{!! $errors->has('name')?" has-error":null !!}">
                                     <label class="control-label mb-10" for="">اسم الاختبار</label>
 
@@ -49,16 +50,29 @@
                                     @endif
                                 </div>
                             </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label mb-10">تحت بند</label>
+                                    <select name="related_to" class="form-control">
+                                        <option value="">== اختر تصنيف ==</option>
+                                        <option value="structural" {!! $sort->related_to=="structural"?'selected="selected"':null !!}>انشائي</option>
+                                        <option value="architectural" {!! $sort->related_to=="architectural"?'selected="selected"':null !!}>معماري</option>
+                                        <option value="electrically" {!! $sort->related_to=="electrically"?'selected="selected"':null !!}>كهرباء</option>
+                                        <option value="mechanics" {!! $sort->related_to=="mechanics"?'selected="selected"':null !!}>ميكانيكا</option>
+                                        <option value="general" {!! $sort->related_to=="general"?'selected="selected"':null !!}>موقع عام</option>
+                                        <option value="other" {!! $sort->related_to=="other"?'selected="selected"':null !!}>اخري</option>
+                                    </select>
+                                </div>
+                            </div>
                         </div>
 
-                </div>
 
-                <button type="submit" class="btn btn-success mr-10">Submit</button>
-                <button type="submit" class="btn btn-default">Cancel</button>
-                </form>
+                        <button type="submit" class="btn btn-success mr-10">Submit</button>
+                        <button type="submit" class="btn btn-default">Cancel</button>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
     </div>
 
 @endsection

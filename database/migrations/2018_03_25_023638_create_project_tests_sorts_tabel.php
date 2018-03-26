@@ -16,6 +16,7 @@ class CreateProjectTestsSortsTabel extends Migration
         Schema::create('project_test_sorts', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->string('related_to');
             $table->timestamps();
         });
     }

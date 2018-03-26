@@ -4,4 +4,10 @@ return [
     'supplier approval' => 'اعتماد مخططات الورشه',
     'shop drawing approval' => 'اعتماد موردين',
     'subcontractor approval' => 'اعتماد مقاول باطن',
+    'structural' => 'انشائي',
+    'architectural' => 'معماري',
+    'electrically' => 'كهرباء',
+    'mechanics' => 'ميكانيكا',
+    'general' => 'موقع عام',
+    'other' => 'اخري',
 ];
