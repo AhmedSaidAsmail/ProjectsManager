@@ -89,7 +89,8 @@ class EngineersController extends Controller
      */
     public function show($id)
     {
-        //
+        $engineer = Engineer::find($id);
+        return view('Admin.engineersShow', ['engineer' => $engineer]);
     }
 
     /**

@@ -35,6 +35,7 @@
                                                                             <option value="electrically">كهرباء</option>
                                                                             <option value="mechanics">ميكانيكا</option>
                                                                             <option value="general">موقع عام</option>
+                                                                            <option value="certificate-guarantee">شهاده ضمان</option>
                                                                             <option value="other">اخري</option>
                                                                         </select>
                                                                     </div>

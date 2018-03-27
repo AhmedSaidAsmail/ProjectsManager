@@ -107,7 +107,7 @@
 
             .page {
                 width: 100%;
-                height: 942px;
+                min-height: 942px;
                 overflow: hidden;
                 position: relative;
             }
