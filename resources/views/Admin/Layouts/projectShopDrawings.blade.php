@@ -147,7 +147,7 @@
                                                         @foreach($project->shopDrawings as $shop)
                                                             <tr>
                                                                 <td>{{$shopsArrangement}}</td>
-                                                                <td>{{$shop->sort}}</td>
+                                                                <td>{{Lang::get('terms.'.$shop->sort)}}</td>
                                                                 <td>{{date('d-m-Y',strtotime($shop->date))}}</td>
                                                                 <td>{{$shop->description}}</td>
                                                                 <td>

@@ -69,6 +69,7 @@ class Filter
         return $this;
 
     }
+
     private function filterCode()
     {
         if (isset($this->request->code)) {
@@ -76,6 +77,22 @@ class Filter
         }
         return $this;
 
+    }
+
+    private function filterResult()
+    {
+        if (isset($this->request->result)) {
+            $this->result = $this->result->where('result', '=', $this->request->result);
+        }
+        return $this;
+    }
+
+    private function filterLocation()
+    {
+        if (isset($this->request->location)) {
+            $this->result = $this->result->where('location', '=', $this->request->location);
+        }
+        return $this;
     }
 
     private function filterFileType(Collection &$collection)
@@ -97,7 +114,7 @@ class Filter
 
     public function results()
     {
-        $this->filterSort()->filterDateFrom()->filterDateTo()->filterCode();
+        $this->filterSort()->filterDateFrom()->filterDateTo()->filterCode()->filterResult()->filterLocation();
         $result = $this->result->get();
         $this->filterFileType($result);
         return $result;

@@ -152,7 +152,7 @@
                             <div class="ibox-content">
                                 <h6 class="pl-15 mb-10">بحث</h6>
                                 <ul class="tag-list pl-15 pr-15">
-                                    <form action="{{route('requests.index')}}" method="get" id="ajax-data" data-display="#project-requests">
+                                    <form action="{{route('tests.index')}}" method="get" id="ajax-data" data-display="#project-tests">
                                         <input type="hidden" name="project_id" value="{{$project->id}}">
 
                                         <div class="form-group">
@@ -172,15 +172,26 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="control-label mb-10" for="">نوع </label>
+                                            <label class="control-label mb-10" for="">النتيجة</label>
 
                                             <div class="input-group">
                                                 <div class="input-group-addon" style="background-color:#BDBDBD;"><i class="icon-user"></i></div>
-                                                <select name="code" class="form-control" data-placeholder="Choose a Category" tabindex="1">
-                                                    <option value="">اختار كود</option>
-                                                    <option value="a">A</option>
-                                                    <option value="b">B</option>
-                                                    <option value="c">C</option>
+                                                <select name="result" class="form-control" data-placeholder="Choose a Category" tabindex="1">
+                                                    <option value="">اختار النتيجة</option>
+                                                    <option value="1">ناجح</option>
+                                                    <option value="0">فاشل</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label mb-10" for="">النتيجة</label>
+
+                                            <div class="input-group">
+                                                <div class="input-group-addon" style="background-color:#BDBDBD;"><i class="icon-user"></i></div>
+                                                <select name="location" class="form-control" data-placeholder="Choose a Category" tabindex="1">
+                                                    <option value="">اختار المكان</option>
+                                                    <option value="location">موقع</option>
+                                                    <option value="lap">مختبر</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -206,7 +217,7 @@
                     </div>
                     <div class="col-lg-9 col-md-8 file-sec pt-20">
                         <div class="table-wrap">
-                            <div class="table-responsive" id="project-requests">
+                            <div class="table-responsive" id="project-tests">
                                 <table id="pro_list" class="table table-hover display  pb-30">
                                     <thead>
                                     <tr>
@@ -235,11 +246,11 @@
                                     @foreach($project->tests as $test)
                                         <tr>
                                             <td>{{$testsArrangement}}</td>
-                                            <td>{{$test->sort}}</td>
+                                            <td>{{Lang::get('terms.'.$test->sort)}}</td>
                                             <td>{{date('d-m-Y',strtotime($test->date))}}</td>
-                                            <td>{{$test->result}}</td>
+                                            <td><i class="fa fa-circle fa-lg {!! $test->result?'text-success':'text-danger' !!}"></i> </td>
                                             <td>{{$test->description}}</td>
-                                            <td>{{$test->location}}</td>
+                                            <td>{{Lang::get('terms.'.$test->location)}}</td>
                                             <td>
                                                 <a href="{{asset('documents/projects/tests/'.$test->document)}}">
                                                     <i class="fas fa-download"></i>

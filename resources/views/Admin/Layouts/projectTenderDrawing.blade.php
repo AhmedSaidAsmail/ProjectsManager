@@ -148,7 +148,7 @@
                                                         @foreach($project->tenders as $tender)
                                                             <tr>
                                                                 <td>{{$tendersArrangement}}</td>
-                                                                <td>{{$tender->sort}}</td>
+                                                                <td>{{Lang::get('terms.'.$tender->sort)}}</td>
                                                                 <td>{{date('d-m-Y',strtotime($tender->date))}}</td>
                                                                 <td>{{$tender->description}}</td>
                                                                 <td>

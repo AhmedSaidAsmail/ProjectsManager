@@ -146,7 +146,7 @@
                                                         @foreach($project->cordnationDrawings as $cordnation)
                                                             <tr>
                                                                 <td>{{$cordnationsArrangement}}</td>
-                                                                <td>{{$cordnation->sort}}</td>
+                                                                <td>{{Lang::get('terms.'.$cordnation->sort)}}</td>
                                                                 <td>{{date('d-m-Y',strtotime($cordnation->date))}}</td>
                                                                 <td>{{$cordnation->description}}</td>
                                                                 <td>

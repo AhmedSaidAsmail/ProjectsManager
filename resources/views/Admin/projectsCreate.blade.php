@@ -15,7 +15,17 @@
         <!-- /Breadcrumb -->
     </div>
 
-
+    @if(count($errors)>0)
+        <div class="alert alert-danger alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <h4><i class="icon fa fa-ban"></i> Alert!</h4>
+            <ul>
+                @foreach($errors->all() as $error)
+                    <li>{{$error}}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
     <div class="row arabic-fonts">
         <div class="col-md-12">
             <div class="panel panel-default card-view">
@@ -71,7 +81,7 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label class="control-label mb-5">وصف المشروع</label>
-                                                <textarea class="form-control" name="description"></textarea>
+                                                <textarea class="form-control" name="description" required></textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -82,18 +92,18 @@
 
                                                 <div class="input-group">
                                                     <span class="input-group-addon"><i class="fas fa-calendar-times"></i></span>
-                                                    <input type="text" name="contract_starting" class="form-control" placeholder="" data-mask="99/99/9999" required>
+                                                    <input type="text" name="contract_starting" class="form-control" placeholder="" data-mask="9999-99-99" required>
                                                 </div>
-                                                <span class="text-muted">dd/mm/yyyy</span>
+                                                <span class="text-muted">yyyy-mm-dd</span>
                                             </div>
                                             <div class="col-md-3">
                                                 <label class="control-label mb-5">تاريخ نهاية العقد</label>
 
                                                 <div class="input-group">
                                                     <span class="input-group-addon"><i class="fas fa-calendar-times"></i></span>
-                                                    <input type="text" name="contract_ending" class="form-control" placeholder="" data-mask="99/99/9999" required>
+                                                    <input type="text" name="contract_ending" class="form-control" placeholder="" data-mask="9999-99-99" required>
                                                 </div>
-                                                <span class="text-muted">dd/mm/yyyy</span>
+                                                <span class="text-muted">yyyy-mm-dd</span>
                                             </div>
                                             <div class="col-md-3">
                                                 <label class="control-label mb-5">المقاول</label>

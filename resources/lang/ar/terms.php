@@ -10,4 +10,6 @@ return [
     'mechanics' => 'ميكانيكا',
     'general' => 'موقع عام',
     'other' => 'اخري',
+    'location' => 'موقع',
+    'lap' => 'مختبر',
 ];

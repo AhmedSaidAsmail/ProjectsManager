@@ -226,7 +226,7 @@
                                     @foreach($project->requests as $request)
                                         <tr>
                                             <td>{{$requestsArrangement}}</td>
-                                            <td>{{$request->sort}}</td>
+                                            <td>{{Lang::get('terms.'.$request->sort)}}</td>
                                             <td>{{date('d-m-Y',strtotime($request->date))}}</td>
                                             <td>{{ucfirst($request->code)}}</td>
                                             <td>{{$request->description}}</td>

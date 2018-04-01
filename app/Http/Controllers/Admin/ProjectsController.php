@@ -81,7 +81,6 @@ class ProjectsController extends Controller
             'owner_id' => 'exists:owners,id',
             'contract_no' => 'required|integer',
             'contract_value' => 'required|integer',
-            'contract_period' => 'required|integer',
             'city' => 'required|max:255',
             'steps' => 'required|integer',
             'buildings_num' => 'required|integer'

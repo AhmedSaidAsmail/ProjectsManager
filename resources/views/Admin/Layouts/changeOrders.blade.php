@@ -86,7 +86,7 @@
                                         <div class="row">
                                             <div class="table-wrap">
                                                 <div class="table-responsive">
-                                                    <table id="datable_1" class="table table-hover display  pb-30 custom-table" style="font-size: 12px;">
+                                                    <table id="pro_list" class="table table-hover display  pb-30">
                                                         <thead>
                                                         <tr>
                                                             <th>م</th>
@@ -112,7 +112,7 @@
                                                         @foreach($project->changeOrders as $changeOrder)
                                                             <tr>
                                                                 <td>{{$changeOrderArrangement}}</td>
-                                                                <td>{{$changeOrder->sort}}</td>
+                                                                <td>{{Lang::get('terms.'.$changeOrder->sort)}}</td>
                                                                 <td>{{date('d-m-Y',strtotime($changeOrder->date))}}</td>
                                                                 <td>{{$changeOrder->reason}}</td>
                                                                 <td>{{$changeOrder->description}}</td>
