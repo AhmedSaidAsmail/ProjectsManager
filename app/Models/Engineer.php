@@ -8,7 +8,7 @@ use App\User;
 class Engineer extends User
 {
     protected $fillable = [
-        'contractor_id', 'consultant_id', 'owner_id', 'name', 'email', 'password', 'img', 'active'
+        'contractor_id', 'consultant_id', 'owner_id', 'name', 'email', 'password', 'img', 'active','permission_id',
     ];
 
     public function follow()

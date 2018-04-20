@@ -169,6 +169,19 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
+                                    <label class="control-label mb-10">الصلاحيات</label>
+                                    <select name="permission_id" class="form-control" required>
+                                        <option value="">اختار مجموعة صلاحيات</option>
+                                        @foreach(getAllPermissions() as $permission)
+                                            <option value="{{$permission->id}}"{!! $permission->id==$engineer->permission_id?' selected':null !!}>{{$permission->name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
                                     <label class="control-label mb-10" for="">الاوراق </label>
 
                                     <div class="input-group">

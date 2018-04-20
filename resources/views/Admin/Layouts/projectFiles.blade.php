@@ -1,6 +1,4 @@
 <div id="medialaibary_tab" class="tab-pane fade" role="tabpanel">
-    <!-- Row -->
-
     <div class="row">
         <div class="col-md-12">
             <div class="panel panel-default card-view pa-0">
@@ -163,7 +161,4 @@
             </div>
         </div>
     </div>
-
-    <!-- /Row -->
-
 </div>

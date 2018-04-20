@@ -1,8 +1,13 @@
 <?php
+// Admin Login
 Route::get('/login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('/login', 'Auth\LoginController@login')->name('login');
 Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
-Route::group(['prefix' => '', 'middleware' => 'auth:web'], function () {
+// Contractors Login
+Route::get('/contractor/login', 'AuthContractor\LoginController@showLoginForm')->name('contractor.login');
+Route::post('/contractor/login', 'AuthContractor\LoginController@login')->name('contractor.login');
+Route::get('/contractor/logout', 'AuthContractor\LoginController@logout')->name('contractor.logout');
+Route::group(['prefix' => 'admin', 'middleware' => 'auth:web'], function () {
     Route::get('/', function () {
         return view('Admin.Welcome');
     })->name('admin.welcome');
@@ -46,7 +51,15 @@ Route::group(['prefix' => '', 'middleware' => 'auth:web'], function () {
     Route::resource('/project-files', 'Admin\ProjectFilesController');
     Route::resource('/project/{projectId}/weekly-report', 'Admin\ProjectWeeklyController');
     Route::resource('/project/test-sorts', 'Admin\ProjectTestSortsController');
-    Route::get('/project/test-sorts/get/Related','Admin\ProjectTestSortsController@getRelated')->name('test-sorts.getRelated');
+    Route::get('/project/test-sorts/get/Related', 'Admin\ProjectTestSortsController@getRelated')->name('test-sorts.getRelated');
+    //settings
+    Route::resource('/sittings/permissions', 'Admin\PermissionsController');
 
 
+});
+Route::group(['prefix' => 'contractors', 'middleware' => 'auth:contractor'], function () {
+    Route::get('/', function () {
+        return view("Contractor.welcome");
+    })->name('contractor.welcome');
+    Route::resource('/contractor-projects', 'Contractor\ProjectsController');
 });

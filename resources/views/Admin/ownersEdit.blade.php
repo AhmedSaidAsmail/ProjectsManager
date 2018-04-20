@@ -48,6 +48,16 @@
                                         </span>
                                     @endif
                                 </div>
+                                    <div class="form-group">
+                                        <label class="control-label mb-10 text-left">الصلاحيات</label>
+                                        <select name="permission_id" class="form-control" required>
+                                            <option value="">اختار مجموعة صلاحيات</option>
+                                            @foreach(getAllPermissions() as $permission)
+                                                <option value="{{$permission->id}}"{!! $permission->id==$owner->permission_id?' selected':null !!}>{{$permission->name}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+
 
 
                                 <div class="form-group">

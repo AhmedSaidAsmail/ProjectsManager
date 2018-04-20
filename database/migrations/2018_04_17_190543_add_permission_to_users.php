@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateOwnersTable extends Migration
+class AddPermissionToUsers extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,9 @@ class CreateOwnersTable extends Migration
      */
     public function up()
     {
-        Schema::create('owners', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->text('password');
+        Schema::table('users', function (Blueprint $table) {
             $table->integer('permission_id')->unsigned()->nullable();
             $table->foreign('permission_id')->references('id')->on('permissions')->onDelete('cascade');
-            $table->rememberToken();
-            $table->timestamps();
         });
     }
 
@@ -32,6 +26,8 @@ class CreateOwnersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('owners');
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropColumn('permission_id');
+        });
     }
 }

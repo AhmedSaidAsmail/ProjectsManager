@@ -7,7 +7,7 @@ use App\User;
 
 class Consultant extends User
 {
-    protected $fillable = ['name', 'email', 'password', 'img', 'active'];
+    protected $fillable = ['name', 'email', 'password', 'img', 'active','permission_id',];
 
 
     public function engineers()

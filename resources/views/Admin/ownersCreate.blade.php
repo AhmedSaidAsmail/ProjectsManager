@@ -49,7 +49,18 @@
                                     @endif
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="control-label mb-10 text-left">الصلاحيات</label>
+                                            <select name="permission_id" class="form-control" required>
+                                                <option value="">اختار مجموعة صلاحيات</option>
+                                                @foreach(getAllPermissions() as $permission)
+                                                    <option value="{{$permission->id}}">{{$permission->name}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
                                         <div class="form-group{!! $errors->has('password')?" has-error":null !!}">
                                             <label class="control-label mb-10 text-left">الرقم السري</label>
                                             <input class="form-control" name="password" type="password">
@@ -60,7 +71,7 @@
                                             @endif
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
                                         <div class="form-group">
                                             <label class="control-label mb-10 text-left">تاكيد الرقم السري</label>
                                             <input class="form-control" name="password_confirmation" type="password">

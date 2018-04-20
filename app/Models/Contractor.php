@@ -6,7 +6,17 @@ use App\User;
 
 class Contractor extends User
 {
-    protected $fillable = ['name', 'email', 'password','active'];
+    protected $fillable = ['name', 'email', 'password', 'active', 'permission_id',];
+
+    public function projects()
+    {
+        return $this->hasMany(Project::class);
+    }
+
+    public function project($id)
+    {
+        return $this->projects()->where('id', $id)->first();
+    }
 
     public function engineers()
     {

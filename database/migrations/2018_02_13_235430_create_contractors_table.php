@@ -19,6 +19,8 @@ class CreateContractorsTable extends Migration
             $table->string('email')->unique();
             $table->text('password')->nullable();
             $table->boolean('active')->default(0);
+            $table->integer('permission_id')->unsigned()->nullable();
+            $table->foreign('permission_id')->references('id')->on('permissions')->onDelete('cascade');
             $table->rememberToken();
             $table->timestamps();
         });

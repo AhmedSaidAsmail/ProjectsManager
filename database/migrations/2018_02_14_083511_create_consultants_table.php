@@ -20,6 +20,8 @@ class CreateConsultantsTable extends Migration
             $table->string('password')->nullable();
             $table->boolean('active')->default(0);
             $table->text('img')->nullable();
+            $table->integer('permission_id')->unsigned()->nullable();
+            $table->foreign('permission_id')->references('id')->on('permissions')->onDelete('cascade');
             $table->timestamps();
         });
     }

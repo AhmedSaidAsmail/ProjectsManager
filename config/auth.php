@@ -45,6 +45,10 @@ return [
             'driver' => 'token',
             'provider' => 'users',
         ],
+        'contractor' => [
+            'driver' => 'session',
+            'provider' => 'contractors',
+        ],
     ],
 
     /*
@@ -68,6 +72,10 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\User::class,
+        ],
+        'contractors' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Contractor::class,
         ],
 
         // 'users' => [
@@ -94,6 +102,11 @@ return [
     'passwords' => [
         'users' => [
             'provider' => 'users',
+            'table' => 'password_resets',
+            'expire' => 60,
+        ],
+        'contractors' => [
+            'provider' => 'contractors',
             'table' => 'password_resets',
             'expire' => 60,
         ],

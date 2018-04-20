@@ -142,6 +142,19 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
+                                    <label>الصلاحيات</label>
+                                    <select name="permission_id" class="form-control" required>
+                                        <option value="">اختار مجموعة صلاحيات</option>
+                                        @foreach(getAllPermissions() as $permission)
+                                            <option value="{{$permission->id}}"{!! $permission->id==$contractor->permission_id?' selected':null !!}>{{$permission->name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
                                     <label class="control-label mb-10" for="">الاوراق </label>
 
                                     <div class="input-group">
@@ -171,7 +184,7 @@
                             <ul class="list-inline document-files">
                                 @foreach($contractor->documents as $document)
                                     <?php
-                                        $fileType=getFileType($document->document_file);
+                                    $fileType = getFileType($document->document_file);
                                     ?>
                                     <li>
                                         <input type="hidden" name="document_id[{{$sortOrder}}]"

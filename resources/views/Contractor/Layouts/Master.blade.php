@@ -29,11 +29,22 @@
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="mobile-only-brand pull-left">
             <div class="nav-header pull-left">
-                <div class="logo-wrap"><a href="index.html"> <img class="brand-img" src="{{asset('template/dist/img/logo.png')}}" alt="Project Manager"/> <span class="brand-text">Pro Manager</span> </a></div>
+                <div class="logo-wrap">
+                    <a href="index.html">
+                        <img class="brand-img" src="{{asset('template/dist/img/logo.png')}}" alt="Project Manager"/>
+                        <span class="brand-text">Pro Manager</span>
+                    </a>
+                </div>
             </div>
-            <a id="toggle_nav_btn" class="toggle-left-nav-btn inline-block ml-20 pull-left"
-               href="javascript:void(0);"> <i class="zmdi zmdi-menu"></i> </a> <a id="toggle_mobile_search" data-toggle="collapse" data-target="#search_form" class="mobile-only-view"
-                                                                                  href="javascript:void(0);"> <i class="zmdi zmdi-search"></i> </a> <a id="toggle_mobile_nav" class="mobile-only-view" href="javascript:void(0);"> <i class="zmdi zmdi-more"></i> </a>
+            <a id="toggle_nav_btn" class="toggle-left-nav-btn inline-block ml-20 pull-left" href="javascript:void(0);">
+                <i class="zmdi zmdi-menu"></i>
+            </a>
+            <a id="toggle_mobile_search" data-toggle="collapse" data-target="#search_form" class="mobile-only-view" href="javascript:void(0);">
+                <i class="zmdi zmdi-search"></i>
+            </a>
+            <a id="toggle_mobile_nav" class="mobile-only-view" href="javascript:void(0);">
+                <i class="zmdi zmdi-more"></i>
+            </a>
 
             <form id="search_form" role="search" class="top-nav-search collapse pull-left">
                 <div class="input-group">
@@ -190,8 +201,8 @@
                     </ul>
                 </li>
                 <li class="dropdown auth-drp"><a href="#" class="dropdown-toggle pr-0" data-toggle="dropdown">
-                        <?php $img = (!is_null(Auth::guard('web')->user()->img)) ? Auth::guard('web')->user()->img : "admin.png"; ?>
-                        <img src="{{asset('images/admin/'.$img)}}" alt="{{Auth::guard('web')->user()->name}}"
+                        <?php $img = (!is_null(Auth::guard('contractor')->user()->img)) ? Auth::guard('contractor')->user()->img : "admin.png"; ?>
+                        <img src="{{asset('images/admin/'.$img)}}" alt="{{Auth::guard('contractor')->user()->name}}"
                              class="user-auth-img img-circle"/> <span class="user-online-status"></span> </a>
                     <ul class="dropdown-menu user-auth-dropdown" data-dropdown-in="flipInX"
                         data-dropdown-out="flipOutX">
@@ -210,7 +221,7 @@
                             </ul>
                         </li>
                         <li class="divider"></li>
-                        <li><a href="{{route('logout')}}"> <i class="zmdi zmdi-power"></i> <span>Log Out</span> </a></li>
+                        <li><a href="{{route('contractor.logout')}}"> <i class="zmdi zmdi-power"></i> <span>Log Out</span> </a></li>
                     </ul>
                 </li>
             </ul>
@@ -243,131 +254,17 @@
                     <div class="clearfix"></div>
                 </a>
                 <ul id="ecom_dr" class="collapse collapse-level-1">
-                    <li><a href="{{route('projects.index')}}">عرض المشاريع</a></li>
+                    <li><a href="{{route('contractor-projects.index')}}">عرض المشاريع</a></li>
                 </ul>
             </li>
-            <li class="arabic-fonts"><a href="javascript:void(0);" data-toggle="collapse" data-target="#report_dr">
-                    <div class="pull-left"><i class="zmdi zmdi-shopping-basket mr-20"></i><span class="right-nav-text">التقارير</span></div>
-                    <div class="pull-right"><span class="label label-success">hot</span></div>
-                    <div class="clearfix"></div>
-                </a>
 
-                <ul id="report_dr" class="collapse collapse-level-1">
-                    <li><a href="{{route('contractors.index')}}">عرض المقاولين</a></li>
-                    <li><a href="{{route('owners.index')}}">عرض الملاك</a></li>
-                    <li><a href="#">نسب الانجاز</a></li>
-                    <li><a href="#">التقارير الاسبوعيه</a></li>
-                    <li><a href="#">التقارير الشهريه</a></li>
-                </ul>
-            </li>
-            <li class="arabic-fonts"><a href="javascript:void(0);" data-toggle="collapse" data-target="#app_dr">
-                    <div class="pull-left"><i class="zmdi zmdi-apps mr-20"></i><span class="right-nav-text">المقاول </span></div>
-                    <div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div>
-                    <div class="clearfix"></div>
-                </a>
-                <ul id="app_dr" class="collapse collapse-level-1">
-                    <li><a href="#">تقارير</a></li>
-                    <li><a href="_list.php">المستخلصات</a></li>
-                    <li><a href="#">عرض الجدول الذمني</a></li>
-                    <li><a href="#">مخاطبات</a></li>
-                    <li><a href="javascript:void(0);" data-toggle="collapse" data-target="#contractor_email_dr">الرسائل
-                            <div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div>
-                            <div class="clearfix"></div>
-                        </a>
-                        <ul id="contractor_email_dr" class="collapse collapse-level-2">
-                            <li><a href="#">صندوق الرسائل</a></li>
-                            <li><a href="#">المهام</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </li>
-            <li class="arabic-fonts"><a href="javascript:void(0);" data-toggle="collapse" data-target="#Prowouner">
-                    <div class="pull-left"><i class="zmdi zmdi-apps mr-20"></i><span class="right-nav-text">المالك</span></div>
-                    <div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div>
-                    <div class="clearfix"></div>
-                </a>
-                <ul id="Prowouner" class="collapse collapse-level-1">
-                    <li><a href="#">تقارير</a></li>
-                    <li><a href="#">اون لاين</a></li>
-                    <li><a href="#">مخاطبات</a></li>
-                    <li><a href="javascript:void(0);" data-toggle="collapse" data-target="#owner_email_dr">الرسائل
-                            <div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div>
-                            <div class="clearfix"></div>
-                        </a>
-                        <ul id="owner_email_dr" class="collapse collapse-level-2">
-                            <li><a href="#">صندوق الرسائل</a></li>
-                            <li><a href="#"> المهام</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </li>
+
+
 
             <li>
                 <hr class="light-grey-hr mb-10"/>
             </li>
-            <li class="navigation-header"><span>مدخلات النظام</span> <i class="zmdi zmdi-more"></i></li>
-            <li class="arabic-fonts"><a href="javascript:void(0);" data-toggle="collapse" data-target="#ui_dr">
-                    <div class="pull-left"><i class="zmdi zmdi-smartphone-setup mr-20"></i><span class="right-nav-text">مدخلات المشاريع</span></div>
-                    <div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div>
-                    <div class="clearfix"></div>
-                </a>
-                <ul id="ui_dr" class="collapse collapse-level-1 two-col-list">
-                    <li class="arabic-fonts"><a href="javascript:void(0);" data-toggle="collapse" data-target="#Project_setting_sub">المشاريع
-                            <div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div>
-                            <div class="clearfix"></div>
-                        </a>
-                        <ul id="Project_setting_sub" class="collapse collapse-level-2">
-                            <li><a href="{{route('projects.create')}}">اضافه مشروع جديد</a></li>
-                            <li><a href="{{route('engineers.create')}}">اضافة مهندس</a></li>
-                            <li><a href="#">نماذج العقود</a></li>
-                            <li><a href="#">نماذج الخطابات</a></li>
-                            <li><a href="#">مدخلات المشاريع</a></li>
-                        </ul>
-                    </li>
-                    <li class="arabic-fonts"><a href="javascript:void(0);" data-toggle="collapse" data-target="#contractor_setting_sub">المقاولين
-                            <div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div>
-                            <div class="clearfix"></div>
-                        </a>
-                        <ul id="contractor_setting_sub" class="collapse collapse-level-2">
-                            <li><a href="{{route('contractors.create')}}">اضافه مقاول</a></li>
-                            <li><a href="{{route('engineers.contractors')}}"> عرض مهندسين المقاول</a></li>
-                            <li><a href="{{route('contractors.index')}}">عرض المقاولين</a></li>
-                        </ul>
-                    </li>
-                    <li class="arabic-fonts"><a href="javascript:void(0);" data-toggle="collapse" data-target="#owner_setting_sub">الملاك
-                            <div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div>
-                            <div class="clearfix"></div>
-                        </a>
-                        <ul id="owner_setting_sub" class="collapse collapse-level-2">
-                            <li><a href="{{route('owners.create')}}">اضافة مالك</a></li>
-                            <li><a href="{{route('engineers.owners')}}">مهندسين المالك</a></li>
-                            <li><a href="{{route('owners.index')}}">عرض الملاك</a></li>
-                        </ul>
-                    </li>
-                    <li class="arabic-fonts"><a href="javascript:void(0);" data-toggle="collapse" data-target="#consaltant_setting_sub">مكتب الاستشاري
-                            <div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div>
-                            <div class="clearfix"></div>
-                        </a>
-                        <ul id="consaltant_setting_sub" class="collapse collapse-level-2">
-                            <li><a href="{{route('consultants.index')}}">الاستشاريين</a></li>
-                            <li><a href="{{route('consultants.create')}}">اضافه استشاري</a></li>
-                            <li><a href="{{route('engineers.consultant')}}">مهندسين الاستشاري</a></li>
-                            <li><a href="{{route('engineers.index')}}">عرض المهندسين</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            <li class="navigation-header"><span>اعدادات النظام</span> <i class="zmdi zmdi-more"></i></li>
-            <li class="arabic-fonts"><a class="active" href="javascript:void(0);" data-toggle="collapse" data-target="#pages_dr">
-                    <div class="pull-left"><i class="zmdi zmdi-google-pages mr-20"></i> <span class="right-nav-text"> <strong>اعدادات</strong> </span></div>
-                    <div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div>
-                    <div class="clearfix"></div>
-                </a>
-                <ul id="pages_dr" class="collapse collapse-level-1 two-col-list">
-                    <li><a class="active-page" href="{{route('engineer-types.index')}}"> انواع المهندسين</a></li>
-                    <li><a class="active-page" href="{{route('test-sorts.index')}}">اختبارات المشروعات</a></li>
-                    <li><a class="active-page" href="{{route('permissions.index')}}">الصلاحيات</a></li>
-                </ul>
-            </li>
+
         </ul>
     </div>
     <!-- /Left Sidebar Menu -->
