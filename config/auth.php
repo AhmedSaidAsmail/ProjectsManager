@@ -49,6 +49,14 @@ return [
             'driver' => 'session',
             'provider' => 'contractors',
         ],
+        'owner' => [
+            'driver' => 'session',
+            'provider' => 'owners',
+        ],
+        'engineer' => [
+            'driver' => 'session',
+            'provider' => 'engineers',
+        ],
     ],
 
     /*
@@ -76,6 +84,14 @@ return [
         'contractors' => [
             'driver' => 'eloquent',
             'model' => App\Models\Contractor::class,
+        ],
+        'owners' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Owner::class,
+        ],
+        'engineers' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Engineer::class,
         ],
 
         // 'users' => [
@@ -107,6 +123,16 @@ return [
         ],
         'contractors' => [
             'provider' => 'contractors',
+            'table' => 'password_resets',
+            'expire' => 60,
+        ],
+        'owners' => [
+            'provider' => 'owners',
+            'table' => 'password_resets',
+            'expire' => 60,
+        ],
+        'engineers' => [
+            'provider' => 'engineers',
             'table' => 'password_resets',
             'expire' => 60,
         ],

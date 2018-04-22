@@ -12,4 +12,8 @@ class Owners_crew extends Model
     {
         return $this->belongsTo(Engineer::class, 'owner_engineer_id');
     }
+    public function project()
+    {
+        return $this->belongsTo(Project::class);
+    }
 }

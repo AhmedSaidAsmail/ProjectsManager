@@ -12,4 +12,9 @@ class Consultants_crew extends Model
     {
         return $this->belongsTo(Engineer::class, 'consultant_engineer_id');
     }
+
+    public function project()
+    {
+        return $this->belongsTo(Project::class);
+    }
 }

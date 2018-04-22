@@ -8,8 +8,25 @@ use App\User;
 class Engineer extends User
 {
     protected $fillable = [
-        'contractor_id', 'consultant_id', 'owner_id', 'name', 'email', 'password', 'img', 'active','permission_id',
+        'contractor_id', 'consultant_id', 'owner_id', 'name', 'email', 'password', 'img', 'active', 'permission_id',
     ];
+
+    public function contractorCrew()
+    {
+        return $this->hasMany(Contractors_crew::class, 'contractor_engineer_id');
+    }
+
+    public function ownerCrew()
+    {
+        return $this->hasMany(Owners_crew::class, 'owner_engineer_id');
+    }
+
+    public function consultantCrew()
+    {
+        return $this->hasMany(Consultants_crew::class, 'consultant_engineer_id');
+    }
+
+
 
     public function follow()
     {

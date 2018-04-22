@@ -1,4 +1,7 @@
 <?php
+Route::get('/', function () {
+    return redirect()->route('admin.welcome');
+});
 // Admin Login
 Route::get('/login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('/login', 'Auth\LoginController@login')->name('login');
@@ -7,6 +10,15 @@ Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
 Route::get('/contractor/login', 'AuthContractor\LoginController@showLoginForm')->name('contractor.login');
 Route::post('/contractor/login', 'AuthContractor\LoginController@login')->name('contractor.login');
 Route::get('/contractor/logout', 'AuthContractor\LoginController@logout')->name('contractor.logout');
+//owner Login
+Route::get('/owner/login', 'AuthOwner\LoginController@showLoginForm')->name('owner.login');
+Route::post('/owner/login', 'AuthOwner\LoginController@login')->name('owner.login');
+Route::get('/owner/logout', 'AuthOwner\LoginController@logout')->name('owner.logout');
+// Engineer Login
+Route::get('/engineer/login', 'AuthEngineer\LoginController@showLoginForm')->name('engineer.login');
+Route::post('/engineer/login', 'AuthEngineer\LoginController@login')->name('engineer.login');
+Route::get('/engineer/logout', 'AuthEngineer\LoginController@logout')->name('engineer.logout');
+// Admin Area
 Route::group(['prefix' => 'admin', 'middleware' => 'auth:web'], function () {
     Route::get('/', function () {
         return view('Admin.Welcome');
@@ -57,9 +69,24 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:web'], function () {
 
 
 });
+// Contractor Area
 Route::group(['prefix' => 'contractors', 'middleware' => 'auth:contractor'], function () {
     Route::get('/', function () {
         return view("Contractor.welcome");
     })->name('contractor.welcome');
     Route::resource('/contractor-projects', 'Contractor\ProjectsController');
+});
+// Owners area
+Route::group(['prefix' => 'owners', 'middleware' => 'auth:owner'], function () {
+    Route::get('/', function () {
+        return view("Owner.welcome");
+    })->name('owner.welcome');
+    Route::resource('/owner-projects', 'Owner\ProjectsController');
+});
+// Engineer Area
+Route::group(['prefix' => 'engineers', 'middleware' => 'auth:engineer'], function () {
+    Route::get('/', function () {
+        return view("Engineer.welcome");
+    })->name('engineer.welcome');
+    Route::resource('/engineer-projects', 'Engineer\ProjectsController');
 });
