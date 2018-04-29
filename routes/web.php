@@ -53,7 +53,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:web'], function () {
     Route::get('/engineers/get/Belongs', 'Admin\EngineersController@getBelong')->name('engineers.getBelongs');
     // projects
     Route::resource('/projects', 'Admin\ProjectsController');
-    Route::resource('/submittals', 'Admin\SubmittalsController');
+    Route::resource('/project/items/submittals', 'Admin\SubmittalsController');
     Route::resource('/requests', 'Admin\RequestsController');
     Route::resource('/tests', 'Admin\TestsController');
     Route::resource('/tenders', 'Admin\TendersController');

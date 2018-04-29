@@ -21,7 +21,7 @@ class TendersController extends Controller
     {
         if ($request->ajax()) {
             $filter = new Filter($request, 'tenders');
-            return view('Admin.Layouts.AjaxResponse.projectTenders',['tenders'=>$filter->results()]);
+            return view('Admin.Layouts.AjaxResponse.projectTenders', ['tenders' => $filter->results()]);
         }
     }
 
@@ -78,7 +78,8 @@ class TendersController extends Controller
      */
     public function edit($id)
     {
-        //
+        $tender = Tender::find($id);
+        return view('ProjectItems.tenders', ['tender' => $tender]);
     }
 
     /**
@@ -90,7 +91,23 @@ class TendersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'project_id' => 'required|integer',
+            'sort' => 'required',
+            'description' => 'required',
+            'document' => 'file'
+        ]);
+        $data = $request->all();
+        $tender = Tender::find($id);
+        try {
+            if (isset($data['document']) && !is_null($data['document'])) {
+                $data['document'] = uploadFile(['file' => $data['document'], 'path' => $this->_path]);
+            }
+            $tender->update($data);
+        } catch (Exception $e) {
+            return redirect()->route('projects.show', ['id' => $request->project_id])->with('fail', $e->getMessage());
+        }
+        return redirect()->route('projects.show', ['id' => $request->project_id])->with('success', 'Tender Drawing has been created');
     }
 
     /**

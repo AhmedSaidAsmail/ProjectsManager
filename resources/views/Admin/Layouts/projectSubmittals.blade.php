@@ -163,11 +163,23 @@
                                                     <td>{{date('d-m-Y',strtotime($submittal->date))}}</td>
                                                     <td>{{Lang::get('terms.'.$submittal->sort)}}</td>
                                                     <td>{{$submittal->description}}</td>
-                                                    <td>
+                                                    <td style=" padding: 0px; text-align: left;">
                                                         @if(in_array(auth()->user()->permission->contractorPermissions->submittals,[4,5,6,7]) || auth()->guard('web')->check())
-                                                            <a href="{{asset('documents/projects/submittals/'.$submittal->document)}}">
+                                                            <a href="{{asset('documents/projects/submittals/'.$submittal->document)}}" style="display: inline;">
                                                                 <i class="fas fa-download"></i>
                                                             </a>
+                                                        @endif
+                                                        @if(in_array(auth()->user()->permission->contractorPermissions->submittals,[2,6,7]) || auth()->guard('web')->check())
+                                                            <a href="{{route('submittals.edit',['id'=>$submittal->id])}}" id="project-item-edit" style="display: inline;">
+                                                                <i class="far fa-edit"></i>
+                                                            </a>
+                                                        @endif
+                                                        @if(in_array(auth()->user()->permission->contractorPermissions->submittals,[1,5,7]) || auth()->guard('web')->check())
+                                                            <form method="post" action="{{route('submittals.destroy',['id'=>$submittal->id])}}" style="display: inline;">
+                                                                {{csrf_field()}}
+                                                                <input type="hidden" name="_method" value="DELETE">
+                                                                <button style=" border: 0; padding: 0; background-color: transparent;"><i class="far fa-trash-alt"></i></button>
+                                                            </form>
                                                         @endif
                                                     </td>
                                                 </tr>

@@ -157,6 +157,18 @@
                                                                                 <i class="fas fa-cloud-download-alt"></i>
                                                                             </a>
                                                                         @endif
+                                                                            @if(in_array(auth()->user()->permission->contractorPermissions->tenders_drawings,[2,6,7]) || auth()->guard('web')->check())
+                                                                                <a href="{{route('tenders.edit',['id'=>$tender->id])}}" id="project-item-edit" style="display: inline;">
+                                                                                    <i class="far fa-edit"></i>
+                                                                                </a>
+                                                                            @endif
+                                                                            @if(in_array(auth()->user()->permission->contractorPermissions->tenders_drawings,[1,5,7]) || auth()->guard('web')->check())
+                                                                                <form method="post" action="{{route('tenders.destroy',['id'=>$tender->id])}}" style="display: inline;">
+                                                                                    {{csrf_field()}}
+                                                                                    <input type="hidden" name="_method" value="DELETE">
+                                                                                    <button style=" border: 0; padding: 0; background-color: transparent;"><i class="far fa-trash-alt"></i></button>
+                                                                                </form>
+                                                                            @endif
                                                                     </td>
                                                                 </tr>
                                                                 <?php $tendersArrangement++; ?>

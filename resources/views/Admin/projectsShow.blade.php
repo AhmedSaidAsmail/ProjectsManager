@@ -170,6 +170,12 @@
             </div>
         </div>
     </div>
+    <div class="project-edit-container">
+        <div class="project-edit">
+
+        </div>
+
+    </div>
 @endsection
 @section('additional-js')
     <script>
@@ -215,6 +221,36 @@
                         relatedSelect.html(response);
                     }
                 });
+            });
+        });
+    </script>
+    <script>
+        $(function () {
+            $("a#project-item-edit").click(function (event) {
+                event.preventDefault();
+                var container = $(".project-edit-container");
+                var itemContainer = container.find('.project-edit');
+                var link = $(this).attr('href');
+                container.fadeIn();
+                $('html, body').css({
+                    overflow: 'hidden',
+                    height: '100%'
+                });
+                $.ajax({
+                    type: "get",
+                    url: link,
+                    success: function (respons) {
+                        itemContainer.html(respons);
+                    }
+                });
+            });
+            $('.project-edit-container').click(function (e) {
+
+                if (!$(e.target).closest('.project-edit').length) {
+                    if ($(this).is(":visible")) {
+                        $(this).fadeOut();
+                    }
+                }
             });
         });
     </script>

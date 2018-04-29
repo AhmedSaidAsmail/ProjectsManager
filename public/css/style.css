@@ -21,8 +21,9 @@
 .arabic-fonts {
     font-family: 'Droid Arabic Kufi';
 }
-.english-fonts{
-    font-family:arial, sans-serif;
+
+.english-fonts {
+    font-family: arial, sans-serif;
 }
 
 .top-directory {
@@ -74,6 +75,30 @@
     font-weight: bold;
 
 }
-#data-destiny > thead > tr > th.action{
-    font-family:arial, sans-serif;
+
+#data-destiny > thead > tr > th.action {
+    font-family: arial, sans-serif;
+}
+
+.project-edit-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, .5);
+    z-index: 3000;
+    display: none;
+    transition: ease all .6s;
+}
+.project-edit{
+    width: 50%;
+    background-color: #ffffff;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    padding: 15px;
+
 }

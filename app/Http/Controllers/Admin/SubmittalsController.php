@@ -22,7 +22,7 @@ class SubmittalsController extends Controller
     {
         if ($request->ajax()) {
             $filter = new Filter($request, 'submittals');
-           return view('Admin.Layouts.AjaxResponse.projectSubmittals',['submittals'=>$filter->results()]);
+            return view('Admin.Layouts.AjaxResponse.projectSubmittals', ['submittals' => $filter->results()]);
         }
     }
 
@@ -57,9 +57,9 @@ class SubmittalsController extends Controller
             $data['document'] = uploadFile(['file' => $data['document'], 'path' => $this->_path]);
             Submittal::create($data);
         } catch (Exception $e) {
-            return redirect()->route('projects.show',['id'=>$request->project_id])->with('fail', $e->getMessage());
+            return redirect()->route('projects.show', ['id' => $request->project_id])->with('fail', $e->getMessage());
         }
-        return redirect()->route('projects.show',['id'=>$request->project_id])->with('success', 'Submittal has been created');
+        return redirect()->route('projects.show', ['id' => $request->project_id])->with('success', 'Submittal has been created');
     }
 
     /**
@@ -81,7 +81,8 @@ class SubmittalsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $submittal = Submittal::find($id);
+        return view('ProjectItems.submittals', ['submittal' => $submittal]);
     }
 
     /**
@@ -93,7 +94,25 @@ class SubmittalsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'project_id' => 'required|integer',
+            'sort' => 'required',
+            'number' => 'integer|required',
+            'related_item' => 'required',
+            'description' => 'required',
+            'document' => 'file'
+        ]);
+        $submittal = Submittal::find($id);
+        $data = $request->all();
+        try {
+            if (isset($data['document']) && !is_null($data['document'])) {
+                $data['document'] = uploadFile(['file' => $data['document'], 'path' => $this->_path]);
+            }
+            $submittal->update($data);
+        } catch (Exception $e) {
+            return redirect()->route('projects.show', ['id' => $request->project_id])->with('fail', $e->getMessage());
+        }
+        return redirect()->route('projects.show', ['id' => $request->project_id])->with('success', 'Submittal has been created');
     }
 
     /**
@@ -104,6 +123,8 @@ class SubmittalsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $submittal = Submittal::find($id);
+        $submittal->delete();
+        return redirect()->back();
     }
 }

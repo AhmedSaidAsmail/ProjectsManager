@@ -11,6 +11,7 @@ use Exception;
 class RequestsController extends Controller
 {
     private $_path = "/documents/projects/requests/";
+
     /**
      * Display a listing of the resource.
      *
@@ -21,7 +22,7 @@ class RequestsController extends Controller
     {
         if ($request->ajax()) {
             $filter = new Filter($request, 'requests');
-            return view('Admin.Layouts.AjaxResponse.projectRequest',['requests'=>$filter->results()]);
+            return view('Admin.Layouts.AjaxResponse.projectRequest', ['requests' => $filter->results()]);
         }
     }
 
@@ -70,7 +71,7 @@ class RequestsController extends Controller
      */
     public function show($id)
     {
-        //
+
     }
 
     /**
@@ -81,7 +82,9 @@ class RequestsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $request = ProjectRequests::find($id);
+        return view('ProjectItems.requests', ['request' => $request]);
+
     }
 
     /**
@@ -93,7 +96,26 @@ class RequestsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'project_id' => 'required|integer',
+            'sort' => 'required',
+            'number' => 'integer|required',
+            'code' => 'required',
+            'related_item' => 'required',
+            'description' => 'required',
+            'document' => 'file'
+        ]);
+        $data = $request->all();
+        $projectRequest = ProjectRequests::find($id);
+        try {
+            if (isset($data['document']) && !is_null($data['document'])) {
+                $data['document'] = uploadFile(['file' => $data['document'], 'path' => $this->_path]);
+            }
+            $projectRequest->update($data);
+        } catch (Exception $e) {
+            return redirect()->route('projects.show', ['id' => $request->project_id])->with('fail', $e->getMessage());
+        }
+        return redirect()->route('projects.show', ['id' => $request->project_id])->with('success', 'Request has been created');
     }
 
     /**
@@ -104,6 +126,8 @@ class RequestsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $projectRequest = ProjectRequests::find($id);
+        $projectRequest->delete();
+        return redirect()->back();
     }
 }
