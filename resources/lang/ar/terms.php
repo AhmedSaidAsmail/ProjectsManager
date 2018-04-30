@@ -12,4 +12,6 @@ return [
     'other' => 'اخري',
     'location' => 'موقع',
     'lap' => 'مختبر',
+    'manager'=>'مدير المشروع',
+    'architect'=>'مهندس مدني',
 ];

@@ -116,10 +116,26 @@
                 background-color: #333333;
                 -webkit-print-color-adjust: exact;
             }
-            .print{
+
+            .print {
                 display: none;
             }
 
+        }
+
+        .table-insider {
+            text-align: right;
+            width: 100%;
+            direction: rtl;
+            border-collapse: collapse;
+            border: 1px solid #000000;
+            font-size: 18px;
+            margin-top: 20px;
+        }
+
+        .table-insider td {
+            border: 1px solid #000000;
+            padding: 5px 10px;
         }
     </style>
 </head>
@@ -185,6 +201,69 @@
                 <td class="special">نطاق العمل</td>
                 <td colspan="3" class="special">{{$project->description}}</td>
             </tr>
+        </table>
+        <h1>وصف المشروع وبيان الاعمال</h1>
+
+        <div>
+            {{$report->project->description}}
+        </div>
+        <table class="table-insider">
+            <tr>
+                <td>البند</td>
+                <td>الوصف</td>
+            </tr>
+            <tr>
+                <td>الموقع</td>
+                <td>{{$report->project->city}}</td>
+            </tr>
+            <tr>
+                <td>عدد المبانى</td>
+                <td>{{$report->project->quantity->buildings_num}}</td>
+            </tr>
+
+        </table>
+        <h1>الهيكل التنظيمي لجهاز الاشراف</h1>
+        <table class="table-insider">
+            <tr>
+                <td>الاسم</td>
+                <td>المهنة</td>
+            </tr>
+            @foreach($report->project->consultantEngineers as $consultantEngineer)
+                <tr>
+                    <td>{{$consultantEngineer->engineer->name}}</td>
+                    <td>{{Lang::get('terms.'.$consultantEngineer->consultant_engineer_position)}}</td>
+                </tr>
+            @endforeach
+        </table>
+        <h1>الهيكل التنظيمي لجهاز المقاول</h1>
+        <table class="table-insider">
+            <tr>
+                <td>المهنة</td>
+                <td>العدد</td>
+                <td>الاسم</td>
+            </tr>
+            @foreach($report->contractorTeam as $contractorTeam)
+                <tr>
+                    <td>{{$contractorTeam->position}}</td>
+                    <td>{{$contractorTeam->number}}</td>
+                    <td>{{$contractorTeam->name}}</td>
+                </tr>
+            @endforeach
+        </table>
+        <h1>معدات المقاول وأدوات بالموقع </h1>
+        <table class="table-insider">
+            <tr>
+                <td>المعدة</td>
+                <td>العدد</td>
+                <td>ملاحظات</td>
+            </tr>
+            @foreach($report->tools as $tool)
+                <tr>
+                    <td>{{$tool->tool}}</td>
+                    <td>{{$tool->number}}</td>
+                    <td>{{$tool->note}}</td>
+                </tr>
+            @endforeach
         </table>
         {!! $report->text !!}
     </div>
