@@ -42,13 +42,14 @@ class ProjectWeeklyController extends Controller
     {
         $data = $request->all();
         $data['project_id'] = $projectId;
-        try {
-            Project_weekly_report::create($data);
-            return redirect()->route('projects.show', ['id' => $projectId])->with('success', 'Report has been created');
-
-        } catch (\Exception $e) {
-            return redirect()->route('projects.show', ['id' => $projectId])->with('fail', $e->getMessage());
-        }
+        dd($data);
+//        try {
+//            Project_weekly_report::create($data);
+//            return redirect()->route('projects.show', ['id' => $projectId])->with('success', 'Report has been created');
+//
+//        } catch (\Exception $e) {
+//            return redirect()->route('projects.show', ['id' => $projectId])->with('fail', $e->getMessage());
+//        }
 
         //return view('Admin.projectWeeklyReportPDF',['project'=>$project,'request'=>$request]);
 //        $pdf=PDF::LoadView('Admin.projectWeeklyReportPDF',['project'=>$project,'request'=>$request]);

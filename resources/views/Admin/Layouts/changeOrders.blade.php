@@ -1,7 +1,7 @@
 <div id="change_order_entry_tab" class="tab-pane fade" role="tabpanel">
     @if(in_array(auth()->user()->permission->contractorPermissions->changing_orders,[4,5,6,7]) || auth()->guard('web')->check())
         <div class="row">
-            <d-iv class="col-md-12">
+            <div class="col-md-12">
                 <div class="panel panel-default card-view pa-0">
                     <div class="panel-wrapper collapse in">
                         <div class="panel-body pa-0">
@@ -124,6 +124,18 @@
                                                                                 <i class="fas fa-cloud-download-alt"></i>
                                                                             </a>
                                                                         @endif
+                                                                        @if(in_array(auth()->user()->permission->contractorPermissions->changing_orders,[2,6,7]) || auth()->guard('web')->check())
+                                                                            <a href="{{route('change-orders.edit',['id'=>$changeOrder->id])}}" id="project-item-edit" style="display: inline;">
+                                                                                <i class="far fa-edit"></i>
+                                                                            </a>
+                                                                        @endif
+                                                                        @if(in_array(auth()->user()->permission->contractorPermissions->changing_orders,[1,5,7]) || auth()->guard('web')->check())
+                                                                            <form method="post" action="{{route('change-orders.destroy',['id'=>$changeOrder->id])}}" style="display: inline;">
+                                                                                {{csrf_field()}}
+                                                                                <input type="hidden" name="_method" value="DELETE">
+                                                                                <button style=" border: 0; padding: 0; background-color: transparent;"><i class="far fa-trash-alt"></i></button>
+                                                                            </form>
+                                                                        @endif
                                                                     </td>
                                                                 </tr>
                                                                 <?php $changeOrderArrangement++; ?>
@@ -141,6 +153,7 @@
                         </div>
                     </div>
                 </div>
+            </div>
         </div>
     @else
         <div class="row">

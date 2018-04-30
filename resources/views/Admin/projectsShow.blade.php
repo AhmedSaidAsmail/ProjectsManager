@@ -170,12 +170,13 @@
             </div>
         </div>
     </div>
+    {{-- Ajax Result Container--}}
     <div class="project-edit-container">
         <div class="project-edit">
-
+            {{-- Ajax Result--}}
         </div>
-
     </div>
+    {{-- Ajax Result Container--}}
 @endsection
 @section('additional-js')
     <script>
@@ -209,23 +210,29 @@
                     }
                 });
             });
-            $("select#test_sort").change(function () {
-                var val = $(this).val();
-                var relatedSelect = $("select#related_sort");
-                var url = relatedSelect.attr('data-ajax--url');
-                $.ajax({
-                    url: url,
-                    type: "get",
-                    data: {related_to: val},
-                    success: function (response) {
-                        relatedSelect.html(response);
-                    }
-                });
-            });
+
+
         });
     </script>
     <script>
         $(function () {
+            getTestSort();
+            function getTestSort() {
+                $("select#test_sort").change(function () {
+                    var val = $(this).val();
+                    var relatedSelect = $("select#related_sort");
+                    var url = relatedSelect.attr('data-ajax--url');
+                    $.ajax({
+                        url: url,
+                        type: "get",
+                        data: {related_to: val},
+                        success: function (response) {
+                            relatedSelect.html(response);
+                        }
+                    });
+                });
+            }
+
             $("a#project-item-edit").click(function (event) {
                 event.preventDefault();
                 var container = $(".project-edit-container");
@@ -241,6 +248,7 @@
                     url: link,
                     success: function (respons) {
                         itemContainer.html(respons);
+                        getTestSort();
                     }
                 });
             });

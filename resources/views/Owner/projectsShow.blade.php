@@ -170,6 +170,13 @@
             </div>
         </div>
     </div>
+    {{-- Ajax Result Container--}}
+    <div class="project-edit-container">
+        <div class="project-edit">
+            {{-- Ajax Result--}}
+        </div>
+    </div>
+    {{-- Ajax Result Container--}}
 @endsection
 @section('additional-js')
     <script>
@@ -203,18 +210,55 @@
                     }
                 });
             });
-            $("select#test_sort").change(function () {
-                var val = $(this).val();
-                var relatedSelect = $("select#related_sort");
-                var url = relatedSelect.attr('data-ajax--url');
+
+
+        });
+    </script>
+    <script>
+        $(function () {
+            getTestSort();
+            function getTestSort() {
+                $("select#test_sort").change(function () {
+                    var val = $(this).val();
+                    var relatedSelect = $("select#related_sort");
+                    var url = relatedSelect.attr('data-ajax--url');
+                    $.ajax({
+                        url: url,
+                        type: "get",
+                        data: {related_to: val},
+                        success: function (response) {
+                            relatedSelect.html(response);
+                        }
+                    });
+                });
+            }
+
+            $("a#project-item-edit").click(function (event) {
+                event.preventDefault();
+                var container = $(".project-edit-container");
+                var itemContainer = container.find('.project-edit');
+                var link = $(this).attr('href');
+                container.fadeIn();
+                $('html, body').css({
+                    overflow: 'hidden',
+                    height: '100%'
+                });
                 $.ajax({
-                    url: url,
                     type: "get",
-                    data: {related_to: val},
-                    success: function (response) {
-                        relatedSelect.html(response);
+                    url: link,
+                    success: function (respons) {
+                        itemContainer.html(respons);
+                        getTestSort();
                     }
                 });
+            });
+            $('.project-edit-container').click(function (e) {
+
+                if (!$(e.target).closest('.project-edit').length) {
+                    if ($(this).is(":visible")) {
+                        $(this).fadeOut();
+                    }
+                }
             });
         });
     </script>

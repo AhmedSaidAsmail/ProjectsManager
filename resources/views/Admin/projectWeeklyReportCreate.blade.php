@@ -99,6 +99,51 @@
                                 </div>
                             </div>
                         </div>
+                        <h5>الهيكل التنظيمي لجهاز المقاول</h5>
+
+                        <div id="contractor_team_container">
+                            <div class="row" id="contractor_team" data-index="0">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="control-label mb-10" for="">المهنة</label>
+
+                                        <div class="input-group">
+                                            <div class="input-group-addon"><i class="fab fa-gg-circle fa-lg"></i></div>
+                                            <input class="form-control" name="contractor_team[0][position]">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label class="control-label mb-10" for="">العدد</label>
+
+                                        <div class="input-group">
+                                            <div class="input-group-addon"><i class="fas fa-sort-numeric-up fa-lg"></i></div>
+                                            <input type="number" value="1" class="form-control" name="contractor_team[0][number]" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="control-label mb-10" for="">الاسم</label>
+
+                                        <div class="input-group">
+                                            <div class="input-group-addon"><i class="fas fa-male fa-lg"></i></div>
+                                            <input class="form-control" name="contractor_team[0][name]">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-1">
+                                    <a href="#" id="removeRow" style="display: block; padding-top: 35px;"><i class="fas fa-minus-circle fa-2x text-danger"></i></a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <a href="#" id="insertRow" class="btn btn-success">اضافة طاقم</a>
+                            </div>
+                        </div>
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="panel panel-default card-view">
@@ -134,5 +179,59 @@
     <script src="{{asset('template/vendors/bower_components/jasny-bootstrap/dist/js/jasny-bootstrap.min.js')}}"></script>
     <script src="{{asset('template/vendors/bower_components/tinymce/tinymce.min.js')}}"></script>
     <script src="{{asset('template/dist/js/tinymce-data.js')}}"></script>
+    <script>
+        $(function () {
+            $('a#removeRow').click(function (event) {
+                event.preventDefault();
+            });
+
+            $('a#insertRow').click(function (event) {
+                event.preventDefault();
+
+                var destiny = $('#contractor_team_container');
+                destiny.append('<div class="row" id="contractor_team" data-index="0"> ' +
+                        '<div class="col-md-4"> ' +
+                        '<div class="form-group"> ' +
+                        '<label class="control-label mb-10" for="">المهنة</label> ' +
+                        '<div class="input-group"> ' +
+                        '<div class="input-group-addon"><i class="fab fa-gg-circle fa-lg"></i></div> ' +
+                        '<input class="form-control" name="contractor_team[0][position]"> ' +
+                        '</div> ' +
+                        '</div> ' +
+                        '</div> ' +
+                        '<div class="col-md-3"> ' +
+                        '<div class="form-group"> ' +
+                        '<label class="control-label mb-10" for="">العدد</label> ' +
+                        '<div class="input-group"> ' +
+                        '<div class="input-group-addon"><i class="fas fa-sort-numeric-up fa-lg"></i></div> ' +
+                        '<input type="number" value="1" class="form-control" name="contractor_team[0][number]" required> ' +
+                        '</div> ' +
+                        '</div> ' +
+                        '</div> ' +
+                        '<div class="col-md-4"> ' +
+                        '<div class="form-group"> ' +
+                        '<label class="control-label mb-10" for="">الاسم</label> ' +
+                        '<div class="input-group"> ' +
+                        '<div class="input-group-addon"><i class="fas fa-male fa-lg"></i></div> ' +
+                        '<input class="form-control" name="contractor_team[0][name]"> ' +
+                        '</div> ' +
+                        '</div> ' +
+                        '</div> ' +
+                        '<div class="col-md-1"> ' +
+                        '<a href="#" id="removeRow" style="display: block; padding-top: 35px;"><i class="fas fa-minus-circle fa-2x text-danger"></i></a> ' +
+                        '</div> ' +
+                        '</div>');
+                removeRow();
+            });
+
+            function removeRow() {
+                $('a#removeRow').click(function (event) {
+                    var row = $(this).closest('.row');
+                    event.preventDefault();
+                    row.empty();
+                });
+            }
+        });
+    </script>
 
 @endsection

@@ -118,6 +118,8 @@ class TendersController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $tender = Tender::find($id);
+        $tender->delete();
+        return redirect()->back();
     }
 }

@@ -79,7 +79,8 @@ class TestsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $test = Test::find($id);
+        return view('ProjectItems.tests', ['test' => $test]);
     }
 
     /**
@@ -91,7 +92,23 @@ class TestsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'project_id' => 'required|integer',
+            'sort' => 'required',
+            'description' => 'required',
+            'document' => 'file'
+        ]);
+        $data = $request->all();
+        $test = Test::find($id);
+        try {
+            if (isset($data['document']) && !is_null($data['document'])) {
+                $data['document'] = uploadFile(['file' => $data['document'], 'path' => $this->_path]);
+            }
+            $test->update($data);
+        } catch (Exception $e) {
+            return redirect()->route('projects.show', ['id' => $request->project_id])->with('fail', $e->getMessage());
+        }
+        return redirect()->route('projects.show', ['id' => $request->project_id])->with('success', 'Test has been created');
     }
 
     /**
@@ -102,6 +119,8 @@ class TestsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $test = Test::find($id);
+        $test->delete();
+        return redirect()->back();
     }
 }

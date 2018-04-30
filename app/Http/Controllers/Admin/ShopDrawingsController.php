@@ -10,6 +10,7 @@ use App\Src\Filter;
 class ShopDrawingsController extends Controller
 {
     private $_path = "/documents/projects/shops/";
+
     /**
      * Display a listing of the resource.
      *
@@ -20,7 +21,7 @@ class ShopDrawingsController extends Controller
     {
         if ($request->ajax()) {
             $filter = new Filter($request, 'shopDrawings');
-            return view('Admin.Layouts.AjaxResponse.projectShopDrawings',['shopDrawings'=>$filter->results()]);
+            return view('Admin.Layouts.AjaxResponse.projectShopDrawings', ['shopDrawings' => $filter->results()]);
         }
     }
 
@@ -37,7 +38,7 @@ class ShopDrawingsController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -61,7 +62,7 @@ class ShopDrawingsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -72,34 +73,53 @@ class ShopDrawingsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        //
+        $drawing = Shop_drawing::find($id);
+        return view('ProjectItems.shopDrawings', ['drawing' => $drawing]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'project_id' => 'required|integer',
+            'sort' => 'required',
+            'description' => 'required',
+            'document' => 'file'
+        ]);
+        $data = $request->all();
+        $drawing = Shop_drawing::find($id);
+        try {
+            if (isset($data['document']) && !is_null($data['document'])) {
+                $data['document'] = uploadFile(['file' => $data['document'], 'path' => $this->_path]);
+            }
+            $drawing->update($data);
+        } catch (Exception $e) {
+            return redirect()->route('projects.show', ['id' => $request->project_id])->with('fail', $e->getMessage());
+        }
+        return redirect()->route('projects.show', ['id' => $request->project_id])->with('success', 'Shop Drawing has been created');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        //
+        $drawing = Shop_drawing::find($id);
+        $drawing->delete();
+        return redirect()->back();
     }
 }

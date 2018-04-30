@@ -259,6 +259,18 @@
                                                             <i class="fas fa-download"></i>
                                                         </a>
                                                     @endif
+                                                    @if(in_array(auth()->user()->permission->contractorPermissions->tests,[2,6,7]) || auth()->guard('web')->check())
+                                                        <a href="{{route('tests.edit',['id'=>$test->id])}}" id="project-item-edit" style="display: inline;">
+                                                            <i class="far fa-edit"></i>
+                                                        </a>
+                                                    @endif
+                                                    @if(in_array(auth()->user()->permission->contractorPermissions->tests,[1,5,7]) || auth()->guard('web')->check())
+                                                        <form method="post" action="{{route('tests.destroy',['id'=>$test->id])}}" style="display: inline;">
+                                                            {{csrf_field()}}
+                                                            <input type="hidden" name="_method" value="DELETE">
+                                                            <button style=" border: 0; padding: 0; background-color: transparent;"><i class="far fa-trash-alt"></i></button>
+                                                        </form>
+                                                    @endif
                                                 </td>
                                             </tr>
                                             <?php $testsArrangement++; ?>

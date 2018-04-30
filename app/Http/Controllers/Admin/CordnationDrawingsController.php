@@ -21,7 +21,7 @@ class CordnationDrawingsController extends Controller
     {
         if ($request->ajax()) {
             $filter = new Filter($request, 'cordnationDrawings');
-            return view('Admin.Layouts.AjaxResponse.projectCordnationDrawings',['cordnationDrawings'=>$filter->results()]);
+            return view('Admin.Layouts.AjaxResponse.projectCordnationDrawings', ['cordnationDrawings' => $filter->results()]);
         }
     }
 
@@ -78,7 +78,8 @@ class CordnationDrawingsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $coordination = Cordnation_drawing::find($id);
+        return view('ProjectItems.coordination', ['coordination' => $coordination]);
     }
 
     /**
@@ -90,7 +91,23 @@ class CordnationDrawingsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'project_id' => 'required|integer',
+            'sort' => 'required',
+            'description' => 'required',
+            'document' => 'file'
+        ]);
+        $data = $request->all();
+        $coordination = Cordnation_drawing::find($id);
+        try {
+            if (isset($data['document']) && !is_null($data['document'])) {
+                $data['document'] = uploadFile(['file' => $data['document'], 'path' => $this->_path]);
+            }
+            $coordination->update($data);
+        } catch (Exception $e) {
+            return redirect()->route('projects.show', ['id' => $request->project_id])->with('fail', $e->getMessage());
+        }
+        return redirect()->route('projects.show', ['id' => $request->project_id])->with('success', 'Coordination Drawing has been created');
     }
 
     /**
@@ -101,6 +118,8 @@ class CordnationDrawingsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $coordination = Cordnation_drawing::find($id);
+        $coordination->delete();
+        return redirect()->back();
     }
 }

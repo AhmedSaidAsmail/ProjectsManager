@@ -18,6 +18,20 @@ Route::get('/owner/logout', 'AuthOwner\LoginController@logout')->name('owner.log
 Route::get('/engineer/login', 'AuthEngineer\LoginController@showLoginForm')->name('engineer.login');
 Route::post('/engineer/login', 'AuthEngineer\LoginController@login')->name('engineer.login');
 Route::get('/engineer/logout', 'AuthEngineer\LoginController@logout')->name('engineer.logout');
+//multi middleware area
+Route::group(['middleware' => 'auth'], function () {
+    Route::resource('/project/items/submittals', 'Admin\SubmittalsController');
+    Route::resource('/requests', 'Admin\RequestsController');
+    Route::resource('/tests', 'Admin\TestsController');
+    Route::resource('/tenders', 'Admin\TendersController');
+    Route::resource('/shops-drawings', 'Admin\ShopDrawingsController');
+    Route::resource('/cordnation-drawings', 'Admin\CordnationDrawingsController');
+    Route::resource('/change-orders', 'Admin\ChangeOrdersController');
+    Route::resource('/project-files', 'Admin\ProjectFilesController');
+    Route::resource('/project/{projectId}/weekly-report', 'Admin\ProjectWeeklyController');
+    Route::resource('/project/test-sorts', 'Admin\ProjectTestSortsController');
+    Route::get('/project/test-sorts/get/Related', 'Admin\ProjectTestSortsController@getRelated')->name('test-sorts.getRelated');
+});
 // Admin Area
 Route::group(['prefix' => 'admin', 'middleware' => 'auth:web'], function () {
     Route::get('/', function () {
@@ -53,17 +67,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:web'], function () {
     Route::get('/engineers/get/Belongs', 'Admin\EngineersController@getBelong')->name('engineers.getBelongs');
     // projects
     Route::resource('/projects', 'Admin\ProjectsController');
-    Route::resource('/project/items/submittals', 'Admin\SubmittalsController');
-    Route::resource('/requests', 'Admin\RequestsController');
-    Route::resource('/tests', 'Admin\TestsController');
-    Route::resource('/tenders', 'Admin\TendersController');
-    Route::resource('/shops-drawings', 'Admin\ShopDrawingsController');
-    Route::resource('/cordnation-drawings', 'Admin\CordnationDrawingsController');
-    Route::resource('/change-orders', 'Admin\ChangeOrdersController');
-    Route::resource('/project-files', 'Admin\ProjectFilesController');
-    Route::resource('/project/{projectId}/weekly-report', 'Admin\ProjectWeeklyController');
-    Route::resource('/project/test-sorts', 'Admin\ProjectTestSortsController');
-    Route::get('/project/test-sorts/get/Related', 'Admin\ProjectTestSortsController@getRelated')->name('test-sorts.getRelated');
     //settings
     Route::resource('/sittings/permissions', 'Admin\PermissionsController');
 
