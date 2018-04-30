@@ -14,4 +14,9 @@ class Project_weekly_report extends Model
     {
         return $this->hasMany(Re_contractor_team_structure::class, 'report_id');
     }
+
+    public function tools()
+    {
+        return $this->hasMany(Re_contractor_tools::class, 'report_id');
+    }
 }

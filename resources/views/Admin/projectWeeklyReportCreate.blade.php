@@ -99,44 +99,11 @@
                                 </div>
                             </div>
                         </div>
-                        <h5>الهيكل التنظيمي لجهاز المقاول</h5>
+                        {{-- Contractor team --}}
+                        <h6>الهيكل التنظيمي لجهاز المقاول</h6>
 
                         <div id="contractor_team_container">
-                            <div class="row" id="contractor_team" data-index="0">
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label class="control-label mb-10" for="">المهنة</label>
 
-                                        <div class="input-group">
-                                            <div class="input-group-addon"><i class="fab fa-gg-circle fa-lg"></i></div>
-                                            <input class="form-control" name="contractor_team[0][position]">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label class="control-label mb-10" for="">العدد</label>
-
-                                        <div class="input-group">
-                                            <div class="input-group-addon"><i class="fas fa-sort-numeric-up fa-lg"></i></div>
-                                            <input type="number" value="1" class="form-control" name="contractor_team[0][number]" required>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label class="control-label mb-10" for="">الاسم</label>
-
-                                        <div class="input-group">
-                                            <div class="input-group-addon"><i class="fas fa-male fa-lg"></i></div>
-                                            <input class="form-control" name="contractor_team[0][name]">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-1">
-                                    <a href="#" id="removeRow" style="display: block; padding-top: 35px;"><i class="fas fa-minus-circle fa-2x text-danger"></i></a>
-                                </div>
-                            </div>
                         </div>
 
                         <div class="row">
@@ -144,6 +111,20 @@
                                 <a href="#" id="insertRow" class="btn btn-success">اضافة طاقم</a>
                             </div>
                         </div>
+                        {{-- end Contractor team --}}
+                        {{-- Contractor tools --}}
+                        <h6>معدات المقاول وأدوات بالموقع </h6>
+
+                        <div id="contractor_tools_container">
+
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <a href="#" id="insertToolRow" class="btn btn-success">اضافة طاقم</a>
+                            </div>
+                        </div>
+                        {{-- end Contractor tools --}}
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="panel panel-default card-view">
@@ -189,13 +170,15 @@
                 event.preventDefault();
 
                 var destiny = $('#contractor_team_container');
-                destiny.append('<div class="row" id="contractor_team" data-index="0"> ' +
+                var lastIndex = destiny.find('#contractor_team:last-child').length ? destiny.find('#contractor_team:last-child').attr('data-index') : 0;
+                var index = parseInt(lastIndex) + 1;
+                destiny.append('<div class="row" id="contractor_team" data-index="' + index + '"> ' +
                         '<div class="col-md-4"> ' +
                         '<div class="form-group"> ' +
                         '<label class="control-label mb-10" for="">المهنة</label> ' +
                         '<div class="input-group"> ' +
                         '<div class="input-group-addon"><i class="fab fa-gg-circle fa-lg"></i></div> ' +
-                        '<input class="form-control" name="contractor_team[0][position]"> ' +
+                        '<input class="form-control" name="contractor_team[' + index + '][position]"> ' +
                         '</div> ' +
                         '</div> ' +
                         '</div> ' +
@@ -204,7 +187,7 @@
                         '<label class="control-label mb-10" for="">العدد</label> ' +
                         '<div class="input-group"> ' +
                         '<div class="input-group-addon"><i class="fas fa-sort-numeric-up fa-lg"></i></div> ' +
-                        '<input type="number" value="1" class="form-control" name="contractor_team[0][number]" required> ' +
+                        '<input type="number" value="1" class="form-control" name="contractor_team[' + index + '][number]" required> ' +
                         '</div> ' +
                         '</div> ' +
                         '</div> ' +
@@ -213,7 +196,47 @@
                         '<label class="control-label mb-10" for="">الاسم</label> ' +
                         '<div class="input-group"> ' +
                         '<div class="input-group-addon"><i class="fas fa-male fa-lg"></i></div> ' +
-                        '<input class="form-control" name="contractor_team[0][name]"> ' +
+                        '<input class="form-control" name="contractor_team[' + index + '][name]"> ' +
+                        '</div> ' +
+                        '</div> ' +
+                        '</div> ' +
+                        '<div class="col-md-1"> ' +
+                        '<a href="#" id="removeRow" style="display: block; padding-top: 35px;"><i class="fas fa-minus-circle fa-2x text-danger"></i></a> ' +
+                        '</div> ' +
+                        '</div>');
+                removeRow();
+            });
+            $('a#insertToolRow').click(function (event) {
+                event.preventDefault();
+
+                var destiny = $('#contractor_tools_container');
+                var lastIndex = destiny.find('#contractor_tool:last-child').length ? destiny.find('#contractor_tool:last-child').attr('data-index') : 0;
+                var index = parseInt(lastIndex) + 1;
+                destiny.append('<div class="row" id="contractor_tool" data-index="' + index + '"> ' +
+                        '<div class="col-md-4"> ' +
+                        '<div class="form-group"> ' +
+                        '<label class="control-label mb-10" for="">المعدة</label> ' +
+                        '<div class="input-group"> ' +
+                        '<div class="input-group-addon"><i class="fab fa-gg-circle fa-lg"></i></div> ' +
+                        '<input class="form-control" name="contractor_tool[' + index + '][tool]"> ' +
+                        '</div> ' +
+                        '</div> ' +
+                        '</div> ' +
+                        '<div class="col-md-3"> ' +
+                        '<div class="form-group"> ' +
+                        '<label class="control-label mb-10" for="">العدد</label> ' +
+                        '<div class="input-group"> ' +
+                        '<div class="input-group-addon"><i class="fas fa-sort-numeric-up fa-lg"></i></div> ' +
+                        '<input type="number" value="1" class="form-control" name="contractor_tool[' + index + '][number]" required> ' +
+                        '</div> ' +
+                        '</div> ' +
+                        '</div> ' +
+                        '<div class="col-md-4"> ' +
+                        '<div class="form-group"> ' +
+                        '<label class="control-label mb-10" for="">الملاحظات</label> ' +
+                        '<div class="input-group"> ' +
+                        '<div class="input-group-addon"><i class="fas fa-male fa-lg"></i></div> ' +
+                        '<input class="form-control" name="contractor_tool[' + index + '][note]"> ' +
                         '</div> ' +
                         '</div> ' +
                         '</div> ' +
@@ -228,7 +251,7 @@
                 $('a#removeRow').click(function (event) {
                     var row = $(this).closest('.row');
                     event.preventDefault();
-                    row.empty();
+                    row.remove();
                 });
             }
         });
