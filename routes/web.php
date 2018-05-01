@@ -21,8 +21,11 @@ Route::get('/engineer/logout', 'AuthEngineer\LoginController@logout')->name('eng
 //multi middleware area
 Route::group(['middleware' => 'auth'], function () {
     Route::resource('/project/items/submittals', 'Admin\SubmittalsController');
+    Route::get('/submittals/accordingToDate/get/', 'Admin\SubmittalsController@getAccordingToDate')->name('submittals.getAccordingToDate');
     Route::resource('/requests', 'Admin\RequestsController');
+    Route::get('/requests/accordingToDate/get/', 'Admin\RequestsController@getAccordingToDate')->name('requests.getAccordingToDate');
     Route::resource('/tests', 'Admin\TestsController');
+    Route::get('/tests/accordingToDate/get/', 'Admin\TestsController@getAccordingToDate')->name('tests.getAccordingToDate');
     Route::resource('/tenders', 'Admin\TendersController');
     Route::resource('/shops-drawings', 'Admin\ShopDrawingsController');
     Route::resource('/cordnation-drawings', 'Admin\CordnationDrawingsController');

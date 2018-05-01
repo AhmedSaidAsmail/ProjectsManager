@@ -127,4 +127,18 @@ class SubmittalsController extends Controller
         $submittal->delete();
         return redirect()->back();
     }
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\Response
+     */
+
+    public function getAccordingToDate(Request $request)
+    {
+        $dateFrom = $request->dateFrom;
+        $dateTo = $request->dateTo;
+        $project_id = $request->projectId;
+        $submittals = Submittal::where('project_id', '=', $project_id)->where('date', '>=', $dateFrom)->where('date', '<=', $dateTo)->get();
+        return view('ProjectItems.AjaxResponse.reportSubmittals', ['submittals' => $submittals]);
+
+    }
 }

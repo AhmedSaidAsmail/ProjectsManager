@@ -123,4 +123,19 @@ class TestsController extends Controller
         $test->delete();
         return redirect()->back();
     }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\Response
+     */
+
+    public function getAccordingToDate(Request $request)
+    {
+        $dateFrom = $request->dateFrom;
+        $dateTo = $request->dateTo;
+        $project_id = $request->projectId;
+        $tests = Test::where('project_id', '=', $project_id)->where('date', '>=', $dateFrom)->where('date', '<=', $dateTo)->get();
+        return view('ProjectItems.AjaxResponse.reportTests', ['tests' => $tests]);
+
+    }
 }

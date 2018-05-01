@@ -137,6 +137,22 @@
             border: 1px solid #000000;
             padding: 5px 10px;
         }
+
+        .img-container {
+            width: 100%;
+        }
+
+        .img-container:after {
+            display: block;
+            clear: both;
+            content: '';
+        }
+
+        .img-container img {
+            width: 50%;
+            float: left;
+            display: inline;
+        }
     </style>
 </head>
 <body>
@@ -265,6 +281,99 @@
                 </tr>
             @endforeach
         </table>
+        <h1>البرنامج الزمنى</h1>
+
+        <div class="additional-insider">
+            <img src="{{asset('documents/projects/w_report/'.$report->schedule)}}">
+        </div>
+        <h1>يان الاعمال المنفذه بالمشروع </h1>
+
+        <div class="additional-insider">
+            {!! $report->additionalInfo->done_working !!}
+        </div>
+        <h1>بيان الحالة</h1>
+
+        <div class="additional-insider">
+            {!! $report->additionalInfo->report_status !!}
+        </div>
+        <h1>معدل سير العمل</h1>
+
+        <div class="additional-insider">
+            {!! $report->additionalInfo->working_rate !!}
+        </div>
+        <h1>جدول نسب الانجاز</h1>
+
+        <div class="additional-insider">
+            {!! $report->additionalInfo->completion_Schedule !!}
+        </div>
+        <h1>وصف الاعمال المتوقع انجازها خلال الشهر القادم </h1>
+
+        <div class="additional-insider">
+            {!! $report->additionalInfo->working_next_month !!}
+        </div>
+        <h1>ملاحظات الاستشارى على الاعمال بالموقع </h1>
+
+        <div class="additional-insider">
+            {!! $report->additionalInfo->consultant_note !!}
+        </div>
+        <h1>المطلوب من المقاول </h1>
+
+        <div class="additional-insider">
+            {!! $report->additionalInfo->contractor_required !!}
+        </div>
+        <h1>الالمطلوب من المالك </h1>
+
+        <div class="additional-insider">
+            {!! $report->additionalInfo->owner_required !!}
+        </div>
+        <h1>نتائج الاختبارات </h1>
+
+        <div class="additional-insider">
+            @foreach($report->tests->chunk(2) as $chunk)
+                <div class="img-container">
+                    @foreach($chunk as $test)
+                        <img src="{{asset('documents/projects/tests/'.$test->test->document)}}">
+                    @endforeach
+                </div>
+            @endforeach
+
+        </div>
+        <h1>المخاطبات ومحاضر الاجتماعات </h1>
+        <div class="additional-insider">
+            @foreach($report->requests->chunk(2) as $chunk)
+                <div class="img-container">
+                    @foreach($chunk as $requests)
+                        <img src="{{asset('documents/projects/requests/'.$requests->request->document)}}">
+                    @endforeach
+                </div>
+            @endforeach
+
+        </div>
+        <div class="additional-insider">
+            @foreach($report->submittals->chunk(2) as $chunk)
+                <div class="img-container">
+                    @foreach($chunk as $submittals)
+                        <img src="{{asset('documents/projects/submittals/'.$submittals->submittal->document)}}">
+                    @endforeach
+                </div>
+            @endforeach
+
+        </div>
+        <h1>الصور الفوتوغرافيه</h1>
+        <div class="additional-insider">
+            @foreach($report->files->chunk(2) as $chunk)
+                <div class="img-container">
+                    @foreach($chunk as $file)
+                        <img src="{{asset('documents/projects/files/'.$file->file->document)}}">
+                    @endforeach
+                </div>
+            @endforeach
+
+        </div>
+        <h1>توصيات الاستشاري </h1>
+        <div class="additional-insider">
+            {!! $report->additionalInfo->consultant_recommendations !!}
+        </div>
         {!! $report->text !!}
     </div>
 </div>

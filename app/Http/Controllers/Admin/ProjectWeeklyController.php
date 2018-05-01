@@ -6,9 +6,12 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Project;
 use App\Models\Project_weekly_report;
+use RuntimeException;
 
 class ProjectWeeklyController extends Controller
 {
+    private $_path = "/documents/projects/w_report/";
+
     /**
      * Display a listing of the resource.
      *
@@ -44,19 +47,20 @@ class ProjectWeeklyController extends Controller
         $data['project_id'] = $projectId;
 
         try {
+            $data['schedule'] = uploadFile(['file' => $data['schedule'], 'path' => $this->_path]);
             $report = Project_weekly_report::create($data);
             isset($data['contractor_team']) ? $report->contractorTeam()->createMany($data['contractor_team']) : null;
             isset($data['contractor_tool']) ? $report->tools()->createMany($data['contractor_tool']) : null;
+            isset($data['project_test']) ? $report->tests()->createMany($data['project_test']) : null;
+            isset($data['project_request']) ? $report->requests()->createMany($data['project_request']) : null;
+            isset($data['project_submittal']) ? $report->submittals()->createMany($data['project_submittal']) : null;
+            isset($data['project_files']) ? $report->files()->createMany($data['project_files']) : null;
+            isset($data['report_additional']) ? $report->additionalInfo()->create($data['report_additional']) : null;
             return redirect()->route('projects.show', ['id' => $projectId])->with('success', 'Report has been created');
 
-        } catch (\Exception $e) {
+        } catch (RuntimeException $e) {
             return redirect()->route('projects.show', ['id' => $projectId])->with('fail', $e->getMessage());
         }
-
-        //return view('Admin.projectWeeklyReportPDF',['project'=>$project,'request'=>$request]);
-//        $pdf=PDF::LoadView('Admin.projectWeeklyReportPDF',['project'=>$project,'request'=>$request]);
-//        return $pdf->download('test.pdf');
-
     }
 
     /**

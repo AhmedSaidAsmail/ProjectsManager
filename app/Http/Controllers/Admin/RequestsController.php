@@ -130,4 +130,18 @@ class RequestsController extends Controller
         $projectRequest->delete();
         return redirect()->back();
     }
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\Response
+     */
+
+    public function getAccordingToDate(Request $request)
+    {
+        $dateFrom = $request->dateFrom;
+        $dateTo = $request->dateTo;
+        $project_id = $request->projectId;
+        $projectRequests = ProjectRequests::where('project_id', '=', $project_id)->where('date', '>=', $dateFrom)->where('date', '<=', $dateTo)->get();
+        return view('ProjectItems.AjaxResponse.reportRequests', ['requests' => $projectRequests]);
+
+    }
 }
