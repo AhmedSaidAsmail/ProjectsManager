@@ -104,4 +104,13 @@ class ProjectFilesController extends Controller
     {
         //
     }
+    public function getAccordingToDate(Request $request)
+    {
+        $dateFrom = $request->dateFrom;
+        $dateTo = $request->dateTo;
+        $project_id = $request->projectId;
+        $files = Project_file::where('project_id', '=', $project_id)->where('date', '>=', $dateFrom)->where('date', '<=', $dateTo)->get();
+        return view('ProjectItems.AjaxResponse.reportFiles', ['files' => $files]);
+
+    }
 }

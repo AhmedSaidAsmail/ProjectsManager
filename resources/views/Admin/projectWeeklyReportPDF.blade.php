@@ -147,11 +147,19 @@
             clear: both;
             content: '';
         }
+        .img-container > .img-item{
+            width: 50%;
+            float: left;
+            display: inline;
+        }
 
         .img-container img {
             width: 50%;
             float: left;
             display: inline;
+        }
+        .img-container > .img-item img{
+            width: 100%;
         }
     </style>
 </head>
@@ -364,7 +372,10 @@
             @foreach($report->files->chunk(2) as $chunk)
                 <div class="img-container">
                     @foreach($chunk as $file)
-                        <img src="{{asset('documents/projects/files/'.$file->file->document)}}">
+                        <div class="img-item">
+                            <img src="{{asset('documents/projects/files/'.$file->file->document)}}">
+                            <span style="display: block; text-align: center;">{{$file->file->description}}</span>
+                        </div>
                     @endforeach
                 </div>
             @endforeach

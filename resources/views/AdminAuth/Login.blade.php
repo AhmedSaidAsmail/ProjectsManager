@@ -9,6 +9,7 @@
     <meta name="author" content="Ahmed Said"/>
     <link rel="shortcut icon" href="{{asset('template/iconfav.ico')}}">
     <link rel="icon" href="{{asset('template/iconfav.ico')}}" type="image/x-icon">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.12/css/all.css" integrity="sha384-G0fIWCsCzJIMAVNQPfjH08cyYaUtMwjJwqiRKxxE/rx96Uroj1BtIQ6MLJuheaO9" crossorigin="anonymous">
     <link href="{{asset('template/vendors/bower_components/jasny-bootstrap/dist/css/jasny-bootstrap.min.css')}}"
           rel="stylesheet"
           type="text/css"/>
@@ -71,7 +72,7 @@
 
                                         <div class="form-group">
                                             <div class="checkbox checkbox-primary pr-10 pull-left">
-                                                <input id="checkbox_2" name="remember"  type="checkbox">
+                                                <input id="checkbox_2" name="remember" type="checkbox">
                                                 <label for="checkbox_2"> Keep me logged in</label>
                                             </div>
                                             <div class="clearfix"></div>
@@ -81,6 +82,20 @@
                                             </button>
                                         </div>
                                     </form>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div style="width: 50%; margin: 10px auto; position: fixed; bottom: 0px; left: 0; right: 0;">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <a href="{{route('contractor.login')}}" class="btn btn-danger btn-block"><i class="fas fa-user-shield"></i> Contractors Area</a>
+                                </div>
+                                <div class="col-md-4">
+                                    <a href="{{route('owner.login')}}" class="btn btn-success btn-block"><i class="fas fa-user-shield"></i> Owner Area</a>
+                                </div>
+                                <div class="col-md-4">
+                                    <a href="{{route('engineer.login')}}" class="btn btn-warning btn-block"><i class="fas fa-user-shield"></i> Engineer Area</a>
                                 </div>
                             </div>
                         </div>

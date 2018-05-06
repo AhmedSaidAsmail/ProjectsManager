@@ -40,6 +40,7 @@ class PermissionsController extends Controller
         $data = $request->all();
         $permission = Permission::create(['name' => $data['name']]);
         $permission->contractorPermissions()->create($data['contract']);
+        return redirect()->route('permissions.index');
     }
 
     /**

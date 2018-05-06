@@ -161,17 +161,10 @@
                                 </div>
                                 <div class="collapse panel-collapse" id="project_photos">
                                     <div class="panel-body">
-                                        <div class="row">
-                                            <?php $file_sort = 0; ?>
-                                            @foreach($project->files as $file)
-                                                @if(getFileType($file->document)['type']=="image")
-                                                    <div class="col-md-3 item-list">
-                                                        <img src="{{asset('documents/projects/files/'.$file->document)}}">
-                                                        <input type="checkbox" name="project_files[{{$file_sort}}][file_id]" value="{{$file->id}}">
-                                                    </div>
-                                                    <?php $file_sort++; ?>
-                                                @endif
-                                            @endforeach
+
+                                        <div id="projectFileResult" data-parent="{{$project->id}}" data-ajax--url="{{route('project-files.getAccordingToDate')}}">
+
+
                                         </div>
                                     </div>
                                 </div>
@@ -568,6 +561,8 @@
                     getTests(dateFrom, dateTo, $("#projectTestResult"));
                     getTests(dateFrom, dateTo, $("#projectRequestResult"));
                     getTests(dateFrom, dateTo, $("#projectSubmittalsResult"));
+                    getTests(dateFrom, dateTo, $("#projectFileResult"));
+
                 }
 
             });

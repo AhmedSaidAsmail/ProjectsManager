@@ -75,9 +75,15 @@
                                                     <a href="{{route('owners.edit',['id'=>$owner->id])}}">
                                                         <i class="fa fa-pencil-square fa-2x text-warning"></i>
                                                     </a>
-                                                    <a href="{{route('owner.change.password',['id'=>$owner->id])}}">
-                                                        <i class="fa fa-unlock-alt fa-2x text-success"></i>
-                                                    </a>
+                                                    @if($owner->active)
+                                                        <a href="{{route('owner.inactive',['id'=>$owner->id])}}">
+                                                            <i class="fas fa-lock fa-2x text-danger"></i>
+                                                        </a>
+                                                    @else
+                                                        <a href="{{route('owner.active',['id'=>$owner->id])}}">
+                                                            <i class="fas fa-unlock fa-2x text-warning"></i>
+                                                        </a>
+                                                    @endif
                                                     <a href="{{route('owner.change.password',['id'=>$owner->id])}}">
                                                         <i class="fas fa-key fa-2x"></i>
                                                     </a>

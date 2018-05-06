@@ -153,4 +153,18 @@ class OwnersController extends Controller
         $engineers=$owner->engineers;
         return view('Admin.Layouts.ownersGetEngineers',['engineers'=>$engineers,'owner'=>$owner]);
     }
+    public function active($id)
+    {
+        $owner = Owner::find($id);
+        $owner->update(['active' => 1]);
+        return redirect()->back();
+
+    }
+
+    public function inactive($id)
+    {
+        $owner = Owner::find($id);
+        $owner->update(['active' => 0]);
+        return redirect()->back();
+    }
 }

@@ -31,6 +31,7 @@ Route::group([], function () {
     Route::resource('/cordnation-drawings', 'Admin\CordnationDrawingsController');
     Route::resource('/change-orders', 'Admin\ChangeOrdersController');
     Route::resource('/project-files', 'Admin\ProjectFilesController');
+    Route::get('/project-files/accordingToDate/get/', 'Admin\ProjectFilesController@getAccordingToDate')->name('project-files.getAccordingToDate');
     Route::resource('/project/{projectId}/weekly-report', 'Admin\ProjectWeeklyController');
     Route::resource('/project/test-sorts', 'Admin\ProjectTestSortsController');
     Route::get('/project/test-sorts/get/Related', 'Admin\ProjectTestSortsController@getRelated')->name('test-sorts.getRelated');
@@ -42,6 +43,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:web'], function () {
     })->name('admin.welcome');
     Route::resource('/engineer-types', 'Admin\EngineerTypesController');
     Route::resource('/owners', 'Admin\OwnersController');
+    Route::get('/owners/active/{id}', 'Admin\OwnersController@active')->name('owner.active');
+    Route::get('/owners/inactive/{id}', 'Admin\OwnersController@inactive')->name('owner.inactive');
     Route::get('owners/changePassword/{id}', 'Admin\OwnersController@changePassword')->name('owner.change.password');
     Route::put('owners/changePassword/{id}', 'Admin\OwnersController@updatePassword')->name('owner.update.password');
     Route::get('/owners/engineers/get', 'Admin\OwnersController@getEngineers')->name('owners.getEngineers');
