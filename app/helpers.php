@@ -5,6 +5,7 @@ use App\Src\SyncData;
 use Illuminate\Database\Eloquent\Model;
 use App\Src\FileType;
 use App\Models\Permission;
+use App\Src\SendNotificationToConsultantEngineers;
 
 if (!function_exists('collectData')) {
 
@@ -54,5 +55,12 @@ if (!function_exists('getAllPermissions')) {
     {
         $permissions = Permission::all();
         return $permissions;
+    }
+}
+if (!function_exists('consultantEngineersNotification')) {
+    function consultantEngineersNotification($project_id)
+    {
+        $sender = new SendNotificationToConsultantEngineers($project_id);
+        $sender->sendMail();
     }
 }

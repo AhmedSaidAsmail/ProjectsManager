@@ -78,6 +78,9 @@
                                                     <a href="{{route('owner.change.password',['id'=>$owner->id])}}">
                                                         <i class="fa fa-unlock-alt fa-2x text-success"></i>
                                                     </a>
+                                                    <a href="{{route('owner.change.password',['id'=>$owner->id])}}">
+                                                        <i class="fas fa-key fa-2x"></i>
+                                                    </a>
 
                                                         <form class="custom-form" method="post" action="{{route('owners.destroy',['id'=>$owner->id])}}">
                                                             <input type="hidden" name="_method" value="DELETE">

@@ -61,7 +61,8 @@ class PermissionsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $permission = Permission::find($id);
+        return view('Admin.permissionsEdit', ['permission' => $permission]);
     }
 
     /**
@@ -73,7 +74,11 @@ class PermissionsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $permission = Permission::find($id);
+        $data = $request->all();
+        $permission->update(['name' => $data['name']]);
+        $permission->contractorPermissions()->update($data['contract']);
+        return redirect()->route('permissions.index');
     }
 
     /**

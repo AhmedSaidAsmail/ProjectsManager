@@ -54,6 +54,7 @@ class TestsController extends Controller
         try {
             $data['document'] = uploadFile(['file' => $data['document'], 'path' => $this->_path]);
             Test::create($data);
+            consultantEngineersNotification($data['project_id']);
         } catch (Exception $e) {
             return redirect()->route('projects.show', ['id' => $request->project_id])->with('fail', $e->getMessage());
         }

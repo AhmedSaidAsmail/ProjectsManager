@@ -19,7 +19,7 @@ Route::get('/engineer/login', 'AuthEngineer\LoginController@showLoginForm')->nam
 Route::post('/engineer/login', 'AuthEngineer\LoginController@login')->name('engineer.login');
 Route::get('/engineer/logout', 'AuthEngineer\LoginController@logout')->name('engineer.logout');
 //multi middleware area
-Route::group(['middleware' => 'auth'], function () {
+Route::group([], function () {
     Route::resource('/project/items/submittals', 'Admin\SubmittalsController');
     Route::get('/submittals/accordingToDate/get/', 'Admin\SubmittalsController@getAccordingToDate')->name('submittals.getAccordingToDate');
     Route::resource('/requests', 'Admin\RequestsController');

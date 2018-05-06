@@ -51,7 +51,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <button class="btn btn-primary"><i class="fa fa-plus-square-o"></i> اضافة مالك
+                                    <button class="btn btn-primary"><i class="fa fa-plus-square-o"></i> تعديل كلمة السر
                                     </button>
                                 </div>
                             </form>

@@ -20,4 +20,51 @@
             </a>
         </div>
     </div>
+    <div class="row" style="margin-top: 15px;">
+        <div class="col-sm-12">
+            <div class="panel panel-default card-view">
+                <div class="panel-heading">
+                    <div class="pull-left">
+                        <h6 class="panel-title txt-dark arabic-fonts">الصلاحيات</h6>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="panel-wrapper collapse in">
+                    <div class="panel-body">
+                        <div class="table-wrap">
+                            <div class="table-responsive">
+                                <table id="datable_1" class="table table-hover display  pb-30 arabic-fonts"
+                                       style="font-size: 12px;">
+                                    <thead>
+                                    <tr>
+                                        <th>اسم المجموعة</th>
+                                        <th>action</th>
+                                    </tr>
+                                    </thead>
+                                    <tfoot>
+                                    <tr>
+                                        <th>اسم المجموعة</th>
+                                        <th>action</th>
+                                    </tr>
+                                    </tfoot>
+                                    <tbody>
+                                    @foreach($permissions as $permission)
+                                        <tr>
+                                            <td>{{$permission->name}}</td>
+                                            <td>
+                                                <a href="{{route('permissions.edit',['id'=>$permission->id])}}">
+                                                    <i class="fa fa-pencil-square fa-2x text-warning"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection

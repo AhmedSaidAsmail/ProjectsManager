@@ -178,8 +178,16 @@
     </div>
     {{-- Ajax Result Container--}}
 @endsection
+@section('additional-css')
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.2.0/ekko-lightbox.min.css" rel="stylesheet">
+@endsection
 @section('additional-js')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.2.0/ekko-lightbox.min.js"></script>
     <script>
+        $(document).on('click', '[data-toggle="lightbox"]', function (event) {
+            event.preventDefault();
+            $(this).ekkoLightbox();
+        });
         $(function () {
             $("a.ajax-data").click(function (event) {
                 event.preventDefault();

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Project;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Submittal;
@@ -53,9 +54,11 @@ class SubmittalsController extends Controller
             'document' => 'required|file'
         ]);
         $data = $request->all();
+
         try {
             $data['document'] = uploadFile(['file' => $data['document'], 'path' => $this->_path]);
             Submittal::create($data);
+            consultantEngineersNotification($data['project_id']);
         } catch (Exception $e) {
             return redirect()->route('projects.show', ['id' => $request->project_id])->with('fail', $e->getMessage());
         }
@@ -127,6 +130,7 @@ class SubmittalsController extends Controller
         $submittal->delete();
         return redirect()->back();
     }
+
     /**
      * @param Request $request
      * @return \Illuminate\Http\Response

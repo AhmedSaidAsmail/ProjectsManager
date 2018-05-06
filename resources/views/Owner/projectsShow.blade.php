@@ -207,6 +207,10 @@
                     data: formData,
                     success: function (response) {
                         displayDiv.html(response);
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        console.log(textStatus, errorThrown);
+                        alert(url);
                     }
                 });
             });
