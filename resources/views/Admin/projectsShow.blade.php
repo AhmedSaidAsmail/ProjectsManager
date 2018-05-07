@@ -87,10 +87,9 @@
                                 @include('Admin.Layouts.projectInformation')
                                 {{-- Prject Information --}}
                                 {{-- Timetable --}}
-                                <div id="time_table_tab" class="tab-pane fade" role="tabpanel">
-                                    <p>الجدول الزمني لاحقا في اصدار اخر</p>
-
-                                </div>
+                                {{-- Schedule --}}
+                                @include('Admin.Layouts.projectSchedule')
+                                {{-- Schedule --}}
                                 {{-- Timetable --}}
                                 {{-- Submittals  --}}
                                 @include('Admin.Layouts.projectSubmittals')

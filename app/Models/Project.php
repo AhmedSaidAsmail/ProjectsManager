@@ -55,6 +55,11 @@ class Project extends Model
             ->first();
     }
 
+    public function schedules()
+    {
+        return $this->hasMany(ProjectSchedule::class);
+    }
+
     public function submittals()
     {
         return $this->hasMany(Submittal::class);
