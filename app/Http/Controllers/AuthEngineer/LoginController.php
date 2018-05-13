@@ -56,7 +56,8 @@ class LoginController extends Controller
             'password' => 'required'
         ]);
         if (Auth::guard('engineer')->attempt(['email' => $request->email, 'password' => $request->password, 'active' => 1], $request->remember)) {
-            return redirect()->intended(route('engineer.welcome'));
+//            return redirect()->intended(route('engineer.welcome'));
+            return redirect()->route('engineer.welcome');
         }
         return redirect()->back()->withInput($request->only('email', 'remember'));
     }
