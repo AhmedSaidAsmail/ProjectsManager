@@ -1,4 +1,24 @@
-@extends('Admin.Layouts.Master')
+<?php
+$parent = null;
+switch (true) {
+    case auth()->guard('web')->check():
+        $parent = 'Admin.Layouts.Master';
+        break;
+    case auth()->guard('contractor')->check():
+        $parent = 'Contractor.Layouts.Master';
+        break;
+    case auth()->guard('owner')->check():
+        $parent = 'Owner.Layouts.Master';
+        break;
+    case auth()->guard('engineer')->check():
+        $parent = 'Engineer.Layouts.Master';
+        break;
+    default :
+        $parent = 'Admin.Layouts.Master';
+
+}
+?>
+@extends($parent)
 @section('container')
     <div class="row heading-bg">
         <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">

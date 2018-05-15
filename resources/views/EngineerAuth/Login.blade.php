@@ -49,7 +49,7 @@
                                     <form action="{{ route('engineer.login') }}" method="post">
                                         {{ csrf_field() }}
                                         <div class="form-group">
-                                            <label class="control-label mb-10" for="exampleInputEmail_2">Contractor Email
+                                            <label class="control-label mb-10" for="exampleInputEmail_2">Engineer Email
                                                 address</label>
                                             <input type="email" name="email" class="form-control" required=""
                                                    id="exampleInputEmail_2" placeholder="Enter email">
