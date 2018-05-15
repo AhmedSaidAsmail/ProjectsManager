@@ -56,10 +56,10 @@ class ProjectWeeklyController extends Controller
             isset($data['project_submittal']) ? $report->submittals()->createMany($data['project_submittal']) : null;
             isset($data['project_files']) ? $report->files()->createMany($data['project_files']) : null;
             isset($data['report_additional']) ? $report->additionalInfo()->create($data['report_additional']) : null;
-            return redirect()->route('projects.show', ['id' => $projectId])->with('success', 'Report has been created');
+            return redirect()->back()->with('success', 'Report has been created');
 
         } catch (RuntimeException $e) {
-            return redirect()->route('projects.show', ['id' => $projectId])->with('fail', $e->getMessage());
+            return redirect()->back()->with('fail', $e->getMessage());
         }
     }
 

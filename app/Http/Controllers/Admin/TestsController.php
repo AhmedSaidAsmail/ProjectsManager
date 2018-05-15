@@ -56,9 +56,9 @@ class TestsController extends Controller
             Test::create($data);
             consultantEngineersNotification($data['project_id']);
         } catch (Exception $e) {
-            return redirect()->route('projects.show', ['id' => $request->project_id])->with('fail', $e->getMessage());
+            return redirect()->back()->with('fail', $e->getMessage());
         }
-        return redirect()->route('projects.show', ['id' => $request->project_id])->with('success', 'Test has been created');
+        return redirect()->back()->with('success', 'Test has been created');
     }
 
     /**
@@ -107,9 +107,9 @@ class TestsController extends Controller
             }
             $test->update($data);
         } catch (Exception $e) {
-            return redirect()->route('projects.show', ['id' => $request->project_id])->with('fail', $e->getMessage());
+            return redirect()->back()->with('fail', $e->getMessage());
         }
-        return redirect()->route('projects.show', ['id' => $request->project_id])->with('success', 'Test has been created');
+        return redirect()->back()->with('success', 'Test has been created');
     }
 
     /**

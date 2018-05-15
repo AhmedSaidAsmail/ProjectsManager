@@ -55,9 +55,9 @@ class ProjectFilesController extends Controller
             $data['document'] = uploadFile(['file' => $data['document'], 'path' => $this->_path]);
             Project_file::create($data);
         } catch (Exception $e) {
-            return redirect()->route('projects.show', ['id' => $request->project_id])->with('fail', $e->getMessage());
+            return redirect()->back()->with('fail', $e->getMessage());
         }
-        return redirect()->route('projects.show', ['id' => $request->project_id])->with('success', 'File has been created');
+        return redirect()->back()->with('success', 'File has been created');
     }
 
     /**

@@ -48,7 +48,7 @@ class SendNotificationToConsultantEngineers
     public function sendMail()
     {
         foreach ($this->consultantCrew as $crew) {
-            Mail::to($crew->engineer->mail)->send(new ProjectNotification($this->project->name));
+            Mail::to($crew->engineer->email)->send(new ProjectNotification($this->project->name));
         }
     }
 

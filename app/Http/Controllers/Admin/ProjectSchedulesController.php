@@ -53,9 +53,9 @@ class ProjectSchedulesController extends Controller
             $data['document'] = uploadFile(['file' => $data['document'], 'path' => $this->_path]);
             ProjectSchedule::create($data);
         } catch (Exception $e) {
-            return redirect()->route('projects.show', ['id' => $request->project_id])->with('fail', $e->getMessage());
+            return redirect()->back()->with('fail', $e->getMessage());
         }
-        return redirect()->route('projects.show', ['id' => $request->project_id])->with('success', 'Schedule has been created');
+        return redirect()->back()->with('success', 'Schedule has been created');
     }
 
     /**

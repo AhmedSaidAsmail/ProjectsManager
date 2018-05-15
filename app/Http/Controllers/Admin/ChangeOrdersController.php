@@ -51,9 +51,9 @@ class ChangeOrdersController extends Controller
             Change_order::create($data);
             consultantEngineersNotification($data['project_id']);
         } catch (Exception $e) {
-            return redirect()->route('projects.show', ['id' => $request->project_id])->with('fail', $e->getMessage());
+            return redirect()->back()->with('fail', $e->getMessage());
         }
-        return redirect()->route('projects.show', ['id' => $request->project_id])->with('success', 'Change order has been created');
+        return redirect()->back()->with('success', 'Change order has been created');
     }
 
     /**
@@ -102,9 +102,9 @@ class ChangeOrdersController extends Controller
             }
             $changeOrders->update($data);
         } catch (Exception $e) {
-            return redirect()->route('projects.show', ['id' => $request->project_id])->with('fail', $e->getMessage());
+            return redirect()->back()->with('fail', $e->getMessage());
         }
-        return redirect()->route('projects.show', ['id' => $request->project_id])->with('success', 'Change order has been created');
+        return redirect()->back()->with('success', 'Change order has been created');
     }
 
     /**

@@ -60,9 +60,9 @@ class SubmittalsController extends Controller
             Submittal::create($data);
             consultantEngineersNotification($data['project_id']);
         } catch (Exception $e) {
-            return redirect()->route('projects.show', ['id' => $request->project_id])->with('fail', $e->getMessage());
+            return redirect()->back()->with('fail', $e->getMessage());
         }
-        return redirect()->route('projects.show', ['id' => $request->project_id])->with('success', 'Submittal has been created');
+        return redirect()->back()->with('success', 'Submittal has been created');
     }
 
     /**
@@ -113,9 +113,9 @@ class SubmittalsController extends Controller
             }
             $submittal->update($data);
         } catch (Exception $e) {
-            return redirect()->route('projects.show', ['id' => $request->project_id])->with('fail', $e->getMessage());
+            return redirect()->back()->with('fail', $e->getMessage());
         }
-        return redirect()->route('projects.show', ['id' => $request->project_id])->with('success', 'Submittal has been created');
+        return redirect()->back()->with('success', 'Submittal has been created');
     }
 
     /**

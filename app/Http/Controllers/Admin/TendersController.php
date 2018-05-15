@@ -55,9 +55,9 @@ class TendersController extends Controller
             Tender::create($data);
             consultantEngineersNotification($data['project_id']);
         } catch (Exception $e) {
-            return redirect()->route('projects.show', ['id' => $request->project_id])->with('fail', $e->getMessage());
+            return redirect()->back()->with('fail', $e->getMessage());
         }
-        return redirect()->route('projects.show', ['id' => $request->project_id])->with('success', 'Tender Drawing has been created');
+        return redirect()->back()->with('success', 'Tender Drawing has been created');
     }
 
     /**
@@ -106,9 +106,9 @@ class TendersController extends Controller
             }
             $tender->update($data);
         } catch (Exception $e) {
-            return redirect()->route('projects.show', ['id' => $request->project_id])->with('fail', $e->getMessage());
+            return redirect()->back()->with('fail', $e->getMessage());
         }
-        return redirect()->route('projects.show', ['id' => $request->project_id])->with('success', 'Tender Drawing has been created');
+        return redirect()->back()->with('success', 'Tender Drawing has been created');
     }
 
     /**
