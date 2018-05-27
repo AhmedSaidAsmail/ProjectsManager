@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Project;
 use App\Models\Project_weekly_report;
 use RuntimeException;
+use Auth;
 
 class ProjectWeeklyController extends Controller
 {
@@ -56,10 +57,12 @@ class ProjectWeeklyController extends Controller
             isset($data['project_submittal']) ? $report->submittals()->createMany($data['project_submittal']) : null;
             isset($data['project_files']) ? $report->files()->createMany($data['project_files']) : null;
             isset($data['report_additional']) ? $report->additionalInfo()->create($data['report_additional']) : null;
-            return redirect()->back()->with('success', 'Report has been created');
+            return redirect($this->getUrl($projectId))->with('success', 'Report has been created');
+            //return "done";
 
         } catch (RuntimeException $e) {
             return redirect()->back()->with('fail', $e->getMessage());
+            // return $e->getMessage();
         }
     }
 
@@ -109,5 +112,33 @@ class ProjectWeeklyController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    /**
+     * @param $project_id
+     * @return null|string
+     */
+
+    private function getUrl($project_id)
+    {
+        $url = null;
+        switch (true) {
+            case Auth::guard('web')->check():
+                $url = route('projects.show', ['id' => $project_id]);
+                break;
+            case Auth::guard('contractor')->check():
+                $url = route('contractor-projects.show', ['id' => $project_id]);
+                break;
+            case Auth::guard('owner')->check():
+                $url = route('owner-projects.show', ['id' => $project_id]);
+                break;
+            case Auth::guard('engineer')->check():
+                $url = route('projects.show', ['id' => $project_id]);
+                break;
+            default :
+                $url = route('engineer-projects.show', ['id' => $project_id]);
+
+        }
+        return $url;
     }
 }
