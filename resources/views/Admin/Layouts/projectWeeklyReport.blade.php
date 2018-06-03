@@ -43,6 +43,9 @@
                                                         <a href="{{route('weekly-report.show',['projectId'=>$project->id,'id'=>$weeklyReport->id])}}" target="_blank">
                                                             <i class="fas fa-print fa-2x text-warning"></i>
                                                         </a>
+                                                        <a href="{{route('weekly-report.edit',['projectId'=>$project->id,'id'=>$weeklyReport->id])}}" target="_blank">
+                                                            <i class="fas fa-pen-square fa-2x text-success"></i>
+                                                        </a>
                                                     </td>
                                                 </tr>
                                                 <?php $weeklyReportArrangement++; ?>

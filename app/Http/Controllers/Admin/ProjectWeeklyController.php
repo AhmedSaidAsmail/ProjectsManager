@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Project;
@@ -48,7 +49,9 @@ class ProjectWeeklyController extends Controller
         $data['project_id'] = $projectId;
 
         try {
-            $data['schedule'] = uploadFile(['file' => $data['schedule'], 'path' => $this->_path]);
+            if (isset($data['schedule'])) {
+                $data['schedule'] = uploadFile(['file' => $data['schedule'], 'path' => $this->_path]);
+            }
             $report = Project_weekly_report::create($data);
             isset($data['contractor_team']) ? $report->contractorTeam()->createMany($data['contractor_team']) : null;
             isset($data['contractor_tool']) ? $report->tools()->createMany($data['contractor_tool']) : null;
@@ -81,26 +84,43 @@ class ProjectWeeklyController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int $id
+     * @param $projectId
+     * @param $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($projectId, $id)
     {
-        //
+        $report = Project_weekly_report::find($id);
+        return view('Admin.projectWeeklyReportEdit', ['report' => $report, 'projectId' => $projectId]);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request $request
+     * @param $projectId
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $projectId, $id)
     {
-        //
+        $data = $request->all();
+        $report = Project_weekly_report::find($id);
+        try {
+            $report->update($data);
+            isset($data['project_test']) ? $this->updateHasMany($report->tests(), $data['project_test']) : null;
+            isset($data['project_request']) ? $this->updateHasMany($report->requests(), $data['project_request']) : null;
+            isset($data['project_submittal']) ? $this->updateHasMany($report->submittals(), $data['project_submittal']) : null;
+            isset($data['project_files']) ? $this->updateHasMany($report->files(), $data['project_files']) : null;
+            sync($report, 'contractorTeam', isset($data['contractor_team']) ? $data['contractor_team'] : []);
+            sync($report, 'tools', isset($data['contractor_tool']) ? $data['contractor_tool'] : []);
+            isset($data['report_additional']) ? $report->additionalInfo()->update($data['report_additional']) : null;
+            return redirect($this->getUrl($projectId))->with('success', 'Report has been created');
+
+
+        } catch (RuntimeException $e) {
+            return redirect()->back()->with('fail', $e->getMessage());
+        }
     }
 
     /**
@@ -140,5 +160,11 @@ class ProjectWeeklyController extends Controller
 
         }
         return $url;
+    }
+
+    private function updateHasMany(HasMany $hasMany, array $update)
+    {
+        $hasMany->delete();
+        $hasMany->createMany($update);
     }
 }
