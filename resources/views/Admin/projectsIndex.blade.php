@@ -72,7 +72,10 @@
                                             <td>{{$project->sort}}</td>
                                             <td>
                                                 <a href="{{route('projects.show',['id'=>$project->id])}}">
-                                                    <i class="fas fa-eye fa-2x text-success"></i>
+                                                    <i class="fas fa-eye  text-success fa-lg"></i>
+                                                </a>
+                                                <a href="{{route('projects.edit',['id'=>$project->id])}}">
+                                                    <i class="fas fa-edit text-danger fa-lg"></i>
                                                 </a>
                                             </td>
                                         </tr>

@@ -58,7 +58,7 @@ class ProjectsController extends Controller
             $ownerCrew = collectData(['request' => $request, 'table' => 'owners_crews', 'path' => $this->_path]);
             $quantity = collectData(['request' => $request, 'table' => 'project_quantities', 'path' => $this->_path], 'flatten');
             $documents = collectData(['request' => $request, 'table' => 'project_documents', 'path' => $this->_path]);
-            $data['image']=uploadFile(['file' => $data['image'], 'path' => $this->_path]);
+            $data['image'] = uploadFile(['file' => $data['image'], 'path' => $this->_path]);
             $project = Project::create($data);
             $project->consultantEngineers()->createMany($consultantCrew);
             $project->contractorEngineers()->createMany($contractorCrew);
@@ -109,7 +109,16 @@ class ProjectsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $project = Project::findOrFail($id);
+        $consultantEngineers = Engineer::where('consultant_id', '!=', null)->get();
+        $owners = Owner::all();
+        $contractors = Contractor::all();
+        return view('Admin.projectsEdit', [
+            'consultantEngineers' => $consultantEngineers,
+            'owners' => $owners,
+            'contractors' => $contractors,
+            'project' => $project
+        ]);
     }
 
     /**
@@ -121,7 +130,20 @@ class ProjectsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = $request->all();
+        $project = Project::findOrFail($id);
+        try {
+            isset($data['image']) ? $data['image'] = uploadFile(['file' => $data['image'], 'path' => $this->_path]) : null;
+            $project->update($data);
+            sync($project, 'consultantEngineers', $data['consultant_engineer']);
+            sync($project, 'contractorEngineers', $data['contractor_engineer']);
+            sync($project, 'ownerEngineers', $data['owner_engineer']);
+            $project->quantity()->update($data['project_quantities']);
+        } catch (Exception $e) {
+            //return redirect()->route('projects.index')->with('fail', $e->getMessage());
+            return $e->getMessage();
+        }
+        return redirect()->route('projects.show', ['id' => $id]);
     }
 
     /**
