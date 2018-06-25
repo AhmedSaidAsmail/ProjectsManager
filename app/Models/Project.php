@@ -105,4 +105,9 @@ class Project extends Model
     {
         return $this->hasMany(Project_weekly_report::class);
     }
+
+    public function letters()
+    {
+        return $this->hasMany(ProjectLetters::class);
+    }
 }

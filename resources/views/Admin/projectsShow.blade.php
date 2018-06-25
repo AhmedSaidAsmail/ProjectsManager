@@ -98,11 +98,7 @@
                                 @include('Admin.Layouts.projectRequests')
                                 {{-- Requests --}}
                                 {{-- Letters --}}
-                                <div id="letters_tab" class="tab-pane fade" role="tabpanel">
-                                    <div class="row col-md-12">
-                                        <p>الخطابات لاحقا في اصدار اخر</p>
-                                    </div>
-                                </div>
+                                @include('Admin.Layouts.projectLetters')
                                 {{-- Letters --}}
                                 {{-- Qunatities --}}
                                 <div id="quntty_tab" class="tab-pane fade" role="tabpanel">

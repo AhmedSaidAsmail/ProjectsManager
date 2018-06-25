@@ -24,6 +24,7 @@ Route::group([], function () {
     Route::get('/submittals/accordingToDate/get/', 'Admin\SubmittalsController@getAccordingToDate')->name('submittals.getAccordingToDate');
     Route::resource('/requests', 'Admin\RequestsController');
     Route::get('/requests/accordingToDate/get/', 'Admin\RequestsController@getAccordingToDate')->name('requests.getAccordingToDate');
+    Route::resource('/letters', 'Admin\LettersController');
     Route::resource('/tests', 'Admin\TestsController');
     Route::get('/tests/accordingToDate/get/', 'Admin\TestsController@getAccordingToDate')->name('tests.getAccordingToDate');
     Route::resource('/tenders', 'Admin\TendersController');
