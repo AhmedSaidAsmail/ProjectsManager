@@ -250,7 +250,20 @@
                                                             </select>
                                                         </div>
                                                     </div>
-
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label class="control-label mb-10 text-left">الخطابات</label>
+                                                            <select name="contract[letters]" class="form-control">
+                                                                <option value="0">اختار صلاحية</option>
+                                                                <option value="1" {!! $permission->contractorPermissions->letters==1?"selected":null !!}>حذف</option>
+                                                                <option value="2" {!! $permission->contractorPermissions->letters==2?"selected":null !!}>تعديل</option>
+                                                                <option value="4" {!! $permission->contractorPermissions->letters==4?"selected":null !!}>عرض</option>
+                                                                <option value="5" {!! $permission->contractorPermissions->letters==5?"selected":null !!}>عرض و حزف</option>
+                                                                <option value="6" {!! $permission->contractorPermissions->letters==6?"selected":null !!}>تعديل و عرض</option>
+                                                                <option value="7" {!! $permission->contractorPermissions->letters==7?"selected":null !!}>تحكم كامل</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>

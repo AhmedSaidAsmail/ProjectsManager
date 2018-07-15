@@ -248,7 +248,20 @@
                                                             </select>
                                                         </div>
                                                     </div>
-
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label class="control-label mb-10 text-left">الخطابات</label>
+                                                            <select name="contract[letters]" class="form-control">
+                                                                <option value="0">اختار صلاحية</option>
+                                                                <option value="1">حذف</option>
+                                                                <option value="2">تعديل</option>
+                                                                <option value="4">عرض</option>
+                                                                <option value="5">عرض و حزف</option>
+                                                                <option value="6">تعديل و عرض</option>
+                                                                <option value="7">تحكم كامل</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
