@@ -134,7 +134,7 @@
                                     <div class="ibox-content">
                                         <h6 class="pl-15 mb-10">بحث</h6>
                                         <ul class="tag-list pl-15 pr-15">
-                                            <form action="{{route('submittals.index')}}" method="get" id="ajax-data" data-display="#project-submittals">
+                                            <form action="{{route('letters.index')}}" method="get" id="ajax-data" data-display="#project-submittals">
                                                 <input type="hidden" name="project_id" value="{{$project->id}}">
 
                                                 <div class="form-group">
@@ -143,11 +143,13 @@
                                                     <div class="input-group">
                                                         <div class="input-group-addon" style="background-color:#BDBDBD;"><i class="icon-user"></i></div>
                                                         <select name="sort" class="form-control" data-placeholder="Choose a Category" tabindex="1">
-                                                            <option value="">== اختر واحدا ==</option>
-                                                            <option value="sample approval">اعتماد عينه</option>
-                                                            <option value="supplier approval">اعتماد مخططات الورشه</option>
-                                                            <option value="shop drawing approval ">اعتماد موردين</option>
-                                                            <option value="subcontractor approval">اعتماد مقاول باطن</option>
+                                                            <option value="">== اختر تصنيف ==</option>
+                                                            <option value="structural">انشائي</option>
+                                                            <option value="architectural">معماري</option>
+                                                            <option value="electrically">كهرباء</option>
+                                                            <option value="mechanics">ميكانيكا</option>
+                                                            <option value="general">موقع عام</option>
+                                                            <option value="other">اخري</option>
                                                         </select>
                                                     </div>
                                                 </div>

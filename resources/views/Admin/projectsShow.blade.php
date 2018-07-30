@@ -264,5 +264,9 @@
                 }
             });
         });
+        $("#watchNow").click(function(event){
+            event.preventDefault();
+
+        });
     </script>
 @endsection
