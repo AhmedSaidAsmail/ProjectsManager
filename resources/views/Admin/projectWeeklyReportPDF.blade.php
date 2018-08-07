@@ -147,7 +147,8 @@
             clear: both;
             content: '';
         }
-        .img-container > .img-item{
+
+        .img-container > .img-item {
             width: 50%;
             float: left;
             display: inline;
@@ -158,7 +159,8 @@
             float: left;
             display: inline;
         }
-        .img-container > .img-item img{
+
+        .img-container > .img-item img {
             width: 100%;
         }
     </style>
@@ -246,142 +248,175 @@
             </tr>
 
         </table>
-        <h1>الهيكل التنظيمي لجهاز الاشراف</h1>
-        <table class="table-insider">
-            <tr>
-                <td>الاسم</td>
-                <td>المهنة</td>
-            </tr>
-            @foreach($report->project->consultantEngineers as $consultantEngineer)
+        @if(count($report->project->consultantEngineers)>0)
+            <h1>الهيكل التنظيمي لجهاز الاشراف</h1>
+            <table class="table-insider">
                 <tr>
-                    <td>{{$consultantEngineer->engineer->name}}</td>
-                    <td>{{Lang::get('terms.'.$consultantEngineer->consultant_engineer_position)}}</td>
+                    <td>الاسم</td>
+                    <td>المهنة</td>
                 </tr>
-            @endforeach
-        </table>
-        <h1>الهيكل التنظيمي لجهاز المقاول</h1>
-        <table class="table-insider">
-            <tr>
-                <td>المهنة</td>
-                <td>العدد</td>
-                <td>الاسم</td>
-            </tr>
-            @foreach($report->contractorTeam as $contractorTeam)
+                @foreach($report->project->consultantEngineers as $consultantEngineer)
+                    <tr>
+                        <td>{{$consultantEngineer->engineer->name}}</td>
+                        <td>{{Lang::get('terms.'.$consultantEngineer->consultant_engineer_position)}}</td>
+                    </tr>
+                @endforeach
+            </table>
+        @endif
+        @if(count($report->contractorTeam)>0)
+            <h1>الهيكل التنظيمي لجهاز المقاول</h1>
+            <table class="table-insider">
                 <tr>
-                    <td>{{$contractorTeam->position}}</td>
-                    <td>{{$contractorTeam->number}}</td>
-                    <td>{{$contractorTeam->name}}</td>
+                    <td>المهنة</td>
+                    <td>العدد</td>
+                    <td>الاسم</td>
                 </tr>
-            @endforeach
-        </table>
-        <h1>معدات المقاول وأدوات بالموقع </h1>
-        <table class="table-insider">
-            <tr>
-                <td>المعدة</td>
-                <td>العدد</td>
-                <td>ملاحظات</td>
-            </tr>
-            @foreach($report->tools as $tool)
+                @foreach($report->contractorTeam as $contractorTeam)
+                    <tr>
+                        <td>{{$contractorTeam->position}}</td>
+                        <td>{{$contractorTeam->number}}</td>
+                        <td>{{$contractorTeam->name}}</td>
+                    </tr>
+                @endforeach
+            </table>
+        @endif
+        @if(count($report->tools)>0)
+            <h1>معدات المقاول وأدوات بالموقع </h1>
+            <table class="table-insider">
                 <tr>
-                    <td>{{$tool->tool}}</td>
-                    <td>{{$tool->number}}</td>
-                    <td>{{$tool->note}}</td>
+                    <td>المعدة</td>
+                    <td>العدد</td>
+                    <td>ملاحظات</td>
                 </tr>
-            @endforeach
-        </table>
-        <h1>البرنامج الزمنى</h1>
+                @foreach($report->tools as $tool)
+                    <tr>
+                        <td>{{$tool->tool}}</td>
+                        <td>{{$tool->number}}</td>
+                        <td>{{$tool->note}}</td>
+                    </tr>
+                @endforeach
+            </table>
+        @endif
+        @if(isset($report->schedule))
+            <h1>البرنامج الزمنى</h1>
 
-        <div class="additional-insider">
-            <img src="{{asset('documents/projects/w_report/'.$report->schedule)}}">
-        </div>
-        <h1>يان الاعمال المنفذه بالمشروع </h1>
+            <div class="additional-insider">
+                <img src="{{asset('documents/projects/w_report/'.$report->schedule)}}">
+            </div>
+        @endif
+        @if(isset($report->additionalInfo->done_working))
+            <h1>يان الاعمال المنفذه بالمشروع </h1>
 
-        <div class="additional-insider">
-            {!! $report->additionalInfo->done_working !!}
-        </div>
-        <h1>بيان الحالة</h1>
+            <div class="additional-insider">
+                {!! $report->additionalInfo->done_working !!}
+            </div>
+        @endif
+        @if(isset($report->additionalInfo->report_status))
+            <h1>بيان الحالة</h1>
 
-        <div class="additional-insider">
-            {!! $report->additionalInfo->report_status !!}
-        </div>
-        <h1>معدل سير العمل</h1>
+            <div class="additional-insider">
+                {!! $report->additionalInfo->report_status !!}
+            </div>
+        @endif
+        @if(isset($report->additionalInfo->working_rate))
+            <h1>معدل سير العمل</h1>
 
-        <div class="additional-insider">
-            {!! $report->additionalInfo->working_rate !!}
-        </div>
-        <h1>جدول نسب الانجاز</h1>
+            <div class="additional-insider">
+                {!! $report->additionalInfo->working_rate !!}
+            </div>
+        @endif
+        @if(isset($report->additionalInfo->completion_Schedule))
+            <h1>جدول نسب الانجاز</h1>
 
-        <div class="additional-insider">
-            {!! $report->additionalInfo->completion_Schedule !!}
-        </div>
-        <h1>وصف الاعمال المتوقع انجازها خلال الشهر القادم </h1>
+            <div class="additional-insider">
+                {!! $report->additionalInfo->completion_Schedule !!}
+            </div>
+        @endif
+        @if(isset($report->additionalInfo->working_next_month))
+            <h1>وصف الاعمال المتوقع انجازها خلال الشهر القادم </h1>
 
-        <div class="additional-insider">
-            {!! $report->additionalInfo->working_next_month !!}
-        </div>
-        <h1>ملاحظات الاستشارى على الاعمال بالموقع </h1>
+            <div class="additional-insider">
+                {!! $report->additionalInfo->working_next_month !!}
+            </div>
+        @endif
+        @if(isset($report->additionalInfo->consultant_note))
+            <h1>ملاحظات الاستشارى على الاعمال بالموقع </h1>
 
-        <div class="additional-insider">
-            {!! $report->additionalInfo->consultant_note !!}
-        </div>
-        <h1>المطلوب من المقاول </h1>
+            <div class="additional-insider">
+                {!! $report->additionalInfo->consultant_note !!}
+            </div>
+        @endif
+        @if(isset($report->additionalInfo->contractor_required))
+            <h1>المطلوب من المقاول </h1>
 
-        <div class="additional-insider">
-            {!! $report->additionalInfo->contractor_required !!}
-        </div>
-        <h1>الالمطلوب من المالك </h1>
+            <div class="additional-insider">
+                {!! $report->additionalInfo->contractor_required !!}
+            </div>
+        @endif
+        @if(isset($report->additionalInfo->owner_required))
+            <h1>الالمطلوب من المالك </h1>
 
-        <div class="additional-insider">
-            {!! $report->additionalInfo->owner_required !!}
-        </div>
-        <h1>نتائج الاختبارات </h1>
+            <div class="additional-insider">
+                {!! $report->additionalInfo->owner_required !!}
+            </div>
+        @endif
+        @if(count($report->tests)>0)
+            <h1>نتائج الاختبارات </h1>
 
-        <div class="additional-insider">
-            @foreach($report->tests->chunk(2) as $chunk)
-                <div class="img-container">
-                    @foreach($chunk as $test)
-                        <img src="{{asset('documents/projects/tests/'.$test->test->document)}}">
-                    @endforeach
-                </div>
-            @endforeach
+            <div class="additional-insider">
+                @foreach($report->tests->chunk(2) as $chunk)
+                    <div class="img-container">
+                        @foreach($chunk as $test)
+                            <img src="{{asset('documents/projects/tests/'.$test->test->document)}}">
+                        @endforeach
+                    </div>
+                @endforeach
 
-        </div>
-        <h1>المخاطبات ومحاضر الاجتماعات </h1>
-        <div class="additional-insider">
-            @foreach($report->requests->chunk(2) as $chunk)
-                <div class="img-container">
-                    @foreach($chunk as $requests)
-                        <img src="{{asset('documents/projects/requests/'.$requests->request->document)}}">
-                    @endforeach
-                </div>
-            @endforeach
+            </div>
+        @endif
+        @if(count($report->requests)>0 || count($report->submittals)>0)
+            <h1>المخاطبات ومحاضر الاجتماعات </h1>
 
-        </div>
-        <div class="additional-insider">
-            @foreach($report->submittals->chunk(2) as $chunk)
-                <div class="img-container">
-                    @foreach($chunk as $submittals)
-                        <img src="{{asset('documents/projects/submittals/'.$submittals->submittal->document)}}">
-                    @endforeach
-                </div>
-            @endforeach
+            <div class="additional-insider">
+                @foreach($report->requests->chunk(2) as $chunk)
+                    <div class="img-container">
+                        @foreach($chunk as $requests)
+                            <img src="{{asset('documents/projects/requests/'.$requests->request->document)}}">
+                        @endforeach
+                    </div>
+                @endforeach
 
-        </div>
-        <h1>الصور الفوتوغرافيه</h1>
-        <div class="additional-insider">
-            @foreach($report->files->chunk(2) as $chunk)
-                <div class="img-container">
-                    @foreach($chunk as $file)
-                        <div class="img-item">
-                            <img src="{{asset('documents/projects/files/'.$file->file->document)}}">
-                            <span style="display: block; text-align: center;">{{$file->file->description}}</span>
-                        </div>
-                    @endforeach
-                </div>
-            @endforeach
+            </div>
+            <div class="additional-insider">
+                @foreach($report->submittals->chunk(2) as $chunk)
+                    <div class="img-container">
+                        @foreach($chunk as $submittals)
+                            <img src="{{asset('documents/projects/submittals/'.$submittals->submittal->document)}}">
+                        @endforeach
+                    </div>
+                @endforeach
 
-        </div>
+            </div>
+        @endif
+        @if(count($report->files)>0)
+            <h1>الصور الفوتوغرافيه</h1>
+
+            <div class="additional-insider">
+                @foreach($report->files->chunk(2) as $chunk)
+                    <div class="img-container">
+                        @foreach($chunk as $file)
+                            <div class="img-item">
+                                <img src="{{asset('documents/projects/files/'.$file->file->document)}}">
+                                <span style="display: block; text-align: center;">{{$file->file->description}}</span>
+                            </div>
+                        @endforeach
+                    </div>
+                @endforeach
+
+            </div>
+        @endif
         <h1>توصيات الاستشاري </h1>
+
         <div class="additional-insider">
             {!! $report->additionalInfo->consultant_recommendations !!}
         </div>
