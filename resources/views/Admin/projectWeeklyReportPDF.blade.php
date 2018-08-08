@@ -297,63 +297,63 @@
                 @endforeach
             </table>
         @endif
-        @if(isset($report->schedule))
+        @if(isset($report->schedule) && !is_null($report->schedule))
             <h1>البرنامج الزمنى</h1>
 
             <div class="additional-insider">
                 <img src="{{asset('documents/projects/w_report/'.$report->schedule)}}">
             </div>
         @endif
-        @if(isset($report->additionalInfo->done_working))
+        @if(isset($report->additionalInfo->done_working) && !is_null($report->additionalInfo->done_working))
             <h1>يان الاعمال المنفذه بالمشروع </h1>
 
             <div class="additional-insider">
                 {!! $report->additionalInfo->done_working !!}
             </div>
         @endif
-        @if(isset($report->additionalInfo->report_status))
+        @if(isset($report->additionalInfo->report_status) && !is_null($report->additionalInfo->report_status))
             <h1>بيان الحالة</h1>
 
             <div class="additional-insider">
                 {!! $report->additionalInfo->report_status !!}
             </div>
         @endif
-        @if(isset($report->additionalInfo->working_rate))
+        @if(isset($report->additionalInfo->working_rate) && !is_null($report->additionalInfo->working_rate))
             <h1>معدل سير العمل</h1>
 
             <div class="additional-insider">
                 {!! $report->additionalInfo->working_rate !!}
             </div>
         @endif
-        @if(isset($report->additionalInfo->completion_Schedule))
+        @if(isset($report->additionalInfo->completion_Schedule) && !is_null($report->additionalInfo->completion_Schedule))
             <h1>جدول نسب الانجاز</h1>
 
             <div class="additional-insider">
                 {!! $report->additionalInfo->completion_Schedule !!}
             </div>
         @endif
-        @if(isset($report->additionalInfo->working_next_month))
+        @if(isset($report->additionalInfo->working_next_month) && !is_null($report->additionalInfo->working_next_month))
             <h1>وصف الاعمال المتوقع انجازها خلال الشهر القادم </h1>
 
             <div class="additional-insider">
                 {!! $report->additionalInfo->working_next_month !!}
             </div>
         @endif
-        @if(isset($report->additionalInfo->consultant_note))
+        @if(isset($report->additionalInfo->consultant_note) && !is_null($report->additionalInfo->consultant_note))
             <h1>ملاحظات الاستشارى على الاعمال بالموقع </h1>
 
             <div class="additional-insider">
                 {!! $report->additionalInfo->consultant_note !!}
             </div>
         @endif
-        @if(isset($report->additionalInfo->contractor_required))
+        @if(isset($report->additionalInfo->contractor_required) && !is_null($report->additionalInfo->contractor_required))
             <h1>المطلوب من المقاول </h1>
 
             <div class="additional-insider">
                 {!! $report->additionalInfo->contractor_required !!}
             </div>
         @endif
-        @if(isset($report->additionalInfo->owner_required))
+        @if(isset($report->additionalInfo->owner_required) && !is_null($report->additionalInfo->owner_required))
             <h1>الالمطلوب من المالك </h1>
 
             <div class="additional-insider">
