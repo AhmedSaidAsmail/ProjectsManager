@@ -95,6 +95,22 @@ class Filter
         return $this;
     }
 
+    private function filterSpecific()
+    {
+        if (isset($this->request->specific)) {
+            $this->result = $this->result->where('specific', '=', $this->request->specific);
+        }
+        return $this;
+    }
+
+    private function filterReceiver()
+    {
+        if (isset($this->request->receiver)) {
+            $this->result = $this->result->where('receiver', '=', $this->request->receiver);
+        }
+        return $this;
+    }
+
     private function filterFileType(Collection &$collection)
     {
         if (isset($this->request->type) && array_key_exists($this->request->type, self::$extensions)) {
@@ -114,7 +130,14 @@ class Filter
 
     public function results()
     {
-        $this->filterSort()->filterDateFrom()->filterDateTo()->filterCode()->filterResult()->filterLocation();
+        $this->filterSort()
+            ->filterDateFrom()
+            ->filterDateTo()
+            ->filterCode()
+            ->filterResult()
+            ->filterLocation()
+            ->filterSpecific()
+            ->filterReceiver();
         $result = $this->result->get();
         $this->filterFileType($result);
         return $result;

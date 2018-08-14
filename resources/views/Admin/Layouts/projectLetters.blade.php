@@ -154,6 +154,38 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
+                                                    <label class="control-label mb-10">نوع الخطاب</label>
+
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon" style="background-color:#BDBDBD;">
+                                                            <i class="icon-user"></i>
+                                                        </div>
+                                                        <select class="form-control" name="specific">
+                                                            <option value="">== اختر تصنيف ==</option>
+                                                            <option value="exported">صادر</option>
+                                                            <option value="imported">وارد</option>
+                                                            <option value="meeting">محضر اجتماع</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="control-label mb-10">الجهه</label>
+
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon" style="background-color:#BDBDBD;">
+                                                            <i class="icon-user"></i>
+                                                        </div>
+                                                        <select class="form-control" name="receiver">
+                                                            <option value="">== اختر الجهه ==</option>
+                                                            <option value="location">الموقع</option>
+                                                            <option value="office">المكتب</option>
+                                                            <option value="owner">المالك</option>
+                                                            <option value="contractor">المقاول</option>
+
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
                                                     <label for="message-text" class="control-label mb-10">من التاريخ</label>
                                                     <input name="date_from" type="date" class="form-control" id="description">
                                                 </div>
