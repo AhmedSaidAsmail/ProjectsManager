@@ -6,6 +6,7 @@
         <th>البند</th>
         <th>التاريخ</th>
         <th>النوع</th>
+        <th>التصنيف</th>
         <th>الوصف</th>
         <th>الملف</th>
     </tr>
@@ -17,6 +18,7 @@
         <th>البند</th>
         <th>التاريخ</th>
         <th>النوع</th>
+        <th>التصنيف</th>
         <th>الوصف</th>
         <th>الملف</th>
     </tr>
@@ -30,6 +32,7 @@
             <td>{{$submittal->related_item}}</td>
             <td>{{date('d-m-Y',strtotime($submittal->date))}}</td>
             <td>{{Lang::get('terms.'.$submittal->sort)}}</td>
+            <td>{{Lang::get('terms.'.$submittal->category)}}</td>
             <td>{{$submittal->description}}</td>
             <td><a href="{{asset('documents/projects/submittals/'.$submittal->document)}}">
                     <i class="fas fa-download"></i>

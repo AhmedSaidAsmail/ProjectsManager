@@ -111,6 +111,14 @@ class Filter
         return $this;
     }
 
+    private function filterCategory()
+    {
+        if (isset($this->request->category)) {
+            $this->result = $this->result->where('category', '=', $this->request->category);
+        }
+        return $this;
+    }
+
     private function filterFileType(Collection &$collection)
     {
         if (isset($this->request->type) && array_key_exists($this->request->type, self::$extensions)) {
@@ -137,7 +145,8 @@ class Filter
             ->filterResult()
             ->filterLocation()
             ->filterSpecific()
-            ->filterReceiver();
+            ->filterReceiver()
+            ->filterCategory();
         $result = $this->result->get();
         $this->filterFileType($result);
         return $result;

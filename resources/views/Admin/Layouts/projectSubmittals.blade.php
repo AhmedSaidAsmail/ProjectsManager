@@ -31,6 +31,22 @@
                                                 </div>
                                             </div>
                                             <div class="form-group">
+                                                <label class="control-label mb-10" for="">تصنيف الصبميتال </label>
+
+                                                <div class="input-group">
+                                                    <div class="input-group-addon" style="background-color:#BDBDBD;"><i class="icon-user"></i></div>
+                                                    <select name="category" class="form-control" data-placeholder="Choose a Category" tabindex="1">
+                                                        <option value="">== اختر تصنيف ==</option>
+                                                        <option value="structural">انشائي</option>
+                                                        <option value="architectural">معماري</option>
+                                                        <option value="electrically">كهرباء</option>
+                                                        <option value="mechanics">ميكانيكا</option>
+                                                        <option value="general">موقع عام</option>
+                                                        <option value="other">اخري</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
                                                 <label for="recipient-name" class="control-label mb-10">رقم الصبميتال</label>
 
                                                 <div class="input-group">
@@ -108,6 +124,22 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
+                                                    <label class="control-label mb-10" for="">تصنيف الصبميتال </label>
+
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon" style="background-color:#BDBDBD;"><i class="icon-user"></i></div>
+                                                        <select name="category" class="form-control" data-placeholder="Choose a Category" tabindex="1">
+                                                            <option value="">== اختر تصنيف ==</option>
+                                                            <option value="structural">انشائي</option>
+                                                            <option value="architectural">معماري</option>
+                                                            <option value="electrically">كهرباء</option>
+                                                            <option value="mechanics">ميكانيكا</option>
+                                                            <option value="general">موقع عام</option>
+                                                            <option value="other">اخري</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
                                                     <label for="message-text" class="control-label mb-10">من التاريخ</label>
                                                     <input name="date_from" type="date" class="form-control" id="description">
                                                 </div>
@@ -138,6 +170,7 @@
                                                 <th>البند</th>
                                                 <th>التاريخ</th>
                                                 <th>النوع</th>
+                                                <th>التصنيف</th>
                                                 <th>الوصف</th>
                                                 <th>الملف</th>
                                             </tr>
@@ -149,6 +182,7 @@
                                                 <th>البند</th>
                                                 <th>التاريخ</th>
                                                 <th>النوع</th>
+                                                <th>التصنيف</th>
                                                 <th>الوصف</th>
                                                 <th>الملف</th>
                                             </tr>
@@ -162,6 +196,7 @@
                                                     <td>{{$submittal->related_item}}</td>
                                                     <td>{{date('d-m-Y',strtotime($submittal->date))}}</td>
                                                     <td>{{Lang::get('terms.'.$submittal->sort)}}</td>
+                                                    <td>{{Lang::get('terms.'.$submittal->category)}}</td>
                                                     <td>{{$submittal->description}}</td>
                                                     <td style=" padding: 0px; text-align: left;">
                                                         @if(in_array(auth()->user()->permission->contractorPermissions->submittals,[4,5,6,7]) || auth()->guard('web')->check())
