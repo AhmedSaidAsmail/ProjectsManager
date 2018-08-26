@@ -87,10 +87,9 @@
                                 @include('Admin.Layouts.projectInformation')
                                 {{-- Prject Information --}}
                                 {{-- Timetable --}}
-                                <div id="time_table_tab" class="tab-pane fade" role="tabpanel">
-                                    <p>الجدول الزمني لاحقا في اصدار اخر</p>
-
-                                </div>
+                                {{-- Schedule --}}
+                                @include('Admin.Layouts.projectSchedule')
+                                {{-- Schedule --}}
                                 {{-- Timetable --}}
                                 {{-- Submittals  --}}
                                 @include('Admin.Layouts.projectSubmittals')
@@ -99,11 +98,7 @@
                                 @include('Admin.Layouts.projectRequests')
                                 {{-- Requests --}}
                                 {{-- Letters --}}
-                                <div id="letters_tab" class="tab-pane fade" role="tabpanel">
-                                    <div class="row col-md-12">
-                                        <p>الخطابات لاحقا في اصدار اخر</p>
-                                    </div>
-                                </div>
+                                @include('Admin.Layouts.projectLetters')
                                 {{-- Letters --}}
                                 {{-- Qunatities --}}
                                 <div id="quntty_tab" class="tab-pane fade" role="tabpanel">
@@ -178,8 +173,16 @@
     </div>
     {{-- Ajax Result Container--}}
 @endsection
+@section('additional-css')
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.2.0/ekko-lightbox.min.css" rel="stylesheet">
+@endsection
 @section('additional-js')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.2.0/ekko-lightbox.min.js"></script>
     <script>
+        $(document).on('click', '[data-toggle="lightbox"]', function (event) {
+            event.preventDefault();
+            $(this).ekkoLightbox();
+        });
         $(function () {
             $("a.ajax-data").click(function (event) {
                 event.preventDefault();
@@ -260,6 +263,10 @@
                     }
                 }
             });
+        });
+        $("#watchNow").click(function(event){
+            event.preventDefault();
+
         });
     </script>
 @endsection
