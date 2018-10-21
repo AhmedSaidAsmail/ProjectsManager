@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\TimeLine;
+use App\Models\TimeLinesItems;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -45,7 +45,7 @@ class TimeLinesItemsController extends Controller
             'ending_date' => 'date|required'
         ]);
         try {
-            $timeLine = new TimeLine();
+            $timeLine = new TimeLinesItems();
             $timeLine->create($request->all());
         } catch (\RuntimeException $ex) {
             return redirect()->back()->with('fail', $ex->getMessage());

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Src\HierarchyData\HierarchyFactory;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Project;
@@ -98,7 +99,8 @@ class ProjectsController extends Controller
     public function show($id)
     {
         $project = Project::findOrFail($id);
-        return view('Admin.projectsShow', ['project' => $project]);
+        $timeLinesCollection = HierarchyFactory::factory($project->timeLines)->renderArray()->all();
+        return view('Admin.projectsShow', ['project' => $project, 'timeLines' => $timeLinesCollection]);
     }
 
     /**

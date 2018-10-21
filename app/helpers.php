@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Src\FileType;
 use App\Models\Permission;
 use App\Src\SendNotificationToConsultantEngineers;
+use App\Src\HierarchyData\ItemResolver;
 
 if (!function_exists('collectData')) {
 
@@ -62,5 +63,41 @@ if (!function_exists('consultantEngineersNotification')) {
     {
         $sender = new SendNotificationToConsultantEngineers($project_id);
         $sender->sendMail();
+    }
+}
+if (!function_exists('timeLinesChilds')) {
+    function timeLinesChilds(ItemResolver $item)
+    {
+        if ($item->haveChilds()) {
+            foreach ($item->getChilds() as $child) {
+                $return = '<tr>';
+                $return .= '<td colspan="5" class="child-container">';
+                $return .= '<table class="table table-bordered main-table">';
+                $return .= '<tbody>';
+                $return .= '<tr>';
+                $return .= '<td colspan="2">' . $child->name . '</td>';
+                $return .= '<td></td>';
+                $return .= '<td></td>';
+                $return .= '<td></td>';
+                $return .= '</tr>';
+                foreach ($child->items as $timeLineItem) {
+                    $return .= '<tr>';
+                    $return .= '<td>'.$timeLineItem->activity_id.'</td>';
+                    $return .= '<td>'.$timeLineItem->activity_name.'</td>';
+                    $return .= '<td>'.$timeLineItem->original.'</td>';
+                    $return .= '<td>'.$timeLineItem->starting_date.'</td>';
+                    $return .= '<td>'.$timeLineItem->ending_date.'</td>';
+                    $return .= '</tr>';
+                }
+                $return .= timeLinesChilds($child);
+                $return .= '</tbody>';
+                $return .= '</table>';
+                $return .= '</td>';
+                $return .= '</tr>';
+
+            }
+            return $return;
+        }
+
     }
 }

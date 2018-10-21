@@ -23,6 +23,11 @@ class TimeLine extends Model
         return $this->belongsTo(Project::class);
     }
 
+    public function items()
+    {
+        return $this->hasMany(TimeLinesItems::class);
+    }
+
     public function nameWithAllParents()
     {
         $fullName = [];

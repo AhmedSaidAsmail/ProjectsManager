@@ -61,13 +61,13 @@
                                                                                 <div class="col-md-6">
                                                                                     <div class="form-group">
                                                                                         <label for="message-text" class="control-label mb-10">تاريخ البداية</label>
-                                                                                        <input name="date" type="starting_date" class="form-control">
+                                                                                        <input type="date" name="starting_date" class="form-control">
                                                                                     </div>
                                                                                 </div>
                                                                                 <div class="col-md-6">
                                                                                     <div class="form-group">
                                                                                         <label for="message-text" class="control-label mb-10">تاريخ النهاية</label>
-                                                                                        <input name="date" type="ending_date" class="form-control">
+                                                                                        <input type="date" name="ending_date" class="form-control">
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
@@ -99,6 +99,7 @@
                 </div>
                 <div class="panel-wrapper collapse in">
                     <div class="panel-body">
+                        {{-- Time Lines Table--}}
                         <table class="table table-bordered main-table">
                             <thead>
                             <tr>
@@ -110,92 +111,26 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td colspan="2">مشـروع المعھد الصناعي الثانوي مشـروع المعھد الصناعي الثانوي ب 1--Zulfi</td>
-                                <td>510</td>
-                                <td>01-Dec-13</td>
-                                <td>01-Dec-13</td>
-                            </tr>
-                            <tr>
-                                <td>10</td>
-                                <td>لعوائق من خالى الموقع استلام</td>
-                                <td>510</td>
-                                <td>01-Dec-13</td>
-                                <td>01-Dec-13</td>
-                            </tr>
-                            <tr>
-                                <td>10</td>
-                                <td>لعوائق من خالى الموقع استلام</td>
-                                <td>510</td>
-                                <td>01-Dec-13</td>
-                                <td>01-Dec-13</td>
-                            </tr>
-                            <tr>
-                                <td colspan="5" class="child-container">
-                                    <table class="table table-bordered main-table">
-                                        <tbody>
-                                        <tr>
-                                            <td colspan="2">مشـروع المعھد الصناعي الثانوي مشـروع المعھد الصناعي الثانوي ب 1--Zulfi</td>
-                                            <td>510</td>
-                                            <td>01-Dec-13</td>
-                                            <td>01-Dec-13</td>
-                                        </tr>
-                                        <tr>
-                                            <td>10</td>
-                                            <td>لعوائق من خالى الموقع استلام</td>
-                                            <td>510</td>
-                                            <td>01-Dec-13</td>
-                                            <td>01-Dec-13</td>
-                                        </tr>
-                                        <tr>
-                                            <td colspan="5" class="child-container">
-                                                <table class="table table-bordered main-table">
-                                                    <tbody>
-                                                    <tr>
-                                                        <td colspan="2">مشـروع المعھد الصناعي الثانوي مشـروع المعھد الصناعي الثانوي ب 1--Zulfi</td>
-                                                        <td>510</td>
-                                                        <td>01-Dec-13</td>
-                                                        <td>01-Dec-13</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>10</td>
-                                                        <td>لعوائق من خالى الموقع استلام</td>
-                                                        <td>510</td>
-                                                        <td>01-Dec-13</td>
-                                                        <td>01-Dec-13</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td colspan="5" class="child-container">
-                                                            <table class="table table-bordered main-table">
-                                                                <tbody>
-                                                                <tr>
-                                                                    <td colspan="2">مشـروع المعھد الصناعي الثانوي مشـروع المعھد الصناعي الثانوي ب 1--Zulfi</td>
-                                                                    <td>510</td>
-                                                                    <td>01-Dec-13</td>
-                                                                    <td>01-Dec-13</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>10</td>
-                                                                    <td>لعوائق من خالى الموقع استلام</td>
-                                                                    <td>510</td>
-                                                                    <td>01-Dec-13</td>
-                                                                    <td>01-Dec-13</td>
-                                                                </tr>
-                                                                </tbody>
-                                                            </table>
-                                                        </td>
-                                                    </tr>
-                                                    </tbody>
-                                                </table>
-                                            </td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                </td>
-                            </tr>
+                            @foreach($timeLines as $timeLine)
+                                <tr>
+                                    <td colspan="2">{{$timeLine->name}}</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                @foreach($timeLine->items as $item)
+                                    <tr>
+                                        <td>{{$item->activity_id}}</td>
+                                        <td>{{$item->activity_name}}م</td>
+                                        <td>{{$item->original}}</td>
+                                        <td>{{$item->starting_date}}</td>
+                                        <td>{{$item->ending_date}}</td>
+                                    </tr>
+                                @endforeach
+                                {!! timeLinesChilds($timeLine) !!}
+                            @endforeach
                             </tbody>
                         </table>
-
                     </div>
                 </div>
             </div>
