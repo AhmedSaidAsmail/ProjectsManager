@@ -103,19 +103,42 @@
     padding: 15px;
 
 }
-.main-table{
+
+.main-table {
     margin-bottom: 0;
 }
-.main-table tr td:nth-child(5){
+
+.main-table tr td:nth-child(5), .main-table tr td:nth-child(4), .main-table tr td:nth-child(3) {
     width: 150px;
 }
+
+.main-table tr td:nth-child(2) {
+    width: 350px;
+}
+
 .main-table > tbody > tr > td, .main-table > tbody > tr > th, .main-table > tfoot > tr > td, .main-table > tfoot > tr > th, .main-table > thead > tr > td, .main-table > thead > tr > th {
     border-color: #000000;
+    padding: 5px 10px;
+}
+
+.main-table > tbody > tr > td.child-container {
     padding: 0;
 }
 
 .main-table > thead > tr > th:first-child, .main-table > thead > tr > td:first-child, .main-table > tbody > tr > td:first-child {
     border-right: 15px solid #ffff80;
+}
+
+.main-table > tbody > tr > td > table > tbody > tr > td:first-child {
+    border-right-color: #80ff80;
+}
+
+.main-table > tbody > tr > td > table > tbody > tr > td > table > tbody > tr > td:first-child {
+    border-right-color: #ffff00;
+}
+
+.main-table > tbody > tr > td > table > tbody > tr > td > table > tbody > tr > td > table > tbody > tr > td:first-child {
+    border-right-color: #0000ff;
 }
 
 .main-table > thead > tr > th {
@@ -124,4 +147,17 @@
 
 .main-table > tbody > tr:first-child > td {
     background-color: #ffff80;
+}
+
+.main-table > tbody > tr > td > table > tbody > tr:first-child > td {
+    background-color: #80ff80;
+}
+
+.main-table > tbody > tr > td > table > tbody > tr > td > table > tbody > tr:first-child > td {
+    background-color: #ffff00;
+}
+
+.main-table > tbody > tr > td > table > tbody > tr > td > table > tbody > tr > td > table > tbody > tr:first-child > td {
+    background-color: #0000ff;
+    color: #ffffff;
 }

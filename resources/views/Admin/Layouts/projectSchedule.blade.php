@@ -131,7 +131,7 @@
                                 <td>01-Dec-13</td>
                             </tr>
                             <tr>
-                                <td colspan="5">
+                                <td colspan="5" class="child-container">
                                     <table class="table table-bordered main-table">
                                         <tbody>
                                         <tr>
@@ -146,6 +146,48 @@
                                             <td>510</td>
                                             <td>01-Dec-13</td>
                                             <td>01-Dec-13</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="5" class="child-container">
+                                                <table class="table table-bordered main-table">
+                                                    <tbody>
+                                                    <tr>
+                                                        <td colspan="2">مشـروع المعھد الصناعي الثانوي مشـروع المعھد الصناعي الثانوي ب 1--Zulfi</td>
+                                                        <td>510</td>
+                                                        <td>01-Dec-13</td>
+                                                        <td>01-Dec-13</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>10</td>
+                                                        <td>لعوائق من خالى الموقع استلام</td>
+                                                        <td>510</td>
+                                                        <td>01-Dec-13</td>
+                                                        <td>01-Dec-13</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="5" class="child-container">
+                                                            <table class="table table-bordered main-table">
+                                                                <tbody>
+                                                                <tr>
+                                                                    <td colspan="2">مشـروع المعھد الصناعي الثانوي مشـروع المعھد الصناعي الثانوي ب 1--Zulfi</td>
+                                                                    <td>510</td>
+                                                                    <td>01-Dec-13</td>
+                                                                    <td>01-Dec-13</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>10</td>
+                                                                    <td>لعوائق من خالى الموقع استلام</td>
+                                                                    <td>510</td>
+                                                                    <td>01-Dec-13</td>
+                                                                    <td>01-Dec-13</td>
+                                                                </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                            </td>
                                         </tr>
                                         </tbody>
                                     </table>
