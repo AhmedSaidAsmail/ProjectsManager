@@ -91,7 +91,8 @@
     display: none;
     transition: ease all .6s;
 }
-.project-edit{
+
+.project-edit {
     width: 50%;
     background-color: #ffffff;
     top: 0;
@@ -101,4 +102,26 @@
     margin: auto;
     padding: 15px;
 
+}
+.main-table{
+    margin-bottom: 0;
+}
+.main-table tr td:nth-child(5){
+    width: 150px;
+}
+.main-table > tbody > tr > td, .main-table > tbody > tr > th, .main-table > tfoot > tr > td, .main-table > tfoot > tr > th, .main-table > thead > tr > td, .main-table > thead > tr > th {
+    border-color: #000000;
+    padding: 0;
+}
+
+.main-table > thead > tr > th:first-child, .main-table > thead > tr > td:first-child, .main-table > tbody > tr > td:first-child {
+    border-right: 15px solid #ffff80;
+}
+
+.main-table > thead > tr > th {
+    background-color: #ffff80;
+}
+
+.main-table > tbody > tr:first-child > td {
+    background-color: #ffff80;
 }

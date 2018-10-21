@@ -366,6 +366,7 @@
                     <li><a class="active-page" href="{{route('engineer-types.index')}}"> انواع المهندسين</a></li>
                     <li><a class="active-page" href="{{route('test-sorts.index')}}">اختبارات المشروعات</a></li>
                     <li><a class="active-page" href="{{route('permissions.index')}}">الصلاحيات</a></li>
+                    <li><a class="active-page" href="{{route('time-lines.index')}}">الجداول الزمنية</a></li>
                 </ul>
             </li>
         </ul>

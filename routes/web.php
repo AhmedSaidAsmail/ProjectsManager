@@ -37,6 +37,7 @@ Route::group([], function () {
     Route::resource('/project/test-sorts', 'Admin\ProjectTestSortsController');
     Route::get('/project/test-sorts/get/Related', 'Admin\ProjectTestSortsController@getRelated')->name('test-sorts.getRelated');
     Route::resource('/project/items/schedules', 'Admin\ProjectSchedulesController');
+    Route::resource('/project/items/time-line-items', 'Admin\TimeLinesItemsController');
 });
 // Admin Area
 Route::group(['prefix' => 'admin', 'middleware' => 'auth:web'], function () {
@@ -76,7 +77,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:web'], function () {
     // projects
     Route::resource('/projects', 'Admin\ProjectsController');
     //settings
-    Route::resource('/sittings/permissions', 'Admin\PermissionsController');
+    Route::resource('/settings/permissions', 'Admin\PermissionsController');
+    Route::resource('/setting/project/time-lines', 'Admin\TimeLinesController');
 
 
 });

@@ -16,6 +16,9 @@
         <testsuite name="Unit">
             <directory suffix="Test.php">./tests/Unit</directory>
         </testsuite>
+        <testsuite name="HierarchyTest">
+            <directory suffix="Test.php">./app/Src/HierarchyData/test</directory>
+        </testsuite>
     </testsuites>
     <filter>
         <whitelist processUncoveredFilesFromWhitelist="true">
@@ -27,5 +30,7 @@
         <env name="CACHE_DRIVER" value="array"/>
         <env name="SESSION_DRIVER" value="array"/>
         <env name="QUEUE_DRIVER" value="sync"/>
+        <!--<env name="DB_CONNECTION" value="sqlite"/>-->
+        <!--<env name="DB_DATABASE" value=":memory:"/>-->
     </php>
 </phpunit>

@@ -60,6 +60,11 @@ class Project extends Model
         return $this->hasMany(ProjectSchedule::class);
     }
 
+    public function timeLines()
+    {
+        return $this->hasMany(TimeLine::class);
+    }
+
     public function submittals()
     {
         return $this->hasMany(Submittal::class);
