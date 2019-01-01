@@ -17,18 +17,19 @@ switch (true) {
         $parent = 'Admin.Layouts.Master';
 
 }
+$reportType = $monthly ? "شهري" : "اسبوعي";
 ?>
 @extends($parent)
 @section('container')
     <div class="row heading-bg">
         <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-            <h5 class="txt-dark arabic-fonts">اعداد تقرير اسبوعي</h5>
+            <h5 class="txt-dark arabic-fonts">اعداد تقرير {{$reportType}}</h5>
         </div>
 
         <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12 top-directory">
             <ul class="list-inline arabic-fonts">
                 <li class="active">
-                    <span>اعداد تقرير اسبوعي</span>
+                    <span>اعداد تقرير {{$reportType}}</span>
                 </li>
                 <li>
                     <a href="#">
@@ -48,8 +49,10 @@ switch (true) {
         <div class="panel panel-default card-view">
             <div class="panel-body">
                 <div class="form-wrap">
-                    <form method="post" action="{{route('weekly-report.store',['projectId'=>$project->id])}}" enctype="multipart/form-data">
+                    <form method="post" action="{{route('weekly-report.store',['projectId'=>$project->id])}}"
+                          enctype="multipart/form-data">
                         {{csrf_field()}}
+                        <input type="hidden" name="monthly" value="{{$monthly}}">
                         <div class="panel-group" id="report">
                             <div class="panel panel-warning">
                                 <div class="panel-heading">
@@ -69,7 +72,8 @@ switch (true) {
                                                     <div class="input-group">
                                                         <div class="input-group-addon ">
                                                             <i class="icon-user"></i></div>
-                                                        <input type="text" class="form-control" value="{{$project->name}}" name="name" readonly>
+                                                        <input type="text" class="form-control"
+                                                               value="{{$project->name}}" name="name" readonly>
                                                     </div>
                                                 </div>
                                             </div>
@@ -80,7 +84,9 @@ switch (true) {
                                                     <div class="input-group">
                                                         <div class="input-group-addon">
                                                             <i class="fas fa-calendar"></i></div>
-                                                        <input type="text" value="" class="form-control" name="starting_date" data-mask="9999-99-99" placeholder="" required>
+                                                        <input type="text" value="" class="form-control"
+                                                               name="starting_date" data-mask="9999-99-99"
+                                                               placeholder="" required>
                                                     </div>
                                                     <span class="text-muted">yyyy-mm-dd</span>
                                                 </div>
@@ -92,7 +98,9 @@ switch (true) {
                                                     <div class="input-group">
                                                         <div class="input-group-addon">
                                                             <i class="fas fa-calendar"></i></div>
-                                                        <input type="text" value="" class="form-control" name="ending_date" data-mask="9999-99-99" placeholder="" required>
+                                                        <input type="text" value="" class="form-control"
+                                                               name="ending_date" data-mask="9999-99-99" placeholder=""
+                                                               required>
                                                     </div>
                                                     <span class="text-muted">yyyy-mm-dd</span>
                                                 </div>
@@ -101,31 +109,40 @@ switch (true) {
                                         <div class="row">
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <label class="control-label mb-10" for="">نسبة الانجاز المالية</label>
+                                                    <label class="control-label mb-10" for="">نسبة الانجاز
+                                                        المالية</label>
 
                                                     <div class="input-group">
-                                                        <div class="input-group-addon"><i class="fas fa-percent"></i></div>
-                                                        <input type="number" value="" class="form-control" name="financial_achievement_ratio" required>
+                                                        <div class="input-group-addon"><i class="fas fa-percent"></i>
+                                                        </div>
+                                                        <input type="number" value="" class="form-control"
+                                                               name="financial_achievement_ratio" required>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <label class="control-label mb-10" for="">نسبة الانجاز الفعلية</label>
+                                                    <label class="control-label mb-10" for="">نسبة الانجاز
+                                                        الفعلية</label>
 
                                                     <div class="input-group">
-                                                        <div class="input-group-addon"><i class="fas fa-percent"></i></div>
-                                                        <input type="number" value="" class="form-control" name="actual_completion_rate" required>
+                                                        <div class="input-group-addon"><i class="fas fa-percent"></i>
+                                                        </div>
+                                                        <input type="number" value="" class="form-control"
+                                                               name="actual_completion_rate" required>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <label class="control-label mb-10" for="">نسبة الانجاز المطلوبة</label>
+                                                    <label class="control-label mb-10" for="">نسبة الانجاز
+                                                        المطلوبة</label>
 
                                                     <div class="input-group">
-                                                        <div class="input-group-addon"><i class="fas fa-percent"></i></div>
-                                                        <input type="number" value="" class="form-control" name="percentage_achievement_required" required>
+                                                        <div class="input-group-addon"><i class="fas fa-percent"></i>
+                                                        </div>
+                                                        <input type="number" value="" class="form-control"
+                                                               name="percentage_achievement_required" required>
                                                     </div>
                                                 </div>
                                             </div>
@@ -143,7 +160,8 @@ switch (true) {
                                 </div>
                                 <div class="collapse panel-collapse" id="project_results">
                                     <div class="panel-body">
-                                        <div id="projectTestResult" data-parent="{{$project->id}}" data-ajax--url="{{route('tests.getAccordingToDate')}}">
+                                        <div id="projectTestResult" data-parent="{{$project->id}}"
+                                             data-ajax--url="{{route('tests.getAccordingToDate')}}">
 
 
                                         </div>
@@ -160,11 +178,13 @@ switch (true) {
                                 </div>
                                 <div class="collapse panel-collapse" id="project_requests">
                                     <div class="panel-body">
-                                        <div id="projectRequestResult" data-parent="{{$project->id}}" data-ajax--url="{{route('requests.getAccordingToDate')}}">
+                                        <div id="projectRequestResult" data-parent="{{$project->id}}"
+                                             data-ajax--url="{{route('requests.getAccordingToDate')}}">
 
 
                                         </div>
-                                        <div id="projectSubmittalsResult" data-parent="{{$project->id}}" data-ajax--url="{{route('submittals.getAccordingToDate')}}">
+                                        <div id="projectSubmittalsResult" data-parent="{{$project->id}}"
+                                             data-ajax--url="{{route('submittals.getAccordingToDate')}}">
 
 
                                         </div>
@@ -182,7 +202,8 @@ switch (true) {
                                 <div class="collapse panel-collapse" id="project_photos">
                                     <div class="panel-body">
 
-                                        <div id="projectFileResult" data-parent="{{$project->id}}" data-ajax--url="{{route('project-files.getAccordingToDate')}}">
+                                        <div id="projectFileResult" data-parent="{{$project->id}}"
+                                             data-ajax--url="{{route('project-files.getAccordingToDate')}}">
 
 
                                         </div>
@@ -267,7 +288,8 @@ switch (true) {
                                     <div class="panel-body">
                                         <div class="row">
                                             <div class="col-md-12">
-                                                <textarea class="tinymce" name="report_additional[done_working]"></textarea>
+                                                <textarea class="tinymce"
+                                                          name="report_additional[done_working]"></textarea>
                                             </div>
                                         </div>
 
@@ -286,7 +308,8 @@ switch (true) {
                                     <div class="panel-body">
                                         <div class="row">
                                             <div class="col-md-12">
-                                                <textarea class="tinymce" name="report_additional[report_status]"></textarea>
+                                                <textarea class="tinymce"
+                                                          name="report_additional[report_status]"></textarea>
                                             </div>
                                         </div>
 
@@ -305,7 +328,8 @@ switch (true) {
                                     <div class="panel-body">
                                         <div class="row">
                                             <div class="col-md-12">
-                                                <textarea class="tinymce" name="report_additional[working_rate]"></textarea>
+                                                <textarea class="tinymce"
+                                                          name="report_additional[working_rate]"></textarea>
                                             </div>
                                         </div>
 
@@ -324,7 +348,8 @@ switch (true) {
                                     <div class="panel-body">
                                         <div class="row">
                                             <div class="col-md-12">
-                                                <textarea class="tinymce" name="report_additional[completion_Schedule]"></textarea>
+                                                <textarea class="tinymce"
+                                                          name="report_additional[completion_Schedule]"></textarea>
                                             </div>
                                         </div>
 
@@ -343,7 +368,8 @@ switch (true) {
                                     <div class="panel-body">
                                         <div class="row">
                                             <div class="col-md-12">
-                                                <textarea class="tinymce" name="report_additional[working_next_month]"></textarea>
+                                                <textarea class="tinymce"
+                                                          name="report_additional[working_next_month]"></textarea>
                                             </div>
                                         </div>
 
@@ -362,7 +388,8 @@ switch (true) {
                                     <div class="panel-body">
                                         <div class="row">
                                             <div class="col-md-12">
-                                                <textarea class="tinymce" name="report_additional[consultant_note]"></textarea>
+                                                <textarea class="tinymce"
+                                                          name="report_additional[consultant_note]"></textarea>
                                             </div>
                                         </div>
 
@@ -381,7 +408,8 @@ switch (true) {
                                     <div class="panel-body">
                                         <div class="row">
                                             <div class="col-md-12">
-                                                <textarea class="tinymce" name="report_additional[contractor_required]"></textarea>
+                                                <textarea class="tinymce"
+                                                          name="report_additional[contractor_required]"></textarea>
                                             </div>
                                         </div>
 
@@ -400,7 +428,8 @@ switch (true) {
                                     <div class="panel-body">
                                         <div class="row">
                                             <div class="col-md-12">
-                                                <textarea class="tinymce" name="report_additional[owner_required]"></textarea>
+                                                <textarea class="tinymce"
+                                                          name="report_additional[owner_required]"></textarea>
                                             </div>
                                         </div>
 
@@ -410,7 +439,8 @@ switch (true) {
                             <div class="panel-primary panel">
                                 <div class="panel-heading">
                                     <h4 class="panel-title">
-                                        <a href="#consultant_recommendations" data-parent="#report" data-toggle="collapse">
+                                        <a href="#consultant_recommendations" data-parent="#report"
+                                           data-toggle="collapse">
                                             توصيات الاستشاري
                                         </a>
                                     </h4>
@@ -419,7 +449,8 @@ switch (true) {
                                     <div class="panel-body">
                                         <div class="row">
                                             <div class="col-md-12">
-                                                <textarea class="tinymce" name="report_additional[consultant_recommendations]"></textarea>
+                                                <textarea class="tinymce"
+                                                          name="report_additional[consultant_recommendations]"></textarea>
                                             </div>
                                         </div>
 
@@ -456,7 +487,8 @@ switch (true) {
 
 @endsection
 @section('additional-css')
-    <link href="{{asset('template/vendors/bower_components/jasny-bootstrap/dist/css/jasny-bootstrap.min.css')}}" rel="stylesheet" type="text/css"/>
+    <link href="{{asset('template/vendors/bower_components/jasny-bootstrap/dist/css/jasny-bootstrap.min.css')}}"
+          rel="stylesheet" type="text/css"/>
     <style>
 
         .panel-body .row {
@@ -489,37 +521,37 @@ switch (true) {
                 var lastIndex = destiny.find('#contractor_team:last-child').length ? destiny.find('#contractor_team:last-child').attr('data-index') : 0;
                 var index = parseInt(lastIndex) + 1;
                 destiny.append('<div class="row" id="contractor_team" data-index="' + index + '"> ' +
-                        '<div class="col-md-4"> ' +
-                        '<div class="form-group"> ' +
-                        '<label class="control-label mb-10" for="">المهنة</label> ' +
-                        '<div class="input-group"> ' +
-                        '<div class="input-group-addon"><i class="fab fa-gg-circle fa-lg"></i></div> ' +
-                        '<input class="form-control" name="contractor_team[' + index + '][position]"> ' +
-                        '</div> ' +
-                        '</div> ' +
-                        '</div> ' +
-                        '<div class="col-md-3"> ' +
-                        '<div class="form-group"> ' +
-                        '<label class="control-label mb-10" for="">العدد</label> ' +
-                        '<div class="input-group"> ' +
-                        '<div class="input-group-addon"><i class="fas fa-sort-numeric-up fa-lg"></i></div> ' +
-                        '<input type="number" value="1" class="form-control" name="contractor_team[' + index + '][number]" required> ' +
-                        '</div> ' +
-                        '</div> ' +
-                        '</div> ' +
-                        '<div class="col-md-4"> ' +
-                        '<div class="form-group"> ' +
-                        '<label class="control-label mb-10" for="">الاسم</label> ' +
-                        '<div class="input-group"> ' +
-                        '<div class="input-group-addon"><i class="fas fa-male fa-lg"></i></div> ' +
-                        '<input class="form-control" name="contractor_team[' + index + '][name]"> ' +
-                        '</div> ' +
-                        '</div> ' +
-                        '</div> ' +
-                        '<div class="col-md-1"> ' +
-                        '<a href="#" id="removeRow" style="display: block; padding-top: 35px;"><i class="fas fa-minus-circle fa-2x text-danger"></i></a> ' +
-                        '</div> ' +
-                        '</div>');
+                    '<div class="col-md-4"> ' +
+                    '<div class="form-group"> ' +
+                    '<label class="control-label mb-10" for="">المهنة</label> ' +
+                    '<div class="input-group"> ' +
+                    '<div class="input-group-addon"><i class="fab fa-gg-circle fa-lg"></i></div> ' +
+                    '<input class="form-control" name="contractor_team[' + index + '][position]"> ' +
+                    '</div> ' +
+                    '</div> ' +
+                    '</div> ' +
+                    '<div class="col-md-3"> ' +
+                    '<div class="form-group"> ' +
+                    '<label class="control-label mb-10" for="">العدد</label> ' +
+                    '<div class="input-group"> ' +
+                    '<div class="input-group-addon"><i class="fas fa-sort-numeric-up fa-lg"></i></div> ' +
+                    '<input type="number" value="1" class="form-control" name="contractor_team[' + index + '][number]" required> ' +
+                    '</div> ' +
+                    '</div> ' +
+                    '</div> ' +
+                    '<div class="col-md-4"> ' +
+                    '<div class="form-group"> ' +
+                    '<label class="control-label mb-10" for="">الاسم</label> ' +
+                    '<div class="input-group"> ' +
+                    '<div class="input-group-addon"><i class="fas fa-male fa-lg"></i></div> ' +
+                    '<input class="form-control" name="contractor_team[' + index + '][name]"> ' +
+                    '</div> ' +
+                    '</div> ' +
+                    '</div> ' +
+                    '<div class="col-md-1"> ' +
+                    '<a href="#" id="removeRow" style="display: block; padding-top: 35px;"><i class="fas fa-minus-circle fa-2x text-danger"></i></a> ' +
+                    '</div> ' +
+                    '</div>');
                 removeRow();
             });
             $('a#insertToolRow').click(function (event) {
@@ -529,37 +561,37 @@ switch (true) {
                 var lastIndex = destiny.find('#contractor_tool:last-child').length ? destiny.find('#contractor_tool:last-child').attr('data-index') : 0;
                 var index = parseInt(lastIndex) + 1;
                 destiny.append('<div class="row" id="contractor_tool" data-index="' + index + '"> ' +
-                        '<div class="col-md-4"> ' +
-                        '<div class="form-group"> ' +
-                        '<label class="control-label mb-10" for="">المعدة</label> ' +
-                        '<div class="input-group"> ' +
-                        '<div class="input-group-addon"><i class="fab fa-gg-circle fa-lg"></i></div> ' +
-                        '<input class="form-control" name="contractor_tool[' + index + '][tool]"> ' +
-                        '</div> ' +
-                        '</div> ' +
-                        '</div> ' +
-                        '<div class="col-md-3"> ' +
-                        '<div class="form-group"> ' +
-                        '<label class="control-label mb-10" for="">العدد</label> ' +
-                        '<div class="input-group"> ' +
-                        '<div class="input-group-addon"><i class="fas fa-sort-numeric-up fa-lg"></i></div> ' +
-                        '<input type="number" value="1" class="form-control" name="contractor_tool[' + index + '][number]" required> ' +
-                        '</div> ' +
-                        '</div> ' +
-                        '</div> ' +
-                        '<div class="col-md-4"> ' +
-                        '<div class="form-group"> ' +
-                        '<label class="control-label mb-10" for="">الملاحظات</label> ' +
-                        '<div class="input-group"> ' +
-                        '<div class="input-group-addon"><i class="fas fa-male fa-lg"></i></div> ' +
-                        '<input class="form-control" name="contractor_tool[' + index + '][note]"> ' +
-                        '</div> ' +
-                        '</div> ' +
-                        '</div> ' +
-                        '<div class="col-md-1"> ' +
-                        '<a href="#" id="removeRow" style="display: block; padding-top: 35px;"><i class="fas fa-minus-circle fa-2x text-danger"></i></a> ' +
-                        '</div> ' +
-                        '</div>');
+                    '<div class="col-md-4"> ' +
+                    '<div class="form-group"> ' +
+                    '<label class="control-label mb-10" for="">المعدة</label> ' +
+                    '<div class="input-group"> ' +
+                    '<div class="input-group-addon"><i class="fab fa-gg-circle fa-lg"></i></div> ' +
+                    '<input class="form-control" name="contractor_tool[' + index + '][tool]"> ' +
+                    '</div> ' +
+                    '</div> ' +
+                    '</div> ' +
+                    '<div class="col-md-3"> ' +
+                    '<div class="form-group"> ' +
+                    '<label class="control-label mb-10" for="">العدد</label> ' +
+                    '<div class="input-group"> ' +
+                    '<div class="input-group-addon"><i class="fas fa-sort-numeric-up fa-lg"></i></div> ' +
+                    '<input type="number" value="1" class="form-control" name="contractor_tool[' + index + '][number]" required> ' +
+                    '</div> ' +
+                    '</div> ' +
+                    '</div> ' +
+                    '<div class="col-md-4"> ' +
+                    '<div class="form-group"> ' +
+                    '<label class="control-label mb-10" for="">الملاحظات</label> ' +
+                    '<div class="input-group"> ' +
+                    '<div class="input-group-addon"><i class="fas fa-male fa-lg"></i></div> ' +
+                    '<input class="form-control" name="contractor_tool[' + index + '][note]"> ' +
+                    '</div> ' +
+                    '</div> ' +
+                    '</div> ' +
+                    '<div class="col-md-1"> ' +
+                    '<a href="#" id="removeRow" style="display: block; padding-top: 35px;"><i class="fas fa-minus-circle fa-2x text-danger"></i></a> ' +
+                    '</div> ' +
+                    '</div>');
                 removeRow();
             });
 
@@ -586,6 +618,7 @@ switch (true) {
                 }
 
             });
+
             function getTests(dateFrom, dateTo, container) {
                 // var container = $("#projectTestResult");
                 var url = container.attr('data-ajax--url');

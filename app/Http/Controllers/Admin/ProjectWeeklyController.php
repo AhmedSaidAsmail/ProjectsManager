@@ -27,13 +27,15 @@ class ProjectWeeklyController extends Controller
     /**
      * Show the form for creating a new resource.
      *
+     * @param Request $request
      * @param  int $projectId
      * @return \Illuminate\Http\Response
      */
-    public function create($projectId)
+    public function create(Request $request, $projectId)
     {
         $project = Project::find($projectId);
-        return view('Admin.projectWeeklyReportCreate', ['project' => $project]);
+        $monthly=$request->has('monthly')?1:0;
+        return view('Admin.projectWeeklyReportCreate', ['project' => $project, 'monthly' => $monthly]);
     }
 
     /**

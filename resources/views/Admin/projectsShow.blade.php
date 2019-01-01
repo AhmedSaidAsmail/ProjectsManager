@@ -155,9 +155,9 @@
                                 {{-- Weekly Report --}}
                                 @include('Admin.Layouts.projectWeeklyReport')
                                 {{-- Weekly Report --}}
-                                <div id="dropdown_14" class="tab-pane fade" role="tabpanel">
-                                    <p>Trust fund seitan letterpress, keytar raw denim keffiyeh etsy art party before they sold out master cleanse gluten-free squid scenester freegan cosby sweater.</p>
-                                </div>
+                                {{-- Monthly Report --}}
+                                @include('Admin.Layouts.projectMonthlyReport')
+                                {{-- Monthly Report --}}
                             </div>
                         </div>
                     </div>

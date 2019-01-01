@@ -108,9 +108,12 @@ class Project extends Model
 
     public function weeklyReports()
     {
-        return $this->hasMany(Project_weekly_report::class);
+        return $this->hasMany(Project_weekly_report::class)->where('project_weekly_reports.monthly',0);
     }
-
+    public function monthlyReports()
+    {
+        return $this->hasMany(Project_weekly_report::class)->where('project_weekly_reports.monthly',1);
+    }
     public function letters()
     {
         return $this->hasMany(ProjectLetters::class);
