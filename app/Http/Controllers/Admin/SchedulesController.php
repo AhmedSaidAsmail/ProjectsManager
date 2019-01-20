@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Project;
 use App\Models\Schedule;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -69,7 +70,10 @@ class SchedulesController extends Controller
      */
     public function edit($id)
     {
-        //
+//        $update = ['actual_starting_date' => "2019-01-01"];
+//        $schedule = Schedule::find($id);
+//        $schedule->update($update);
+//        return $id;
     }
 
     /**
@@ -77,11 +81,22 @@ class SchedulesController extends Controller
      *
      * @param  \Illuminate\Http\Request $request
      * @param  int $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Response|string
      */
     public function update(Request $request, $id)
     {
-        return $request->all();
+        $attributes = $request->all();
+        $update = [$attributes['attribute'] => $attributes['value']];
+        try {
+            $schedule = Schedule::find($id);
+            $schedule->update($update);
+            $project = Project::find($attributes['project_id']);
+            return view('Admin.Layouts._schedule_table', ['project' => $project]);
+        } catch (\Exception $e) {
+            return $e->getMessage();
+        }
+
+
     }
 
     /**
