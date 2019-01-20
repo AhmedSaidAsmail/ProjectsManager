@@ -2,14 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use App\Src\CheckParentChildsRelation\CheckRelations;
+use App\Models\Schedule;
 use Illuminate\Http\Request;
-use App\Models\TimeLine;
-use App\Models\Project;
-use RuntimeException;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Validator;
 
-class timeLinesController extends Controller
+class SchedulesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,8 +17,7 @@ class timeLinesController extends Controller
      */
     public function index()
     {
-        $timeLines = TimeLine::all();
-        return view('Admin/timeLinesAll', ['timeLines' => $timeLines]);
+        //
     }
 
     /**
@@ -29,9 +27,7 @@ class timeLinesController extends Controller
      */
     public function create()
     {
-        $projects = Project::all();
-        $timeLines = TimeLine::all();
-        return view('Admin/timeLinesCreate', ['projects' => $projects, 'timeLines' => $timeLines]);
+        //
     }
 
     /**
@@ -42,18 +38,15 @@ class timeLinesController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'project_id' => 'integer|required|min:1',
-            'name' => 'required'
-        ]);
-        $timeLine = new TimeLine();
+        $attributes = $request->all();
+        $this->validation($attributes);
         try {
-            (new CheckRelations($request->all(), 'parent', 'project_id', $timeLine))->check();
-            $timeLine->create($request->all());
-            return redirect()->route('time-lines.index');
-        } catch (RuntimeException $ex) {
-            return $ex->getMessage();
+            Schedule::create($attributes);
+        } catch (\Exception $e) {
+            return redirect()->back()->with('failure', $e->getMessage());
         }
+        return redirect()->back()->with('success', 'The Schedule has been inserted to database successfully');
+
 
     }
 
@@ -88,7 +81,7 @@ class timeLinesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        return $request->all();
     }
 
     /**
@@ -100,5 +93,19 @@ class timeLinesController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    private function validation(array $attributes)
+    {
+        return Validator::make($attributes, [
+            'project_id' => 'required|exists:projects,id',
+            'activity_id' => 'required',
+            'related_to' => 'nullable|exists:schedules,activity_id',
+            'sort' => 'required',
+            'default_duration' => 'integer|required',
+            'planed_starting_date' => 'nullable|date',
+            'activity_name' => 'required'
+        ])->validate();
+
     }
 }

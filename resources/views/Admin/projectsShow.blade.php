@@ -1,5 +1,14 @@
 @extends('Admin.Layouts.Master')
 @section('container')
+    @if(count($errors)>0)
+        <div class="alert alert-dismissable alert-danger">
+            <ul>
+                @foreach($errors->all() as $error)
+                    <li>{{$error}}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
     <div class="row heading-bg">
         <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
             <h5 class="txt-dark arabic-fonts">عرض المشاريع</h5>
@@ -40,81 +49,123 @@
                 </div>
                 <div class="panel-wrapper collapse in">
                     <div class="panel-body">
-                        <p class="text-muted">بدايه المشروع :<code>{{date('d-m-Y',strtotime($project->created_at))}}</code>
+                        <p class="text-muted">بدايه المشروع
+                            :<code>{{date('d-m-Y',strtotime($project->created_at))}}</code>
 
                         <p>{{$project->description}}</p>
 
                         <div class="tab-struct custom-tab-1 mt-40">
                             <ul role="tablist" class="nav nav-tabs" id="myTabs_7">
-                                <li class="active" role="presentation"><a aria-expanded="true" data-toggle="tab" role="tab" id="project_data" href="#project_data_show">معلومات المشروع</a></li>
-                                <li role="presentation" class=""><a data-toggle="tab" id="" role="tab" href="#time_table_tab" aria-expanded="false">الجدول الذمني</a></li>
-                                <li role="presentation" class=""><a data-toggle="tab" id="" role="tab" href="#Submetal_tab" aria-expanded="false">الاعتمادات</a></li>
-                                <li role="presentation" class=""><a data-toggle="tab" id="" role="tab" href="#Reqest_tab" aria-expanded="false">الريكويستات</a></li>
-                                <li role="presentation" class=""><a data-toggle="tab" id="" role="tab" href="#letters_tab" aria-expanded="false">الخطابات</a></li>
-                                <li role="presentation" class=""><a data-toggle="tab" id="" role="tab" href="#quntty_tab" aria-expanded="false">الكميات</a></li>
-                                <li class="dropdown" role="presentation"><a data-toggle="dropdown" class="dropdown-toggle" id="myTabDrop_7" href="#" aria-expanded="false">مكتبه المشروع <span class="caret"></span></a>
+                                <li class="active" role="presentation"><a aria-expanded="true" data-toggle="tab"
+                                                                          role="tab" id="project_data"
+                                                                          href="#project_data_show">معلومات المشروع</a>
+                                </li>
+                                <li role="presentation" class=""><a data-toggle="tab" id="" role="tab"
+                                                                    href="#time_table_tab" aria-expanded="false">الجدول
+                                        الزمنى</a></li>
+                                <li role="presentation" class=""><a data-toggle="tab" id="" role="tab"
+                                                                    href="#Submetal_tab" aria-expanded="false">الاعتمادات</a>
+                                </li>
+                                <li role="presentation" class=""><a data-toggle="tab" id="" role="tab"
+                                                                    href="#Reqest_tab"
+                                                                    aria-expanded="false">الريكويستات</a></li>
+                                <li role="presentation" class=""><a data-toggle="tab" id="" role="tab"
+                                                                    href="#letters_tab"
+                                                                    aria-expanded="false">الخطابات</a></li>
+                                <li role="presentation" class=""><a data-toggle="tab" id="" role="tab"
+                                                                    href="#quntty_tab" aria-expanded="false">الكميات</a>
+                                </li>
+                                <li class="dropdown" role="presentation"><a data-toggle="dropdown"
+                                                                            class="dropdown-toggle" id="myTabDrop_7"
+                                                                            href="#" aria-expanded="false">مكتبه المشروع
+                                        <span class="caret"></span></a>
                                     <ul id="myTabDrop_7_contents" class="dropdown-menu">
 
-                                        <li class=""><a data-toggle="tab" id="dropdown_13_tab" role="tab" href="#medialaibary_tab" aria-expanded="false"> الملفات والفديوهات والصور </a></li>
+                                        <li class=""><a data-toggle="tab" id="dropdown_13_tab" role="tab"
+                                                        href="#medialaibary_tab" aria-expanded="false"> الملفات
+                                                والفديوهات والصور </a></li>
                                     </ul>
                                 </li>
-                                <li class="dropdown" role="presentation"><a data-toggle="dropdown" class="dropdown-toggle" id="myTabDrop_7" href="#" aria-expanded="false">المخططات<span class="caret"></span></a>
+                                <li class="dropdown" role="presentation"><a data-toggle="dropdown"
+                                                                            class="dropdown-toggle" id="myTabDrop_7"
+                                                                            href="#" aria-expanded="false">المخططات<span
+                                                class="caret"></span></a>
                                     <ul id="myTabDrop_7_contents" class="dropdown-menu">
-                                        <li class=""><a data-toggle="tab" id="dropdown_13_tab" role="tab" href="#planning_tab" aria-expanded="false">مخطططات التندر</a></li>
-                                        <li class=""><a data-toggle="tab" id="dropdown_14_tab" role="tab" href="#shopdrowing_tab" aria-expanded="false">مخططات رسومات الورشه</a></li>
-                                        <li class=""><a data-toggle="tab" id="dropdown_14_tab" role="tab" href="#as_bulit_tab" aria-expanded="false">مخططات اسبيلت</a></li>
+                                        <li class=""><a data-toggle="tab" id="dropdown_13_tab" role="tab"
+                                                        href="#planning_tab" aria-expanded="false">مخطططات التندر</a>
+                                        </li>
+                                        <li class=""><a data-toggle="tab" id="dropdown_14_tab" role="tab"
+                                                        href="#shopdrowing_tab" aria-expanded="false">مخططات رسومات
+                                                الورشه</a></li>
+                                        <li class=""><a data-toggle="tab" id="dropdown_14_tab" role="tab"
+                                                        href="#as_bulit_tab" aria-expanded="false">مخططات اذ بيلت</a>
+                                        </li>
                                     </ul>
                                 </li>
-                                <li class="dropdown" role="presentation"><a data-toggle="dropdown" class="dropdown-toggle" id="" href="#" aria-expanded="false"> اعمال المشروع<span class="caret"></span></a>
+                                <li class="dropdown" role="presentation"><a data-toggle="dropdown"
+                                                                            class="dropdown-toggle" id="" href="#"
+                                                                            aria-expanded="false"> اعمال المشروع<span
+                                                class="caret"></span></a>
                                     <ul id="myTabDrop_7_contents" class="dropdown-menu">
-                                        <li class=""><a data-toggle="tab" id="dropdown_13_tab" role="tab" href="#Labor_tab" aria-expanded="false">العماله - والمعدات</a></li>
-                                        <li class=""><a data-toggle="tab" id="dropdown_14_tab" role="tab" href="#papers_entry_tab" aria-expanded="false">الاوراق</a></li>
-                                        <li class=""><a data-toggle="tab" id="dropdown_14_tab" role="tab" href="#change_order_entry_tab" aria-expanded="false">اوامر التغيير</a></li>
-                                        <li class=""><a data-toggle="tab" id="dropdown_14_tab" role="tab" href="#medialaibary_tab" aria-expanded="false">مكتبه المشروع </a></li>
-                                        <li class=""><a data-toggle="tab" id="dropdown_14_tab" role="tab" href="#tests_tab" aria-expanded="false">الاختبارات</a></li>
+                                        <li class=""><a data-toggle="tab" id="dropdown_13_tab" role="tab"
+                                                        href="#Labor_tab" aria-expanded="false">العماله - والمعدات</a>
+                                        </li>
+                                        <li class=""><a data-toggle="tab" id="dropdown_14_tab" role="tab"
+                                                        href="#papers_entry_tab" aria-expanded="false">الاوراق</a></li>
+                                        <li class=""><a data-toggle="tab" id="dropdown_14_tab" role="tab"
+                                                        href="#change_order_entry_tab" aria-expanded="false">اوامر
+                                                التغيير</a></li>
+                                        <li class=""><a data-toggle="tab" id="dropdown_14_tab" role="tab"
+                                                        href="#medialaibary_tab" aria-expanded="false">مكتبه
+                                                المشروع </a></li>
+                                        <li class=""><a data-toggle="tab" id="dropdown_14_tab" role="tab"
+                                                        href="#tests_tab" aria-expanded="false">الاختبارات</a></li>
                                     </ul>
                                 </li>
-                                <li class="dropdown" role="presentation"><a data-toggle="dropdown" class="dropdown-toggle" id="myTabDrop_7" href="#" aria-expanded="false">التقارير<span class="caret"></span></a>
+                                <li class="dropdown" role="presentation"><a data-toggle="dropdown"
+                                                                            class="dropdown-toggle" id="myTabDrop_7"
+                                                                            href="#" aria-expanded="false">التقارير<span
+                                                class="caret"></span></a>
                                     <ul id="myTabDrop_7_contents" class="dropdown-menu">
-                                        <li class=""><a data-toggle="tab" id="dropdown_13_tab" role="tab" href="#dropdown_13" aria-expanded="true">اسبوعي</a></li>
-                                        <li class=""><a data-toggle="tab" id="dropdown_14_tab" role="tab" href="#dropdown_14" aria-expanded="false">شهري</a></li>
+                                        <li class=""><a data-toggle="tab" id="dropdown_13_tab" role="tab"
+                                                        href="#dropdown_13" aria-expanded="true">اسبوعى</a></li>
+                                        <li class=""><a data-toggle="tab" id="dropdown_14_tab" role="tab"
+                                                        href="#dropdown_14" aria-expanded="false">شهرى</a></li>
                                     </ul>
                                 </li>
                             </ul>
                             <div class="tab-content" id="myTabContent_7">
-                                {{-- Prject Information --}}
+                            {{-- Prject Information --}}
 
-                                @include('Admin.Layouts.projectInformation')
-                                {{-- Prject Information --}}
-                                {{-- Timetable --}}
-                                {{-- Schedule --}}
-                                @include('Admin.Layouts.projectSchedule')
-                                {{-- Schedule --}}
-                                {{-- Timetable --}}
-                                {{-- Submittals  --}}
-                                @include('Admin.Layouts.projectSubmittals')
-                                {{-- Submittals  --}}
-                                {{-- Requests --}}
-                                @include('Admin.Layouts.projectRequests')
-                                {{-- Requests --}}
-                                {{-- Letters --}}
-                                @include('Admin.Layouts.projectLetters')
-                                {{-- Letters --}}
-                                {{-- Qunatities --}}
-                                <div id="quntty_tab" class="tab-pane fade" role="tabpanel">
-                                    <p>الكميات لاحقا في اصدار اخر</p>
-                                </div>
-                                {{-- Qunatities --}}
-                                {{-- Tender Drawing --}}
-                                @include('Admin.Layouts.projectTenderDrawing')
-                                {{-- Tender Drawing --}}
-                                {{-- Shop Drawings --}}
-                                @include('Admin.Layouts.projectShopDrawings')
-                                {{-- Shop Drawings --}}
-                                {{-- Cordnation Drawings --}}
-                                @include('Admin.Layouts.projectCordnationDrawings')
-                                {{-- Cordnation Drawings --}}
-                                        <!-- لعماله - والمعدات -->
+                            @include('Admin.Layouts.projectInformation')
+                            {{-- Prject Information --}}
+                            {{-- Timetable --}}
+                            {{-- Schedule --}}
+                            @include('Admin.Layouts.projectSchedule')
+                            {{-- Schedule --}}
+                            {{-- Timetable --}}
+                            {{-- Submittals  --}}
+                            @include('Admin.Layouts.projectSubmittals')
+                            {{-- Submittals  --}}
+                            {{-- Requests --}}
+                            @include('Admin.Layouts.projectRequests')
+                            {{-- Requests --}}
+                            {{-- Letters --}}
+                            @include('Admin.Layouts.projectLetters')
+                            {{-- Letters --}}
+                            {{-- Qunatities --}}
+                            @include('Admin.Layouts._schedules')
+                            {{-- Qunatities --}}
+                            {{-- Tender Drawing --}}
+                            @include('Admin.Layouts.projectTenderDrawing')
+                            {{-- Tender Drawing --}}
+                            {{-- Shop Drawings --}}
+                            @include('Admin.Layouts.projectShopDrawings')
+                            {{-- Shop Drawings --}}
+                            {{-- Cordnation Drawings --}}
+                            @include('Admin.Layouts.projectCordnationDrawings')
+                            {{-- Cordnation Drawings --}}
+                            <!-- لعماله - والمعدات -->
                                 <div id="Labor_tab" class="tab-pane fade" role="tabpanel">
                                     <p>لعماله - والمعدات</p>
                                 </div>
@@ -124,16 +175,16 @@
                                     <p>الاوراق</p>
                                 </div>
                                 <!--/ الاوراق -->
-                                {{-- Tests --}}
-                                @include('Admin.Layouts.projectTests')
-                                {{-- Tests --}}
-                                {{-- Change Orders --}}
-                                @include('Admin.Layouts.changeOrders')
-                                {{-- Change Orders --}}
-                                {{-- Files --}}
-                                @include('Admin.Layouts.projectFiles')
-                                {{-- Files --}}
-                                        <!-- فاضي -->
+                            {{-- Tests --}}
+                            @include('Admin.Layouts.projectTests')
+                            {{-- Tests --}}
+                            {{-- Change Orders --}}
+                            @include('Admin.Layouts.changeOrders')
+                            {{-- Change Orders --}}
+                            {{-- Files --}}
+                            @include('Admin.Layouts.projectFiles')
+                            {{-- Files --}}
+                            <!-- فاضي -->
                                 <div id="empty" class="tab-pane fade" role="tabpanel">
                                     <p>فاضي</p>
                                 </div>
@@ -220,6 +271,7 @@
     <script>
         $(function () {
             getTestSort();
+
             function getTestSort() {
                 $("select#test_sort").change(function () {
                     var val = $(this).val();
@@ -264,7 +316,7 @@
                 }
             });
         });
-        $("#watchNow").click(function(event){
+        $("#watchNow").click(function (event) {
             event.preventDefault();
 
         });

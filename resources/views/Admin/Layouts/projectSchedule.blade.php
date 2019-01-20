@@ -4,11 +4,13 @@
             <div class="col-sm-12">
                 <div class="panel panel-default card-view">
                     @if(in_array(auth()->user()->permission->contractorPermissions->schedule,[7]) || auth()->guard('web')->check())
-                        <div class="modal fade" id="add_new_Test_Paper_model" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1">
+                        <div class="modal fade" id="add_new_Test_Paper_model" tabindex="-1" role="dialog"
+                             aria-labelledby="exampleModalLabel1">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span></button>
                                         <h5 class="modal-title" id="">انشاء جدول ذمني</h5>
                                     </div>
                                     <div class="modal-body">
@@ -20,16 +22,25 @@
 
                                                             <div class="tab-struct custom-tab-2 mt-10">
                                                                 <div class="tab-content" id="myTabContent_15">
-                                                                    <div id="Reciving_request_tab" class="tab-pane fade active in" role="tabpanel">
-                                                                        <form action="{{route('time-line-items.store')}}" method="post" enctype="multipart/form-data">
-                                                                            <input type="hidden" name="project_id" value="{{$project->id}}">
+                                                                    <div id="Reciving_request_tab"
+                                                                         class="tab-pane fade active in"
+                                                                         role="tabpanel">
+                                                                        <form action="{{route('time-line-items.store')}}"
+                                                                              method="post"
+                                                                              enctype="multipart/form-data">
+                                                                            <input type="hidden" name="project_id"
+                                                                                   value="{{$project->id}}">
                                                                             {{csrf_field()}}
                                                                             <div class="row">
                                                                                 <div class="col-md-6">
                                                                                     <div class="form-group">
-                                                                                        <label>عنوان الجدول الزمني</label>
-                                                                                        <select name="time_line_id" class="form-control">
-                                                                                            <option value="">اختار عنوان</option>
+                                                                                        <label>عنوان الجدول
+                                                                                            الزمني</label>
+                                                                                        <select name="time_line_id"
+                                                                                                class="form-control">
+                                                                                            <option value="">اختار
+                                                                                                عنوان
+                                                                                            </option>
                                                                                             @foreach($project->timeLines as $timeLine)
                                                                                                 <option value="{{$timeLine->id}}">{{$timeLine->nameWithAllParents()}}</option>
                                                                                             @endforeach
@@ -39,7 +50,8 @@
                                                                                 <div class="col-md-6">
                                                                                     <div class="form-group">
                                                                                         <label>الاسم</label>
-                                                                                        <input class="form-control" name="activity_name">
+                                                                                        <input class="form-control"
+                                                                                               name="activity_name">
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
@@ -47,33 +59,44 @@
                                                                                 <div class="col-md-6">
                                                                                     <div class="form-group">
                                                                                         <label>Original</label>
-                                                                                        <input class="form-control" name="original">
+                                                                                        <input class="form-control"
+                                                                                               name="original">
                                                                                     </div>
                                                                                 </div>
                                                                                 <div class="col-md-6">
                                                                                     <div class="form-group">
                                                                                         <label>Activity #ID</label>
-                                                                                        <input class="form-control" name="activity_id">
+                                                                                        <input class="form-control"
+                                                                                               name="activity_id">
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
                                                                             <div class="row">
                                                                                 <div class="col-md-6">
                                                                                     <div class="form-group">
-                                                                                        <label for="message-text" class="control-label mb-10">تاريخ البداية</label>
-                                                                                        <input type="date" name="starting_date" class="form-control">
+                                                                                        <label for="message-text"
+                                                                                               class="control-label mb-10">تاريخ
+                                                                                            البداية</label>
+                                                                                        <input type="date"
+                                                                                               name="starting_date"
+                                                                                               class="form-control">
                                                                                     </div>
                                                                                 </div>
                                                                                 <div class="col-md-6">
                                                                                     <div class="form-group">
-                                                                                        <label for="message-text" class="control-label mb-10">تاريخ النهاية</label>
-                                                                                        <input type="date" name="ending_date" class="form-control">
+                                                                                        <label for="message-text"
+                                                                                               class="control-label mb-10">تاريخ
+                                                                                            النهاية</label>
+                                                                                        <input type="date"
+                                                                                               name="ending_date"
+                                                                                               class="form-control">
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
                                                                             <div class="form-group">
                                                                                 <div class="modal-footer">
-                                                                                    <input type="submit" value="حفظ" class="btn btn-success btn-rounded btn-block">
+                                                                                    <input type="submit" value="حفظ"
+                                                                                           class="btn btn-success btn-rounded btn-block">
                                                                                 </div>
 
                                                                             </div>
@@ -92,7 +115,8 @@
                             </div>
                         </div>
                         <div>
-                            <button class="btn btn-success btn-rounded btn-block btn-anim" data-toggle="modal" data-target="#add_new_Test_Paper_model" data-whatever="@">
+                            <button class="btn btn-success btn-rounded btn-block btn-anim" data-toggle="modal"
+                                    data-target="#add_new_Test_Paper_model" data-whatever="@">
                                 <i class="fa fa-pencil"></i><span class="btn-text">انشاء جدول ذمني</span></button>
                         </div>
                     @endif
@@ -138,7 +162,8 @@
     @else
         <div class="row">
             <div class="col-md-12">
-                <h5 class="text-center text-danger"><i class="fas fa-exclamation-triangle"></i> غير مسموح لك بالدخول علي هذه البيانات</h5>
+                <h5 class="text-center text-danger"><i class="fas fa-exclamation-triangle"></i> غير مسموح لك بالدخول علي
+                    هذه البيانات</h5>
             </div>
         </div>
     @endif

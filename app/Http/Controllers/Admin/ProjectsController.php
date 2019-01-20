@@ -99,7 +99,10 @@ class ProjectsController extends Controller
     public function show($id)
     {
         $project = Project::findOrFail($id);
-        $timeLinesCollection = HierarchyFactory::factory($project->timeLines)->renderArray()->all();
+        $timeLinesCollection = [];
+        if (!empty($project->timeLines->all())) {
+            $timeLinesCollection = HierarchyFactory::factory($project->timeLines)->renderArray()->all();
+        }
         return view('Admin.projectsShow', ['project' => $project, 'timeLines' => $timeLinesCollection]);
     }
 
